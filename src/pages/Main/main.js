@@ -1,11 +1,12 @@
 import React from "react";
 import Navigation from "../../components/Navigation/navigation";
+import Introduce from "../../components/Introduce/introduce";
 
 const Main = (props) => {
   return (
     <div>
       <Navigation />
-      <h1>This is Main Page</h1>
+      <Introduce />
     </div>
   );
 };
