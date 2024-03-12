@@ -32,7 +32,7 @@ const Navigation = (props) => {
             <LoginButton>
               <LoginButtonLabel>회원가입/로그인</LoginButtonLabel>
             </LoginButton>
-            <div style={{ marginLeft: "40px" }}>
+            <div>
               <ul
                 onClick={() => {
                   setClickLanguageDropdown(!clickLanguageDropdown);

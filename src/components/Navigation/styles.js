@@ -14,7 +14,7 @@ export const Box = styled.div`
 export const Title = styled.label`
   font-size: 36px;
   font-weight: 900;
-  margin-left: 6.25rem;
+  margin-left: 50px;
   cursor: pointer;
 `;
 
@@ -35,7 +35,6 @@ export const LoginButton = styled.button`
   background-color: white;
   padding: 10px 22px;
   border-radius: 12px;
-  margin-left: 50px;
   cursor: pointer;
 `;
 
