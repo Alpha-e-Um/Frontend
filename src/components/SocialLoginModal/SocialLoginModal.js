@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import {
   ContainerOut,
@@ -11,7 +11,7 @@ import {
   ExitButton,
 } from "./styles";
 
-function SocialLoginModal() {
+const SocialLoginModal = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const openSocialLoginModal = () => {
@@ -21,8 +21,6 @@ function SocialLoginModal() {
   const closeSocialLoginModal = () => {
     setIsLogin(false);
   };
-
-  useEffect(() => {}, []);
 
   return (
     <div>
@@ -43,6 +41,6 @@ function SocialLoginModal() {
       )}
     </div>
   );
-}
+};
 
 export default SocialLoginModal;

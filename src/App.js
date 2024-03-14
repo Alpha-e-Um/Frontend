@@ -1,7 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Main from "./pages/Main/main";
-import SocialLoginModal from "./components/SocialLoginModal/SocialLoginModal";
+import SocialLoginModal from "./components/SocialLoginModal/socialLoginModal";
 
 const App = () => {
   return (
