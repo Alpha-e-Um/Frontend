@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ReactComponent as Vector } from "../../assets/icons/Vector.svg";
 
 import {
   ContainerOut,
@@ -33,7 +34,9 @@ const SocialLoginModal = () => {
             <KakaoButton>카카오톡으로 진행하기</KakaoButton>
             <GoogleButton>구글로 진행하기</GoogleButton>
             <NaverButton>네이버로 진행하기</NaverButton>
-            <ExitButton onClick={closeSocialLoginModal}>X</ExitButton>
+            <ExitButton onClick={closeSocialLoginModal}>
+              <Vector />
+            </ExitButton>
           </Container>
         </ContainerOut>
       ) : (

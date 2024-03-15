@@ -82,4 +82,7 @@ export const ExitButton = styled.button`
   left: 603px;
   width: 61px;
   height: 61px;
+  background-color: #ffffff;
+  border: none;
+  cursor: pointer;
 `;
