@@ -38,3 +38,23 @@ export const ButtonText = styled.label`
   font-weight: 700;
   cursor: pointer;
 `;
+
+export const Box = styled.div`
+  background-color: #714adf;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  margin: 30px 60px;
+  border-radius: 26px;
+`;
+
+export const InnerBox = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  max-width: 1000px;
+`;

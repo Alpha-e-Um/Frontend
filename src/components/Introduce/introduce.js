@@ -1,36 +1,18 @@
 import {
+  Box,
   ButtonText,
   Container,
   Description,
   GetTeamButton,
+  InnerBox,
   Slogan,
 } from "./styles";
 
 const Introduce = () => {
   return (
     <Container>
-      <div
-        style={{
-          backgroundColor: "#714adf",
-          width: "100%",
-          height: "100%",
-          justifyContent: "center",
-          display: "flex",
-          margin: "30px 60px",
-          borderRadius: "26px",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "start",
-            maxWidth: "1000px",
-          }}
-        >
+      <Box>
+        <InnerBox>
           <Slogan>세상의 모든 팀플을 위한 연결의 시작!</Slogan>
           <Description>
             이음이 제공하는 자유롭고 편안한 프로젝트 서비스,
@@ -41,8 +23,8 @@ const Introduce = () => {
           <GetTeamButton>
             <ButtonText>첫 팀 구하기</ButtonText>
           </GetTeamButton>
-        </div>
-      </div>
+        </InnerBox>
+      </Box>
     </Container>
   );
 };
