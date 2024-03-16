@@ -27,6 +27,7 @@ const MemberCard = ({ data }) => {
             display: "flex",
             justifyContent: "space-between",
             width: "100%",
+            marginBottom: "30px",
           }}
         >
           <div style={{ display: "flex" }}>
@@ -41,25 +42,25 @@ const MemberCard = ({ data }) => {
                 marginLeft: "20px",
               }}
             >
-              <Title>QWE</Title>
-              <Position>QWE</Position>
+              <Title>{data.name}</Title>
+              <Position>{data.position}</Position>
             </div>
           </div>
           <div>
-            <TeamNameLabel>ASD</TeamNameLabel>
-            <LocationLabel>ASD</LocationLabel>
+            <TeamNameLabel>{data.gender}</TeamNameLabel>
+            <LocationLabel>{data.location}</LocationLabel>
           </div>
         </div>
       </div>
 
       <div style={{ textAlign: "left" }}>
-        <Description>ASD</Description>
+        <Description>{data.introduction}</Description>
       </div>
       <div />
       <InteractBox>
         <ButtonBox>
-          <StyledButton>ASD</StyledButton>
-          <StyledButton>ASD</StyledButton>
+          <StyledButton>{data.skill1}</StyledButton>
+          <StyledButton>{data.skill2}</StyledButton>
         </ButtonBox>
         <div>
           <LikeButton src="/icons/heart.svg" width={30} />

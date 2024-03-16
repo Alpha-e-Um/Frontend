@@ -1,4 +1,4 @@
-import TeamCard from "../TeamCard/teamCard";
+import TeamCard from "../Card/teamCard";
 import { GridContainer, Title } from "./styles";
 
 const TeamCardGrid = (props) => {

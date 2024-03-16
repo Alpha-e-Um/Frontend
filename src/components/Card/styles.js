@@ -15,6 +15,13 @@ export const Title = styled.label`
   font-weight: 700;
 `;
 
+export const Position = styled.label`
+  font-size: 16px;
+  color: #6d758f;
+  font-weight: 500;
+  margin-top: 4px;
+`;
+
 export const StateLabel = styled.label`
   font-size: 14px;
   color: #3376f6;
