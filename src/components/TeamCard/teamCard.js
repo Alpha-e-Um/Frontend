@@ -12,7 +12,7 @@ import {
   Title,
 } from "./styles";
 
-const TeamCard = () => {
+const TeamCard = ({ data }) => {
   return (
     <Container>
       <div
@@ -22,9 +22,13 @@ const TeamCard = () => {
           marginBottom: "6px",
         }}
       >
-        <Title>제목</Title>
+        <Title>{data.projectName}</Title>
         <div>
-          <StateLabel>모집 중</StateLabel>
+          {data.recruitmentStatus ? (
+            <StateLabel>모집 중</StateLabel>
+          ) : (
+            <StateLabel>모집 마감</StateLabel>
+          )}
           <TimeLabel>1시간 전</TimeLabel>
         </div>
       </div>
@@ -35,27 +39,20 @@ const TeamCard = () => {
           marginBottom: "30px",
         }}
       >
-        <TeamNameLabel>도레미팀</TeamNameLabel>
-        <LocationLabel>서울</LocationLabel>
+        <TeamNameLabel>{data.teamName}</TeamNameLabel>
+        <LocationLabel>{data.location}</LocationLabel>
       </div>
       <div style={{ textAlign: "left" }}>
-        <Description>
-          동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 무궁화
-          삼천리 화려강산
-        </Description>
+        <Description>{data.projectDescription}</Description>
       </div>
       <div />
       <InteractBox>
         <ButtonBox>
-          <StyledButton>분류 12</StyledButton>
-          <StyledButton>팀원 모집</StyledButton>
+          <StyledButton>{data.category1}</StyledButton>
+          <StyledButton>{data.category2}</StyledButton>
         </ButtonBox>
         <div>
-          <LikeButton
-            src="/icons/heart.svg"
-            width={30}
-            stroke-color="#ff0000"
-          />
+          <LikeButton src="/icons/heart.svg" width={30} />
         </div>
       </InteractBox>
     </Container>

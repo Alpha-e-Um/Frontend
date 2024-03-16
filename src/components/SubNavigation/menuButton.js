@@ -1,7 +1,6 @@
 import { IconBox } from "./styles";
 
 const MenuButton = (props) => {
-  console.log(props.imgUrl);
   return (
     <div
       style={{ display: "flex", flexDirection: "column", cursor: "pointer" }}
