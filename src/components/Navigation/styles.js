@@ -21,13 +21,13 @@ export const Title = styled.label`
 `;
 
 export const MenuBox = styled.div`
-  margin-left: 100px;
+  display: flex;
+  gap: 120px;
 `;
 
 export const MenuItem = styled.label`
   font-size: 18px;
   font-weight: 700;
-  margin-left: 120px;
   cursor: pointer;
 `;
 

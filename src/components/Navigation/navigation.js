@@ -17,13 +17,12 @@ const Navigation = (props) => {
       <div>
         <Box>
           <Title>이음</Title>
-          <MenuBox style={{ display: "flex" }}>
+          <MenuBox>
             <MenuItem>팀구하기</MenuItem>
             <MenuItem>팀원구하기</MenuItem>
             <MenuItem>대외활동</MenuItem>
             <MenuItem
               style={{
-                marginRight: "120px",
                 color: "#6632e9",
                 fontWeight: "900",
               }}

@@ -5,6 +5,7 @@ export const Container = styled.div`
   height: 100%;
   display: flex;
   justify-content: center;
+  margin-bottom: 60px;
 `;
 
 export const Slogan = styled.label`
@@ -34,7 +35,7 @@ export const GetTeamButton = styled.button`
 
 export const ButtonText = styled.label`
   color: #6632e9;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   cursor: pointer;
 `;
@@ -45,7 +46,6 @@ export const Box = styled.div`
   height: 100%;
   justify-content: center;
   display: flex;
-  margin: 30px 60px;
   border-radius: 26px;
 `;
 
