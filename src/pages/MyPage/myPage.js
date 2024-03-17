@@ -8,6 +8,7 @@ const MyPage = (props) => {
     <div>
       <Navigation />
       <MyPageSideBar />
+      <MyInfo />
     </div>
   );
 };

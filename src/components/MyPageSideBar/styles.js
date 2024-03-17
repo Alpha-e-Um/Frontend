@@ -24,7 +24,7 @@ export const Container = styled.div`
 
 export const SelectPage = styled.button`
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 800;
   margin-bottom: 70px;
   border: none;
   background-color: #ffffff;
