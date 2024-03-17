@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ReactComponent as CheckCircleOn } from "../../assets/myPage/Circle.svg";
 import { Title, Container, SelectPage, NotSelectPage } from "./styles";
 
 const MyPageSideBar = (props) => {
@@ -18,7 +19,18 @@ const MyPageSideBar = (props) => {
           const ItemComponent = curPage === index ? SelectPage : NotSelectPage;
 
           return (
-            <ItemComponent key={index} onClick={() => sideButtonClick(index)}>
+            <ItemComponent
+              key={index}
+              onClick={() => sideButtonClick(index)}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              {curPage === index && (
+                <CheckCircleOn style={{ marginRight: "20px" }} />
+              )}
               {item}
             </ItemComponent>
           );
