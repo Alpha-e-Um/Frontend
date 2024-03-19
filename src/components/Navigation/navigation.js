@@ -9,18 +9,38 @@ import {
   Title,
 } from "./styles";
 import { ReactComponent as Alert } from "../../assets/icons/alert.svg";
+import { useNavigate } from "react-router-dom";
+import SocialLoginModal from "../SocialLoginModal/SocialLoginModal";
 
 const Navigation = (props) => {
-  const [clickLanguageDropdown, setClickLanguageDropdown] = useState(false);
+  const navigate = useNavigate();
+  const [clickLoginButton, setClickLoginButton] = useState(false);
+
   return (
     <Container>
+      {clickLoginButton ? (
+        <SocialLoginModal setClickLoginButton={setClickLoginButton} />
+      ) : null}
       <div>
         <Box>
-          <Title>이음</Title>
+          <Title
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            이음
+          </Title>
           <MenuBox>
             <MenuItem>팀구하기</MenuItem>
             <MenuItem>팀원구하기</MenuItem>
             <MenuItem>대외활동</MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate("/mypage");
+              }}
+            >
+              마이페이지(임시)
+            </MenuItem>
             <MenuItem
               style={{
                 color: "#6632e9",
@@ -38,24 +58,14 @@ const Navigation = (props) => {
             }}
           >
             <LoginButton>
-              <LoginButtonLabel>회원가입/로그인</LoginButtonLabel>
-            </LoginButton>
-            <div>
-              <ul
+              <LoginButtonLabel
                 onClick={() => {
-                  setClickLanguageDropdown(!clickLanguageDropdown);
+                  setClickLoginButton(true);
                 }}
               >
-                {"KR"}
-                {clickLanguageDropdown ? "⌃" : "⌄"}
-                {clickLanguageDropdown && (
-                  <>
-                    <li>KR</li>
-                    <li>EN</li>
-                  </>
-                )}
-              </ul>
-            </div>
+                회원가입/로그인
+              </LoginButtonLabel>
+            </LoginButton>
             <div style={{ marginLeft: "40px" }}>
               <Alert width={28} fill="true" />
             </div>
