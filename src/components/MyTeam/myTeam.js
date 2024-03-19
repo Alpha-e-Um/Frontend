@@ -14,7 +14,7 @@ const MyTeam = (props) => {
     <div>
       <Completed onClick={CompletedSetting}>
         {isCompleted ? <CheckCircleOn /> : <CheckCircleOff />}
-        <CompletedLabel>팀관리</CompletedLabel>
+        <CompletedLabel>나의 팀만 보기</CompletedLabel>
       </Completed>
       <CardContainter></CardContainter>
     </div>
