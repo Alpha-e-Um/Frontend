@@ -35,7 +35,9 @@ const TeamCard = ({ data }) => {
       <div
         style={{
           display: "flex",
-          flexDirection: "start",
+          flexDirection: "column",
+          justifyContent: "start",
+          alignItems: "start",
           marginBottom: "30px",
         }}
       >

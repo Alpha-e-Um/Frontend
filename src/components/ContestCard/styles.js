@@ -15,7 +15,7 @@ export const DeadlineButton = styled.button`
   position: absolute;
   left: 16px;
   top: 16px;
-  background-color: #714adf;
+  background-color: #376fff;
   border-radius: 8px;
   padding: 6px 16px;
 `;

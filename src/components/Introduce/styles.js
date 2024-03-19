@@ -9,7 +9,6 @@ export const Container = styled.div`
 `;
 
 export const Slogan = styled.label`
-  color: white;
   font-size: 40px;
   font-weight: 700;
   margin-top: 80px;
@@ -17,7 +16,6 @@ export const Slogan = styled.label`
 `;
 
 export const Description = styled.label`
-  color: white;
   font-size: 24px;
   font-weight: 500;
   margin-bottom: 6px;
@@ -25,7 +23,7 @@ export const Description = styled.label`
 
 export const GetTeamButton = styled.button`
   all: unset;
-  background-color: #ffffff;
+  background-color: #376fff;
   padding: 11px 30px;
   margin-top: 60px;
   margin-bottom: 80px;
@@ -34,19 +32,18 @@ export const GetTeamButton = styled.button`
 `;
 
 export const ButtonText = styled.label`
-  color: #6632e9;
+  color: #ffffff;
   font-size: 20px;
   font-weight: 700;
   cursor: pointer;
 `;
 
 export const Box = styled.div`
-  background-color: #714adf;
+  background-color: #a6fcdc;
   width: 100%;
   height: 100%;
   justify-content: center;
   display: flex;
-  border-radius: 26px;
 `;
 
 export const InnerBox = styled.div`

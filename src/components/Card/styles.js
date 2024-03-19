@@ -71,8 +71,8 @@ export const ButtonBox = styled.div`
 export const StyledButton = styled.button`
   all: unset;
   cursor: pointer;
-  background-color: #714adf;
-  border-radius: 6px;
+  background-color: #3376f6;
+  border-radius: 18px;
   padding: 6px 14px;
   color: white;
   font-size: 14px;
