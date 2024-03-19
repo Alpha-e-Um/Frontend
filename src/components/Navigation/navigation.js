@@ -43,7 +43,7 @@ const Navigation = (props) => {
             </MenuItem>
             <MenuItem
               style={{
-                color: "#6632e9",
+                color: "#000000",
                 fontWeight: "900",
               }}
             >
@@ -63,7 +63,7 @@ const Navigation = (props) => {
                   setClickLoginButton(true);
                 }}
               >
-                회원가입/로그인
+                로그인
               </LoginButtonLabel>
             </LoginButton>
             <div style={{ marginLeft: "40px" }}>
