@@ -7,7 +7,6 @@ import SocialLoginModal from "./components/SocialLoginModal/SocialLoginModal";
 const App = () => {
   return (
     <div className="App">
-      <SocialLoginModal />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<MyPage />} />
