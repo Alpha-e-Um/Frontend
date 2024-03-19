@@ -1,16 +1,5 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  position: absolute;
-  top: 201px;
-  left: 450px;
-  width: 948px;
-  height: 1085px;
-  border: solid;
-  border-color: #c9c9c9;
-  border-radius: 12px;
-`;
-
 export const Title = styled.label`
   position: absolute;
   top: 27px;

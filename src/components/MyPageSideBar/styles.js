@@ -1,13 +1,5 @@
 import styled from "styled-components";
 
-export const Title = styled.div`
-  position: absolute;
-  top: 114px;
-  left: 159px;
-  font-size: 32px;
-  font-weight: 700;
-`;
-
 export const Container = styled.div`
   position: absolute;
   display: flex;
@@ -15,7 +7,7 @@ export const Container = styled.div`
   top: 201px;
   left: 139px;
   width: 212px;
-  height: 592px;
+  height: 480px;
   border: solid;
   border-color: #c9c9c9;
   border-radius: 12px;

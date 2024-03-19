@@ -1,32 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  position: absolute;
-  left: 450px;
-  top: 201px;
-  width: 948px;
-  height: 1085px;
-  border: solid;
-  border-color: #c9c9c9;
-  border-radius: 12px;
-`;
-
-export const Title = styled.label`
-  position: relative;
-  top: 30px;
-  right: 330px;
-  font-size: 30px;
-  font-weight: 900;
-`;
-
-export const SetVector = styled.div`
-  position: relative;
-  top: 50px;
-`;
-
 export const TeamButton = styled.button`
   position: relative;
-  top: 60px;
+  top: 120px;
   left: 300px;
   width: 100px;
   height: 50px;
@@ -41,7 +17,7 @@ export const TeamButton = styled.button`
 
 export const TeamMemberButton = styled.button`
   position: relative;
-  top: 60px;
+  top: 120px;
   left: 320px;
   width: 100px;
   height: 50px;
@@ -56,8 +32,9 @@ export const TeamMemberButton = styled.button`
 export const CardContainter = styled.div`
   position: absolute;
   top: 300px;
-  left: 100px;
-  width: 700px;
-  height: 650px;
+  left: 70px;
+  width: 800px;
+  height: 750px;
   border: solid;
+  overflow-y: auto;
 `;
