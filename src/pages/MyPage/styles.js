@@ -12,8 +12,8 @@ export const Container = styled.div`
   position: absolute;
   top: 201px;
   left: 450px;
-  width: 948px;
-  height: 1085px;
+  width: 898px;
+  height: 885px;
   border: solid;
   border-color: #c9c9c9;
   border-radius: 12px;
@@ -21,14 +21,8 @@ export const Container = styled.div`
 
 export const PageName = styled.label`
   position: absolute;
-  top: 27px;
-  left: 37px;
+  left: 50px;
+  top: 35px;
   font-size: 30px;
   font-weight: 900;
-`;
-
-export const SetVector = styled.div`
-  position: absolute;
-  top: 80px;
-  left: 20px;
 `;

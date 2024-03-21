@@ -8,7 +8,7 @@ const MyResume = (props) => {
         <Cross style={{ marginRight: "10px" }} />
         이력서 생성
       </ResumeButton>
-      <CardContainter />
+      <CardContainter></CardContainter>
     </div>
   );
 };

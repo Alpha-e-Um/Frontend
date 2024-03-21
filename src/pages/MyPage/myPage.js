@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
+import MyPageSideBar from "../../components/MyPageSideBar/myPageSideBar";
 import MyInfo from "../../components/MyInfo/myInfo";
 import MyFavorites from "../../components/MyFavorites/myFavorites";
 import MySupport from "../../components/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
-import MyPageSideBar from "../../components/MyPageSideBar/myPageSideBar";
+import MyResume from "../../components/MyResume/myResume";
 import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
 import { Title, Container, PageName, SetVector } from "./styles";
-import MyResume from "../../components/MyResume/myResume";
+import { Position } from "../../components/Card/styles";
 
 const MyPage = (props) => {
   const { pathname } = useLocation();
@@ -49,9 +50,14 @@ const MyPage = (props) => {
 
       <Container>
         <PageName>{arr[pageIdx]}</PageName>
-        <SetVector>
-          <Vector></Vector>
-        </SetVector>
+        <Vector
+          style={{
+            position: "absolute",
+            top: "86px",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+        />
         <PageComponent />
       </Container>
     </div>

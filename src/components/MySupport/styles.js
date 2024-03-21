@@ -2,9 +2,8 @@ import styled from "styled-components";
 
 export const Completed = styled.button`
   position: absolute;
-  top: 120px;
-  right: 120px;
-  align-items: center;
+  right: 55px;
+  top: 103px;
   border: none;
   background-color: #ffffff;
   display: flex;
@@ -19,10 +18,12 @@ export const CompletedLabel = styled.label`
 
 export const CardContainter = styled.div`
   position: absolute;
-  top: 220px;
+  top: 170px;
   left: 70px;
   width: 800px;
-  height: 770px;
-  border: solid;
+  height: 670px;
+  display: grid;
+  flex-direction: column;
+  gap: 20px;
   overflow-y: auto;
 `;
