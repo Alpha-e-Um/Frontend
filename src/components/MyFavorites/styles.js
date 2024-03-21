@@ -13,6 +13,7 @@ export const TeamButton = styled.button`
   border-radius: 39px;
   border-color: #376fff;
   background-color: #376fff;
+  cursor: pointer;
 `;
 
 export const TeamMemberButton = styled.button`
@@ -27,14 +28,18 @@ export const TeamMemberButton = styled.button`
   border: solid;
   border-radius: 39px;
   background-color: #ffffff;
+  cursor: pointer;
 `;
 
 export const CardContainter = styled.div`
   position: absolute;
-  top: 300px;
-  left: 70px;
-  width: 800px;
-  height: 750px;
-  border: solid;
+  transform: translateX(-50%);
+  left: 50%;
+  top: 250px;
+  width: 767px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
   overflow-y: auto;
 `;

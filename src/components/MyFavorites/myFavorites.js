@@ -1,7 +1,7 @@
 import { TeamButton, TeamMemberButton, CardContainter } from "./styles";
 
-import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
-import TeamCard from "../Card/teamCard";
+import MyFavoriteCard from "../MyPageCard/MyFavoriteCard/myFavoriteCard";
+import MyTeamTestData from "../../api/myTeamTestData";
 
 const MyFavorites = (props) => {
   var d = {
@@ -21,10 +21,9 @@ const MyFavorites = (props) => {
       <TeamButton>팀</TeamButton>
       <TeamMemberButton>팀원</TeamMemberButton>
       <CardContainter>
-        <TeamCard data={d}></TeamCard>
-        <TeamCard data={d}></TeamCard>
-        <TeamCard data={d}></TeamCard>
-        <TeamCard data={d}></TeamCard>
+        {MyTeamTestData.map((item) => (
+          <MyFavoriteCard data={item} />
+        ))}
       </CardContainter>
     </div>
   );

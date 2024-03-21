@@ -8,12 +8,14 @@ export const Completed = styled.button`
   background-color: #ffffff;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const CompletedLabel = styled.label`
   margin-left: 10px;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export const CardContainter = styled.div`

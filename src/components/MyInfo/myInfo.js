@@ -1,14 +1,11 @@
 import {
-  Container,
   InformationContainer,
   InformationRow,
   ProfileChangeButton,
   SetProfile,
-  SetVector1,
   SetVector2,
   SetVector3,
   StyledLabel,
-  Title,
   Input1,
   Input2,
   Input3,
@@ -22,6 +19,7 @@ import {
   SaveButton,
   CannelButton,
 } from "./styles";
+
 import { ReactComponent as Vector2 } from "../../assets/myPage/myInfoVector2.svg";
 import { ReactComponent as Profile } from "../../assets/myPage/profile.svg";
 import { ReactComponent as CheckCircleOff } from "../../assets/myPage/CheckCircleOff.svg";
@@ -51,9 +49,7 @@ const MyInfo = () => {
 
   return (
     <div>
-      <SetProfile>
-        <Profile />
-      </SetProfile>
+      <Profile style={{ position: "absolute", top: "146px", left: "83px" }} />
       <ProfileChangeButton onClick={profileChange}>
         사진 변경
       </ProfileChangeButton>

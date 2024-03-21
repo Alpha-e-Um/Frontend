@@ -8,12 +8,14 @@ export const MyTeamButton = styled.button`
   background-color: #ffffff;
   display: flex;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const MyTeamLabel = styled.label`
   margin-left: 10px;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export const CreateTeamButton = styled.button`
@@ -32,6 +34,7 @@ export const CreateTeamButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const CardContainter = styled.div`
@@ -39,7 +42,7 @@ export const CardContainter = styled.div`
   top: 255px;
   left: 50%;
   transform: translateX(-50%);
-  width: 760px;
+  width: 767px;
   height: 600px;
   display: flex;
   flex-wrap: wrap;

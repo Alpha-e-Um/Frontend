@@ -16,6 +16,7 @@ export const ResumeButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const CardContainter = styled.div`
@@ -23,11 +24,10 @@ export const CardContainter = styled.div`
   left: 50%;
   top: 179px;
   transform: translateX(-50%);
-  width: 750px;
+  width: 767px;
   height: 650px;
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  border: solid;
   overflow-y: auto;
 `;
