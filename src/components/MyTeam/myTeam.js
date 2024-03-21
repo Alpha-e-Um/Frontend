@@ -1,22 +1,37 @@
-import { Completed, CompletedLabel, CardContainter } from "./styles";
+import { useState } from "react";
+import {
+  MyTeamButton,
+  MyTeamLabel,
+  CardContainter,
+  CreateTeamButton,
+} from "./styles";
 import { ReactComponent as CheckCircleOff } from "../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../assets/myPage/CheckCircleOn.svg";
-import { useState } from "react";
+import { ReactComponent as Cross } from "../../assets/myPage/Cross.svg";
+import MyTeamCard from "../MyPageCard/MyTeamCard/myTeamCard";
+import MyTeamTestData from "../../api/myTeamTestData";
 
 const MyTeam = (props) => {
-  const [isCompleted, setIsCompleted] = useState(false);
+  const [isMyTeam, setIsMyTeam] = useState(false);
 
-  const CompletedSetting = () => {
-    setIsCompleted(!isCompleted);
+  const MyTeamBtn = () => {
+    setIsMyTeam(!isMyTeam);
   };
 
   return (
     <div>
-      <Completed onClick={CompletedSetting}>
-        {isCompleted ? <CheckCircleOn /> : <CheckCircleOff />}
-        <CompletedLabel>나의 팀만 보기</CompletedLabel>
-      </Completed>
-      <CardContainter></CardContainter>
+      <MyTeamButton onClick={MyTeamBtn}>
+        {isMyTeam ? <CheckCircleOn /> : <CheckCircleOff />}
+        <MyTeamLabel>나의 팀만 보기</MyTeamLabel>
+      </MyTeamButton>
+      <CreateTeamButton>
+        <Cross style={{ marginRight: "10px" }} />팀 생성
+      </CreateTeamButton>
+      <CardContainter>
+        {MyTeamTestData.map((item) => (
+          <MyTeamCard data={item} />
+        ))}
+      </CardContainter>
     </div>
   );
 };

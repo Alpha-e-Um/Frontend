@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const TeamButton = styled.button`
-  position: relative;
-  top: 120px;
-  left: 300px;
-  width: 100px;
-  height: 50px;
+  position: absolute;
+  top: 108px;
+  right: 118px;
+  width: 66px;
+  height: 34px;
   font-size: 18px;
-  font-size: 500;
+  font-weight: 500;
   color: #ffffff;
   border: solid;
   border-radius: 39px;
@@ -16,13 +16,13 @@ export const TeamButton = styled.button`
 `;
 
 export const TeamMemberButton = styled.button`
-  position: relative;
-  top: 120px;
-  left: 320px;
-  width: 100px;
-  height: 50px;
+  position: absolute;
+  top: 108px;
+  right: 41px;
+  width: 66px;
+  height: 34px;
   font-size: 18px;
-  font-size: 500;
+  font-weight: 500;
   color: #376fff;
   border: solid;
   border-radius: 39px;

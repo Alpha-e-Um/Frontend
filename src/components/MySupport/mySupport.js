@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { Completed, CompletedLabel, CardContainter } from "./styles";
 import { ReactComponent as CheckCircleOff } from "../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../assets/myPage/CheckCircleOn.svg";
-import { useState } from "react";
-import SupportCard from "../MyPageCard/SupportCard/SupportCard";
+import MySupportCard from "../MyPageCard/MySupportCard/mySupportCard";
 import supportTestData from "../../api/supportTestData";
 
 const MySupport = (props) => {
@@ -19,7 +19,7 @@ const MySupport = (props) => {
       </Completed>
       <CardContainter>
         {supportTestData.map((item) => (
-          <SupportCard data={item}></SupportCard>
+          <MySupportCard data={item} />
         ))}
       </CardContainter>
     </div>

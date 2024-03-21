@@ -27,7 +27,7 @@ export const TeamAndRegion = styled.label`
   color: #c9c9c9;
 `;
 
-export const Date = styled.label`
+export const DateLabel = styled.label`
   position: absolute;
   right: 56px;
   top: 17px;
@@ -36,7 +36,7 @@ export const Date = styled.label`
   color: #7c7c7c;
 `;
 
-export const Time = styled.label`
+export const TimeLabel = styled.label`
   position: absolute;
   right: 16px;
   top: 17px;

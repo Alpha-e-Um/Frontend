@@ -19,8 +19,9 @@ export const CompletedLabel = styled.label`
 export const CardContainter = styled.div`
   position: absolute;
   top: 170px;
-  left: 70px;
+  left: 50%;
   width: 800px;
+  transform: translateX(-50%);
   height: 670px;
   display: grid;
   flex-direction: column;

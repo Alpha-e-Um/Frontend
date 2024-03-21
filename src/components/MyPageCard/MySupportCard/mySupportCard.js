@@ -2,8 +2,8 @@ import {
   Containter,
   ProjectName,
   TeamAndRegion,
-  Date,
-  Time,
+  DateLabel,
+  TimeLabel,
   Introduction,
   Pass,
   Fail,
@@ -11,7 +11,7 @@ import {
 
 import { ReactComponent as CenterLine } from "../../../assets/myPage/SupportCenterLine.svg";
 
-const SupportCard = ({ data }) => {
+const MySupportCard = ({ data }) => {
   console.log(data.projectName);
   return (
     <Containter>
@@ -19,8 +19,8 @@ const SupportCard = ({ data }) => {
       <TeamAndRegion>
         {data.teamName} / {data.region}
       </TeamAndRegion>
-      <Date>{data.date}</Date>
-      <Time>| {data.time}</Time>
+      <DateLabel>{data.date}</DateLabel>
+      <TimeLabel>| {data.time}</TimeLabel>
 
       <CenterLine
         style={{
@@ -37,4 +37,4 @@ const SupportCard = ({ data }) => {
   );
 };
 
-export default SupportCard;
+export default MySupportCard;
