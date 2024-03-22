@@ -74,6 +74,7 @@ export const TeamMemberButtton = styled.button`
   font-weight: 400;
   color: #376fff;
   background-color: #ffffff;
+  cursor: pointer;
 `;
 
 export const EditButton = styled.button`
@@ -89,4 +90,5 @@ export const EditButton = styled.button`
   font-weight: 400;
   color: #376fff;
   background-color: #ffffff;
+  cursor: pointer;
 `;

@@ -2,22 +2,23 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 201px;
-  left: 139px;
+  transform: translateX(-100%);
+  top: 0px;
+  left: -30px;
   width: 212px;
-  height: 480px;
-  border: solid;
+  height: 495px;
+  border: 2px solid;
   border-color: #c9c9c9;
   border-radius: 12px;
   padding-top: 30px;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const SelectPage = styled.button`
   font-size: 20px;
   font-weight: 800;
-  margin-bottom: 70px;
+  margin-bottom: 80px;
   border: none;
   background-color: #ffffff;
   cursor: pointer;
@@ -26,7 +27,7 @@ export const SelectPage = styled.button`
 export const NotSelectPage = styled.button`
   font-size: 20px;
   font-weight: 400;
-  margin-bottom: 70px;
+  margin-bottom: 80px;
 
   border: none;
   background-color: #ffffff;

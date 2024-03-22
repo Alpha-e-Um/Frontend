@@ -2,16 +2,18 @@ import styled from "styled-components";
 
 export const Title = styled.div`
   position: absolute;
-  top: 114px;
-  left: 159px;
+  transform: translateX(-100%);
+  top: -90px;
+  left: -70px;
   font-size: 32px;
   font-weight: 700;
 `;
 
 export const Container = styled.div`
   position: absolute;
+  transform: translateX(-50%);
   top: 201px;
-  left: 450px;
+  left: 55%;
   width: 898px;
   height: 885px;
   border: solid;

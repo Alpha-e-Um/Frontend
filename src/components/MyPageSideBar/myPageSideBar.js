@@ -26,6 +26,8 @@ const MyPageSideBar = (props) => {
       case 4:
         navigate("/mypage/resume");
         break;
+      default:
+        break;
     }
 
     setCurPage(index);

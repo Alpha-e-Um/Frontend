@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
 import MyPageSideBar from "../../components/MyPageSideBar/myPageSideBar";
@@ -10,46 +10,15 @@ import MyTeam from "../../components/MyTeam/myTeam";
 import MyResume from "../../components/MyResume/myResume";
 import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
-import { Title, Container, PageName, SetVector } from "./styles";
-import { Position } from "../../components/Card/styles";
+import { Title, Container, PageName } from "./styles";
 
 const MyPage = (props) => {
-  const { pathname } = useLocation();
-
-  var arr = ["내정보", "즐겨찾기", "지원현황", "팀관리", "이력서"];
-  var info = [MyInfo, MyFavorites, MySupport, MyTeam, MyResume];
-  const [pageIdx, setPageIdx] = useState(0);
-
-  useEffect(() => {
-    switch (pathname) {
-      case "/mypage":
-        setPageIdx(0);
-        break;
-      case "/mypage/favorites":
-        setPageIdx(1);
-        break;
-      case "/mypage/support":
-        setPageIdx(2);
-        break;
-      case "/mypage/team":
-        setPageIdx(3);
-        break;
-      case "/mypage/resume":
-        setPageIdx(4);
-        break;
-    }
-  });
-
-  const PageComponent = info[pageIdx];
-
   return (
     <div>
       <Navigation />
-      <Title>마이페이지</Title>
-      <MyPageSideBar />
-
       <Container>
-        <PageName>{arr[pageIdx]}</PageName>
+        <Title>마이페이지</Title>
+        <MyPageSideBar />
         <Vector
           style={{
             position: "absolute",
@@ -58,7 +27,54 @@ const MyPage = (props) => {
             transform: "translateX(-50%)",
           }}
         />
-        <PageComponent />
+
+        <Routes>
+          <Route
+            index
+            element={
+              <div>
+                <PageName>내정보</PageName>
+                <MyInfo />
+              </div>
+            }
+          />
+          <Route
+            path="favorites"
+            element={
+              <div>
+                <PageName>즐겨찾기 목록</PageName>
+                <MyFavorites />
+              </div>
+            }
+          />
+          <Route
+            path="support"
+            element={
+              <div>
+                <PageName>지원 현황</PageName>
+                <MySupport />
+              </div>
+            }
+          />
+          <Route
+            path="team"
+            element={
+              <div>
+                <PageName>팀관리</PageName>
+                <MyTeam />
+              </div>
+            }
+          />
+          <Route
+            path="resume"
+            element={
+              <div>
+                <PageName>이력서 관리</PageName>
+                <MyResume />
+              </div>
+            }
+          />
+        </Routes>
       </Container>
     </div>
   );
