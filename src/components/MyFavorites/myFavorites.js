@@ -1,36 +1,30 @@
-import {
-  Container,
-  Title,
-  SetVector,
-  TeamButton,
-  TeamMemberButton,
-  CardContainter,
-} from "./styles";
-import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
+import { TeamButton, TeamMemberButton, CardContainter } from "./styles";
 
-const scrollbarStyle = {
-  customScrollbar: {
-    height: "100%", // 또는 원하는 크기
-    overflowY: "scroll", // 수직 스크롤바 사용
-    scrollbarWidth: "thin", // 브라우저가 지원하는 경우 스크롤바 너비
-    scrollbarColor: "#888 #f1f1f1", // 브라우저가 지원하는 경우 스크롤바와 트랙 색상
-  },
-};
+import MyFavoriteCard from "../MyPageCard/MyFavoriteCard/myFavoriteCard";
+import MyTeamTestData from "../../api/myTeamTestData";
 
 const MyFavorites = (props) => {
+  var d = {
+    id: 1,
+    name: "홍길동",
+    position: "프론트엔드 개발자",
+    gender: "남성",
+    location: "서울",
+    introduction:
+      "React와 JavaScript 경험이 있는 열정적인 프론트엔드 개발자입니다.",
+    skill1: "React",
+    skill2: "JavaScript",
+  };
+
   return (
     <div>
-      <Container>
-        <Title>즐겨찾기 목록</Title>
-        <SetVector>
-          <Vector />
-        </SetVector>
-        <TeamButton>팀</TeamButton>
-        <TeamMemberButton>팀원</TeamMemberButton>
-        <CardContainter>
-          <div style={scrollbarStyle.customScrollbar}></div>
-        </CardContainter>
-      </Container>
+      <TeamButton>팀</TeamButton>
+      <TeamMemberButton>팀원</TeamMemberButton>
+      <CardContainter>
+        {MyTeamTestData.map((item) => (
+          <MyFavoriteCard data={item} />
+        ))}
+      </CardContainter>
     </div>
   );
 };

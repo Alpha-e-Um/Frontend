@@ -1,86 +1,55 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  position: absolute;
-  top: 201px;
-  left: 450px;
-  width: 948px;
-  height: 1085px;
-  border: solid;
-  border-color: #c9c9c9;
-  border-radius: 12px;
-`;
-
-export const Title = styled.label`
-  position: absolute;
-  top: 27px;
-  left: 37px;
-  font-size: 30px;
-  font-weight: 900;
-`;
-
-export const SetVector1 = styled.div`
-  position: absolute;
-  top: 80px;
-  left: 20px;
-`;
-
 export const SetVector2 = styled.div`
   position: absolute;
-  top: 650px;
-  left: 300px;
+  top: 570px;
+  right: 30px;
 `;
 export const SetVector3 = styled.div`
   position: absolute;
-  top: 900px;
-  left: 300px;
-`;
-
-export const SetProfile = styled.div`
-  position: absolute;
-  top: 136px;
-  left: 100px;
+  top: 780px;
+  right: 30px;
 `;
 
 export const ProfileChangeButton = styled.button`
   position: absolute;
-  top: 286px;
-  left: 123px;
+  top: 297px;
+  left: 106px;
   width: 92px;
   height: 32px;
-
   border-radius: 48px;
-
   font-size: 16px;
+  font-weight: 400;
   background-color: #ffffff;
+  cursor: pointer;
 `;
 
 export const InformationContainer = styled.div`
+  position: absolute;
+  top: 142px;
+  left: 302px;
+  width: 450px;
+  height: 400px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  position: absolute;
-  top: 136px;
-  left: 350px;
-  width: 450px;
-  height: 500px;
-  margin: auto;
 `;
 
 export const InformationRow = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-  margin-bottom: 50px;
+  margin-bottom: 35px;
 `;
 
 export const StyledLabel = styled.label`
   width: 110px;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
 `;
 export const Input1 = styled.input`
-  width: 94px;
-  height: 30px;
+  width: 88px;
+  height: 32px;
   border: 1px solid;
   border-radius: 9px;
   font-size: 16px;
@@ -89,7 +58,7 @@ export const Input1 = styled.input`
 `;
 export const Input2 = styled.input`
   width: 124px;
-  height: 30px;
+  height: 32px;
   border: 1px solid;
   border-radius: 9px;
   font-size: 16px;
@@ -98,7 +67,7 @@ export const Input2 = styled.input`
 `;
 export const Input3 = styled.input`
   width: 144px;
-  height: 30px;
+  height: 32px;
   border: 1px solid;
   border-radius: 9px;
   font-size: 16px;
@@ -117,13 +86,14 @@ export const SchoolMailButton = styled.button`
   text-align: center;
   margin-left: 10px;
   color: #ffffff;
+  cursor: pointer;
 `;
 
 export const AlarmContainter = styled.div`
   position: absolute;
   flex-direction: column;
-  top: 700px;
-  left: 350px;
+  top: 608px;
+  left: 314px;
   width: 500px;
   height: 200px;
 `;
@@ -162,7 +132,7 @@ export const AlarmRow = styled.div`
 
 export const AlarmButton = styled.button`
   width: 154px;
-  height: 40px;
+  height: 32px;
   border: 1px solid;
   border-radius: 9px;
   font-size: 16px;
@@ -170,32 +140,35 @@ export const AlarmButton = styled.button`
   background-color: white;
   display: flex;
   align-items: center;
+  justify-content: center;
   margin-right: 20px;
 `;
 
 export const SaveButton = styled.button`
   position: absolute;
-  top: 950px;
-  left: 670px;
-  width: 90px;
-  height: 40px;
+  top: 804px;
+  right: 117px;
+  width: 64px;
+  height: 32px;
   background-color: #376fff;
   border: none;
   border-radius: 9px;
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
+  cursor: pointer;
 `;
 export const CannelButton = styled.button`
   position: absolute;
-  top: 950px;
-  left: 780px;
-  width: 90px;
-  height: 40px;
+  top: 804px;
+  right: 40px;
+  width: 64px;
+  height: 32px;
   background-color: #dedede;
   border: none;
   border-radius: 9px;
   font-size: 18px;
   font-weight: 700;
   color: #646464;
+  cursor: pointer;
 `;
