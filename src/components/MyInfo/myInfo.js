@@ -25,6 +25,7 @@ import { ReactComponent as Profile } from "../../assets/myPage/profile.svg";
 import { ReactComponent as CheckCircleOff } from "../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../assets/myPage/CheckCircleOn.svg";
 import { useState } from "react";
+import WithdrawalModal from "../WithdrawalModal/withdrawalModal";
 
 const MyInfo = () => {
   const [isAlarm, setIsAlarm] = useState(false);

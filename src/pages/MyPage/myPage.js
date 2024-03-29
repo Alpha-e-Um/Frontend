@@ -11,6 +11,7 @@ import MyResume from "../../components/MyResume/myResume";
 import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
 import { Title, Container, PageName } from "./styles";
+import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 
 const MyPage = (props) => {
   return (
@@ -76,6 +77,8 @@ const MyPage = (props) => {
           />
         </Routes>
       </Container>
+
+      <WithdrawalModal></WithdrawalModal>
     </div>
   );
 };
