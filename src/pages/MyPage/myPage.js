@@ -7,6 +7,7 @@ import MyInfo from "../../components/MyInfo/myInfo";
 import MyFavorites from "../../components/MyFavorites/myFavorites";
 import MySupport from "../../components/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
+import MyTeamCreate from "../../components/MyTeamCreate/myTeamCreate";
 import MyResume from "../../components/MyResume/myResume";
 import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
@@ -62,7 +63,8 @@ const MyPage = (props) => {
             element={
               <div>
                 <PageName>팀관리</PageName>
-                <MyTeam />
+                <MyTeamCreate />
+                {/* <MyTeam /> */}
               </div>
             }
           />
@@ -77,8 +79,6 @@ const MyPage = (props) => {
           />
         </Routes>
       </Container>
-
-      <WithdrawalModal></WithdrawalModal>
     </div>
   );
 };
