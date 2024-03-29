@@ -14,17 +14,14 @@ import {
 const SocialLoginModal = ({ setClickLoginButton }) => {
   const loginWithKakao = () => {
     window.location.href = "/oauth2/authorization/kakao";
-    console.log(123);
   };
 
   const loginWithGoogle = () => {
     window.location.href = "/oauth2/authorization/google";
-    console.log(123);
   };
 
   const loginWithNaver = () => {
     window.location.href = "/oauth2/authorization/naver";
-    console.log(123);
   };
 
   return (
@@ -33,9 +30,11 @@ const SocialLoginModal = ({ setClickLoginButton }) => {
         <Container>
           <Title>이음</Title>
           <Explanation>간편하게 시작하는 회원가입</Explanation>
-          <KakaoButton>카카오톡으로 진행하기</KakaoButton>
+          <KakaoButton onClick={loginWithKakao}>
+            카카오톡으로 진행하기
+          </KakaoButton>
           <GoogleButton onClick={loginWithGoogle}>구글로 진행하기</GoogleButton>
-          <NaverButton>네이버로 진행하기</NaverButton>
+          <NaverButton onClick={loginWithNaver}>네이버로 진행하기</NaverButton>
           <ExitButton
             onClick={() => {
               setClickLoginButton(false);
