@@ -32,14 +32,15 @@ export const TeamMemberButton = styled.button`
 `;
 
 export const CardContainter = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 52px 26px;
   position: absolute;
   transform: translateX(-50%);
   left: 50%;
-  top: 250px;
+  top: 200px;
   width: 767px;
   height: 600px;
-  display: flex;
-  flex-wrap: wrap;
   gap: 20px;
   overflow-y: auto;
 `;
