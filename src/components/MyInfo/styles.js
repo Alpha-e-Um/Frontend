@@ -1,22 +1,12 @@
 import styled from "styled-components";
 
-export const SetVector2 = styled.div`
-  position: absolute;
-  top: 570px;
-  right: 30px;
-`;
-export const SetVector3 = styled.div`
-  position: absolute;
-  top: 780px;
-  right: 30px;
-`;
-
 export const ProfileChangeButton = styled.button`
   position: absolute;
   top: 297px;
   left: 106px;
   width: 92px;
   height: 32px;
+  border: solid;
   border-radius: 48px;
   font-size: 16px;
   font-weight: 400;
@@ -24,68 +14,50 @@ export const ProfileChangeButton = styled.button`
   cursor: pointer;
 `;
 
-export const InformationContainer = styled.div`
+export const WithdrawalButton = styled.button`
   position: absolute;
-  top: 142px;
-  left: 302px;
-  width: 450px;
-  height: 400px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
+  top: 341px;
+  left: 106px;
+  width: 92px;
+  height: 32px;
+  border: none;
+  border-radius: 48px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #646464;
+  background-color: #dedede;
+  cursor: pointer;
 `;
 
-export const InformationRow = styled.div`
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  margin-bottom: 35px;
-`;
-
-export const StyledLabel = styled.label`
-  width: 110px;
+export const Tag = styled.label`
+  position: absolute;
   font-size: 18px;
   font-weight: 600;
 `;
-export const Input1 = styled.input`
-  width: 88px;
-  height: 32px;
+
+export const Input = styled.input`
+  position: absolute;
   border: 1px solid;
   border-radius: 9px;
   font-size: 16px;
   font-weight: 400;
   text-align: center;
-`;
-export const Input2 = styled.input`
-  width: 124px;
-  height: 32px;
-  border: 1px solid;
-  border-radius: 9px;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
-`;
-export const Input3 = styled.input`
-  width: 144px;
-  height: 32px;
-  border: 1px solid;
-  border-radius: 9px;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
+  cursor: pointer;
 `;
 
 export const SchoolMailButton = styled.button`
-  width: 144px;
+  position: absolute;
+  left: 534px;
+  top: 421px;
+  width: 135px;
   height: 35px;
   border: none;
   border-radius: 9px;
   background-color: #376fff;
-  font-size: 16px;
-  font-weight: 400;
-  text-align: center;
-  margin-left: 10px;
+  font-size: 18px;
+  font-weight: 500;
   color: #ffffff;
+  text-align: center;
   cursor: pointer;
 `;
 
@@ -131,7 +103,6 @@ export const AlarmRow = styled.div`
 `;
 
 export const AlarmButton = styled.button`
-  width: 154px;
   height: 32px;
   border: 1px solid;
   border-radius: 9px;

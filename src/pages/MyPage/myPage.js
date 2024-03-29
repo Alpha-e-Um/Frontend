@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext, useCOntext } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
@@ -79,6 +79,8 @@ const MyPage = (props) => {
           />
         </Routes>
       </Container>
+
+      <WithdrawalModal />
     </div>
   );
 };
