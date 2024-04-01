@@ -11,7 +11,7 @@ import { ReactComponent as Cross } from "../../assets/myPage/Cross.svg";
 import MyTeamCard from "../MyPageCard/MyTeamCard/myTeamCard";
 import MyTeamTestData from "../../api/myTeamTestData";
 
-const MyTeam = (props) => {
+const MyTeam = ({ setIsCreateTeam }) => {
   const [isMyTeam, setIsMyTeam] = useState(false);
 
   const MyTeamBtn = () => {
@@ -24,7 +24,7 @@ const MyTeam = (props) => {
         {isMyTeam ? <CheckCircleOn /> : <CheckCircleOff />}
         <MyTeamLabel>나의 팀만 보기</MyTeamLabel>
       </MyTeamButton>
-      <CreateTeamButton>
+      <CreateTeamButton onClick={() => setIsCreateTeam(true)}>
         <Cross style={{ marginRight: "10px" }} />팀 생성
       </CreateTeamButton>
       <CardContainter>

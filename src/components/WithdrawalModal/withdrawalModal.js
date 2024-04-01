@@ -9,7 +9,7 @@ import {
 
 import { ReactComponent as Icon } from "../../assets/myPage/WithdrawalIcon.svg";
 
-const WithdrawalModal = () => {
+const WithdrawalModal = ({ IsWithdrawal }) => {
   return (
     <ContainerOut>
       <Containter>
@@ -19,8 +19,10 @@ const WithdrawalModal = () => {
           회원 탈퇴시 사용자 계정의 모든 정보가 삭제됩니다. <br />
           정말로 탈퇴하시겠습니까?
         </Explanation>
-        <CannelButton>취소</CannelButton>
-        <SecessionButton>회원탈퇴</SecessionButton>
+        <CannelButton onClick={() => IsWithdrawal(false)}>취소</CannelButton>
+        <SecessionButton onClick={() => IsWithdrawal(false)}>
+          회원탈퇴
+        </SecessionButton>
       </Containter>
     </ContainerOut>
   );

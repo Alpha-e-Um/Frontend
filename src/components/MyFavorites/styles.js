@@ -1,33 +1,31 @@
 import styled from "styled-components";
 
-export const TeamButton = styled.button`
+export const SelectButton = styled.button`
   position: absolute;
-  top: 108px;
-  right: 118px;
   width: 66px;
   height: 34px;
-  font-size: 18px;
-  font-weight: 500;
-  color: #ffffff;
   border: solid;
   border-radius: 39px;
   border-color: #376fff;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
   background-color: #376fff;
+  user-select: none;
   cursor: pointer;
 `;
 
-export const TeamMemberButton = styled.button`
+export const NotSelectButton = styled.button`
   position: absolute;
-  top: 108px;
-  right: 41px;
   width: 66px;
   height: 34px;
+  border: solid;
+  border-radius: 39px;
   font-size: 18px;
   font-weight: 500;
   color: #376fff;
-  border: solid;
-  border-radius: 39px;
   background-color: #ffffff;
+  user-select: none;
   cursor: pointer;
 `;
 

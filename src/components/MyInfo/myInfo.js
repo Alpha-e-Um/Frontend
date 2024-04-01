@@ -20,7 +20,7 @@ import { ReactComponent as CheckCircleOff } from "../../assets/myPage/CheckCircl
 import { ReactComponent as CheckCircleOn } from "../../assets/myPage/CheckCircleOn.svg";
 import { useState } from "react";
 
-const MyInfo = () => {
+const MyInfo = ({ IsWithdrawal }) => {
   const [isAlarm, setIsAlarm] = useState(false);
   const [isMail, setIsMail] = useState(false);
   const [isMessage, setIsMessage] = useState(false);
@@ -47,7 +47,9 @@ const MyInfo = () => {
       <ProfileChangeButton onClick={profileChange}>
         사진 변경
       </ProfileChangeButton>
-      <WithdrawalButton>회원 탈퇴</WithdrawalButton>
+      <WithdrawalButton onClick={() => IsWithdrawal(true)}>
+        회원 탈퇴
+      </WithdrawalButton>
 
       <Tag style={{ left: "330px", top: "151px" }}>이름</Tag>
       <Input

@@ -1,4 +1,4 @@
-import React, { createContext, useCOntext } from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
@@ -15,12 +15,15 @@ import { Title, Container, PageName } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 
 const MyPage = (props) => {
+  const [isCreateTeam, setIsCreateTeam] = useState(false);
+  const [isWithdrawal, setIsWithdrawal] = useState(false);
+
   return (
     <div>
       <Navigation />
       <Container>
         <Title>마이페이지</Title>
-        <MyPageSideBar />
+        <MyPageSideBar setIsCreateTeam={setIsCreateTeam} />
         <Vector
           style={{
             position: "absolute",
@@ -36,7 +39,7 @@ const MyPage = (props) => {
             element={
               <div>
                 <PageName>내정보</PageName>
-                <MyInfo />
+                <MyInfo IsWithdrawal={setIsWithdrawal} />
               </div>
             }
           />
@@ -63,8 +66,11 @@ const MyPage = (props) => {
             element={
               <div>
                 <PageName>팀관리</PageName>
-                <MyTeamCreate />
-                {/* <MyTeam /> */}
+                {isCreateTeam ? (
+                  <MyTeamCreate />
+                ) : (
+                  <MyTeam setIsCreateTeam={setIsCreateTeam} />
+                )}
               </div>
             }
           />
@@ -80,7 +86,11 @@ const MyPage = (props) => {
         </Routes>
       </Container>
 
-      <WithdrawalModal />
+      {isWithdrawal ? (
+        <WithdrawalModal IsWithdrawal={setIsWithdrawal} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

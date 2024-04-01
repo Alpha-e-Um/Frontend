@@ -6,7 +6,7 @@ export const ProfileChangeButton = styled.button`
   left: 106px;
   width: 92px;
   height: 32px;
-  border: solid;
+  border: 1px solid;
   border-radius: 48px;
   font-size: 16px;
   font-weight: 400;
@@ -58,6 +58,7 @@ export const SchoolMailButton = styled.button`
   font-weight: 500;
   color: #ffffff;
   text-align: center;
+  user-select: none;
   cursor: pointer;
 `;
 
@@ -127,6 +128,7 @@ export const SaveButton = styled.button`
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
+  user-select: none;
   cursor: pointer;
 `;
 export const CannelButton = styled.button`
@@ -141,5 +143,6 @@ export const CannelButton = styled.button`
   font-size: 18px;
   font-weight: 700;
   color: #646464;
+  user-select: none;
   cursor: pointer;
 `;
