@@ -1,19 +1,59 @@
-import { TeamButton, TeamMemberButton, CardContainter } from "./styles";
+import { SelectButton, NotSelectButton, CardContainter } from "./styles";
 
-import TeamCard from "../Card/teamCard";
-import teamTestData from "../../api/teamTestData";
+import MyFavoriteCard from "../MyPageCard/MyFavoriteCard/myFavoriteCard";
+import MyTeamTestData from "../../api/myTeamTestData";
+import { useState } from "react";
 
 const MyFavorites = (props) => {
+  const [isToggle, setIsToggle] = useState(false);
+
+  const TeamButton = () => {
+    setIsToggle(true);
+  };
+
+  const TeamMemberButton = () => {
+    setIsToggle(false);
+  };
+
   return (
-    <div>
-      <TeamButton>팀</TeamButton>
-      <TeamMemberButton>팀원</TeamMemberButton>
+    <>
+      {isToggle ? (
+        <>
+          <SelectButton
+            onClick={TeamButton}
+            style={{ right: "118px", top: "108px" }}
+          >
+            팀
+          </SelectButton>
+          <NotSelectButton
+            onClick={TeamMemberButton}
+            style={{ right: "41px", top: "108px" }}
+          >
+            팀원
+          </NotSelectButton>
+        </>
+      ) : (
+        <>
+          <NotSelectButton
+            onClick={TeamButton}
+            style={{ right: "118px", top: "108px" }}
+          >
+            팀
+          </NotSelectButton>
+          <SelectButton
+            onClick={TeamMemberButton}
+            style={{ right: "41px", top: "108px" }}
+          >
+            팀원
+          </SelectButton>
+        </>
+      )}
       <CardContainter>
-        {teamTestData.map((item) => (
-          <TeamCard data={item} />
+        {MyTeamTestData.map((item) => (
+          <MyFavoriteCard data={item} />
         ))}
       </CardContainter>
-    </div>
+    </>
   );
 };
 

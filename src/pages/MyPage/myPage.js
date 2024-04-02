@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
@@ -7,18 +7,23 @@ import MyInfo from "../../components/MyInfo/myInfo";
 import MyFavorites from "../../components/MyFavorites/myFavorites";
 import MySupport from "../../components/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
+import MyTeamCreate from "../../components/MyTeamCreate/myTeamCreate";
 import MyResume from "../../components/MyResume/myResume";
 import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
 import { Title, Container, PageName } from "./styles";
+import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 
 const MyPage = (props) => {
+  const [isCreateTeam, setIsCreateTeam] = useState(false);
+  const [isWithdrawal, setIsWithdrawal] = useState(false);
+
   return (
     <div>
       <Navigation />
       <Container>
         <Title>마이페이지</Title>
-        <MyPageSideBar />
+        <MyPageSideBar setIsCreateTeam={setIsCreateTeam} />
         <Vector
           style={{
             position: "absolute",
@@ -34,7 +39,7 @@ const MyPage = (props) => {
             element={
               <div>
                 <PageName>내정보</PageName>
-                <MyInfo />
+                <MyInfo IsWithdrawal={setIsWithdrawal} />
               </div>
             }
           />
@@ -61,7 +66,11 @@ const MyPage = (props) => {
             element={
               <div>
                 <PageName>팀관리</PageName>
-                <MyTeam />
+                {isCreateTeam ? (
+                  <MyTeamCreate />
+                ) : (
+                  <MyTeam setIsCreateTeam={setIsCreateTeam} />
+                )}
               </div>
             }
           />
@@ -76,6 +85,12 @@ const MyPage = (props) => {
           />
         </Routes>
       </Container>
+
+      {isWithdrawal ? (
+        <WithdrawalModal IsWithdrawal={setIsWithdrawal} />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };

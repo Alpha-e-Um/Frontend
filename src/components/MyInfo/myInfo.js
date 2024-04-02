@@ -1,14 +1,7 @@
 import {
-  InformationContainer,
-  InformationRow,
   ProfileChangeButton,
-  SetProfile,
-  SetVector2,
-  SetVector3,
-  StyledLabel,
-  Input1,
-  Input2,
-  Input3,
+  Tag,
+  Input,
   SchoolMailButton,
   AlarmContainter,
   Alarm,
@@ -18,15 +11,16 @@ import {
   AlarmButton,
   SaveButton,
   CannelButton,
+  WithdrawalButton,
 } from "./styles";
 
-import { ReactComponent as Vector2 } from "../../assets/myPage/myInfoVector2.svg";
+import { ReactComponent as Line } from "../../assets/myPage/myInfoVector2.svg";
 import { ReactComponent as Profile } from "../../assets/myPage/profile.svg";
 import { ReactComponent as CheckCircleOff } from "../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../assets/myPage/CheckCircleOn.svg";
 import { useState } from "react";
 
-const MyInfo = () => {
+const MyInfo = ({ IsWithdrawal }) => {
   const [isAlarm, setIsAlarm] = useState(false);
   const [isMail, setIsMail] = useState(false);
   const [isMessage, setIsMessage] = useState(false);
@@ -53,44 +47,49 @@ const MyInfo = () => {
       <ProfileChangeButton onClick={profileChange}>
         사진 변경
       </ProfileChangeButton>
+      <WithdrawalButton onClick={() => IsWithdrawal(true)}>
+        회원 탈퇴
+      </WithdrawalButton>
 
-      <InformationContainer>
-        <InformationRow>
-          <StyledLabel>이름</StyledLabel>
-          <Input1 />
-          <StyledLabel>성</StyledLabel>
-          <Input1 />
-        </InformationRow>
-        <InformationRow>
-          <StyledLabel>닉네임</StyledLabel>
-          <Input1 />
-          <StyledLabel>MBTI</StyledLabel>
-          <Input1 />
-        </InformationRow>
-        <InformationRow>
-          <StyledLabel>전화번호</StyledLabel>
-          <Input3 placeholder="010 - 1234 - 5678" />
-        </InformationRow>
-        <InformationRow>
-          <StyledLabel>생년월일</StyledLabel>
-          <Input2 type="date" />
-        </InformationRow>
-        <InformationRow>
-          <StyledLabel>소속/학교</StyledLabel>
-          <Input1 />
-          <SchoolMailButton onClick={SchoolMail}>
-            학교 메일 인증
-          </SchoolMailButton>
-        </InformationRow>
-        <InformationRow>
-          <StyledLabel>거주 지역</StyledLabel>
-          <Input3 />
-        </InformationRow>
-      </InformationContainer>
+      <Tag style={{ left: "330px", top: "151px" }}>이름</Tag>
+      <Input
+        style={{ left: "417px", top: "145px", width: "74px", height: "32px" }}
+      />
+      <Tag style={{ left: "322px", top: "222px" }}>닉네임</Tag>
+      <Input
+        style={{ left: "417px", top: "216px", width: "88px", height: "32px" }}
+      />
+      <Tag style={{ left: "314px", top: "293px" }}>전화번호</Tag>
+      <Input
+        style={{ left: "417px", top: "287px", width: "162px", height: "32px" }}
+      />
+      <Tag style={{ left: "314px", top: "364px" }}>생년월일</Tag>
+      <Input
+        type="date"
+        style={{ left: "417px", top: "357px", width: "133px", height: "32px" }}
+      />
+      <Tag style={{ left: "311px", top: "428px" }}>소속/학교</Tag>
+      <Input
+        style={{ left: "417px", top: "422px", width: "102px", height: "32px" }}
+      />
+      <SchoolMailButton onClick={SchoolMail}>학교 메일 인증</SchoolMailButton>
 
-      <SetVector2>
-        <Vector2 />
-      </SetVector2>
+      <Tag style={{ left: "312px", top: "493px" }}>거주 지역</Tag>
+      <Input
+        style={{ left: "417px", top: "486px", width: "168px", height: "32px" }}
+      />
+
+      <Tag style={{ left: "599px", top: "151px" }}>성</Tag>
+      <Input
+        style={{ left: "675px", top: "145PX", width: "60px", height: "32px" }}
+      />
+
+      <Tag style={{ left: "585px", top: "222px" }}>MBTI</Tag>
+      <Input
+        style={{ left: "675px", top: "216px", width: "84px", height: "32px" }}
+      />
+
+      <Line style={{ position: "absolute", right: "30px", top: "570px" }} />
 
       <AlarmContainter>
         <Alarm onClick={AlarmSetting}>
@@ -100,24 +99,22 @@ const MyInfo = () => {
         <CallLabel>합격/불합격 연락 받을 수단</CallLabel>
 
         <AlarmRow>
-          <AlarmButton onClick={AlarmMail}>
+          <AlarmButton onClick={AlarmMail} style={{ width: "90px" }}>
             MAIL
             {isMail ? <CheckCircleOn /> : <CheckCircleOff />}
           </AlarmButton>
-          <AlarmButton onClick={AlarmMessage}>
+          <AlarmButton onClick={AlarmMessage} style={{ width: "120px" }}>
             MESSAGE
             {isMessage ? <CheckCircleOn /> : <CheckCircleOff />}
           </AlarmButton>
-          <AlarmButton onClick={AlarmApplication}>
+          <AlarmButton onClick={AlarmApplication} style={{ width: "150px" }}>
             APPLICATION
             {isApplication ? <CheckCircleOn /> : <CheckCircleOff />}
           </AlarmButton>
         </AlarmRow>
       </AlarmContainter>
 
-      <SetVector3>
-        <Vector2 />
-      </SetVector3>
+      <Line style={{ position: "absolute", right: "30px", top: "780px" }} />
 
       <SaveButton>저장</SaveButton>
       <CannelButton>취소</CannelButton>
