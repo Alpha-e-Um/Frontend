@@ -4,7 +4,7 @@ import MyFavoriteCard from "../MyPageCard/MyFavoriteCard/myFavoriteCard";
 import MyTeamTestData from "../../api/myTeamTestData";
 import { useState } from "react";
 
-const MyFavorites = ({ IsWithdrawal }) => {
+const MyFavorites = (props) => {
   const [isToggle, setIsToggle] = useState(false);
 
   const TeamButton = () => {
