@@ -44,4 +44,5 @@ export const SaveButton = styled.button`
   background-color: #376fff;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
 `;

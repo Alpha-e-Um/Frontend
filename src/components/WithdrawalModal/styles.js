@@ -44,12 +44,13 @@ export const CannelButton = styled.button`
   left: 151px;
   width: 95px;
   height: 35px;
+  border: none;
   border-radius: 8px;
-  border-color: #dedede;
   background-color: #dedede;
   font-size: 20px;
   font-weight: 400;
   color: #646464;
+  cursor: pointer;
 `;
 
 export const SecessionButton = styled.button`
@@ -58,10 +59,11 @@ export const SecessionButton = styled.button`
   right: 151px;
   width: 95px;
   height: 35px;
+  border: none;
   border-radius: 8px;
-  border-color: #376fff;
   background-color: #376fff;
   font-size: 20px;
   font-weight: 400;
   color: #ffffff;
+  cursor: pointer;
 `;
