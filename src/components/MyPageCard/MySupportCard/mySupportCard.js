@@ -12,7 +12,6 @@ import {
 import { ReactComponent as CenterLine } from "../../../assets/myPage/SupportCenterLine.svg";
 
 const MySupportCard = ({ data }) => {
-  console.log(data.projectName);
   return (
     <Containter>
       <ProjectName>{data.projectName}</ProjectName>
