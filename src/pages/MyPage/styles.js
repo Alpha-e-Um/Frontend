@@ -23,8 +23,8 @@ export const Container = styled.div`
 
 export const PageName = styled.label`
   position: absolute;
-  left: 50px;
-  top: 35px;
-  font-size: 30px;
-  font-weight: 900;
+  left: 36px;
+  top: 36px;
+  font-size: 24px;
+  font-weight: 700;
 `;
