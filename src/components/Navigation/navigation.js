@@ -31,8 +31,20 @@ const Navigation = (props) => {
             이음
           </Title>
           <MenuBox>
-            <MenuItem>팀구하기</MenuItem>
-            <MenuItem>팀원구하기</MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate("/team");
+              }}
+            >
+              팀구하기
+            </MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate("/member");
+              }}
+            >
+              팀원구하기
+            </MenuItem>
             <MenuItem>대외활동</MenuItem>
             <MenuItem
               onClick={() => {

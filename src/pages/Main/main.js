@@ -9,6 +9,7 @@ import memberTestData from "../../api/memberTestData";
 import contestTestData from "../../api/contestTestData";
 import ContestCard from "../../components/ContestCard/contestCard";
 import ContestCardGrid from "../../components/CardGrid/contestCardGrid";
+import SideNavigation from "../../components/SideNavigation/sideNavigation";
 
 const Main = (props) => {
   return (
