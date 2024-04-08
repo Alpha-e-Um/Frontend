@@ -22,6 +22,7 @@ const TeamSearch = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          alignItems: "center",
         }}
       >
         <Introduce />
