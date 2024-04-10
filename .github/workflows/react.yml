@@ -30,6 +30,6 @@ jobs:
             
             sudo docker pull ${{ secrets.DOCKER_REPO }}/eum-react:latest
             
-            cd alpha-e_um-deploy
+            echo $(pwd)
             sudo docker-compose -f home/ubuntu/alpha-e_um-deploy/docker-compose.yaml up -d
             sudo docker image prune -f
