@@ -1,0 +1,35 @@
+name: Deploy React
+
+on:
+  push:
+    branches:
+      - main
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: react docker build and push
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ${{ secrets.DOCKER_REPO }}/eum-react:latest .
+          docker push ${{ secrets.DOCKER_REPO }}/eum-react:latest
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_ID }}
+          key: ${{ secrets.AWS_KEY }}
+          script: |
+            if [ "$(sudo docker ps -qa)" ]; then
+              sudo docker rm -f $(sudo docker ps -qa)
+            fi
+            
+            sudo docker pull ${{ secrets.DOCKER_REPO }}/eum-react:latest
+            
+            cd alpha-e_um-deploy
+            sudo docker-compose -f docker-compose.yaml up -d
+            sudo docker image prune -f
