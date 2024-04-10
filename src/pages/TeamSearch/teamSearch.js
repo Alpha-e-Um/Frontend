@@ -22,12 +22,13 @@ const TeamSearch = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          alignItems: "center",
         }}
       >
         <Introduce />
         <div style={{ display: "flex" }}>
-          <SideNavigation />
+          <div>
+            <SideNavigation />
+          </div>
           <div>
             <div style={{ marginLeft: "120px" }}>
               <TeamCardGrid cardDatas={teamTestData2} />

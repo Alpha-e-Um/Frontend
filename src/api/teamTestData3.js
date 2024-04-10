@@ -153,43 +153,6 @@ const teamTestData3 = [
     category2: "가상 현실",
     like: true,
   },
-  {
-    id: 13,
-    projectName: "Cutting-edge Tech",
-    recruitmentStatus: true,
-    postedTime: "2024-03-26T08:40:00Z",
-    teamName: "Tech Explorers",
-    location: "서울",
-    projectDescription: "선도적인 기술을 탐구하고 개발하는 프로젝트입니다.",
-    category1: "인공지능",
-    category2: "바이오 테크놀로지",
-    like: false,
-  },
-  {
-    id: 14,
-    projectName: "Digital Innovation",
-    recruitmentStatus: false,
-    postedTime: "2024-03-27T10:15:00Z",
-    teamName: "Innovation Architects",
-    location: "경기",
-    projectDescription:
-      "디지털 혁신을 위한 연구 및 개발을 수행하는 프로젝트입니다.",
-    category1: "데이터 분석",
-    category2: "사물 인터넷",
-    like: true,
-  },
-  {
-    id: 15,
-    projectName: "AI Revolution Project",
-    recruitmentStatus: true,
-    postedTime: "2024-03-28T13:00:00Z",
-    teamName: "Tech Evolution",
-    location: "부산",
-    projectDescription: "인공지능 혁명을 주도하는 프로젝트입니다.",
-    category1: "인공지능",
-    category2: "로봇 공학",
-    like: true,
-  },
 ];
 
 export default teamTestData3;
