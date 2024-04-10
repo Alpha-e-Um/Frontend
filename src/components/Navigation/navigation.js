@@ -63,7 +63,13 @@ const Navigation = (props) => {
             <LoginButton>
               <LoginButtonLabel
                 onClick={() => {
-                  setClickLoginButton(true);
+                  if (userInfo.isLogin) {
+                    setUserInfo({});
+                    localStorage.removeItem("access_token");
+                    // TODO 로그아웃 API 요청 보내기
+                  } else {
+                    setClickLoginButton(true);
+                  }
                 }}
               >
                 {userInfo.isLogin ? "로그아웃" : "로그인"}
