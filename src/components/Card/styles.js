@@ -42,9 +42,7 @@ export const TeamNameLabel = styled.label`
 `;
 
 export const LocationLabel = styled.label`
-  border-left: 1px solid;
   font-size: 14px;
-  padding-left: 10px;
   color: #6d758f;
 `;
 
