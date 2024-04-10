@@ -24,12 +24,9 @@ jobs:
           username: ${{ secrets.AWS_ID }}
           key: ${{ secrets.AWS_KEY }}
           script: |
-            if [ "$(sudo docker ps -qa)" ]; then
-              sudo docker rm -f $(sudo docker ps -qa)
-            fi
+            sudo docker rm -f $(sudo docker ps -qa)
             
             sudo docker pull ${{ secrets.DOCKER_REPO }}/eum-react:latest
             
-            cd alpha-e_um-deploy
-            sudo docker-compose -f docker-compose.yaml up -d
+            sudo docker-compose -f /home/ubuntu/docker-compose.yaml up -d
             sudo docker image prune -f
