@@ -1,8 +1,10 @@
 import axios from "axios";
 
 export const axiosWithAuth = axios.create({
-  // baseURL: "http://e-um.site",
-  baseURL: "http://localhost:8080",
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8080"
+      : "https://e-um.site",
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
