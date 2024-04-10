@@ -4,6 +4,7 @@ import Main from "./pages/Main/main";
 import MyPage from "./pages/MyPage/myPage";
 import TeamSearch from "./pages/TeamSearch/teamSearch";
 import MemberSearch from "./pages/MemberSearch/memberSearch";
+import Login from "./pages/Login/login";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/team" element={<TeamSearch />} />
           <Route path="/member" element={<MemberSearch />} />
+          <Route path="/login/*" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
