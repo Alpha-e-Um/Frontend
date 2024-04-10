@@ -11,10 +11,13 @@ import {
 import { ReactComponent as Alert } from "../../assets/icons/alert.svg";
 import { useNavigate } from "react-router-dom";
 import SocialLoginModal from "../SocialLoginModal/SocialLoginModal";
+import { useRecoilState } from "recoil";
+import { userInfoState } from "../../states/authState";
 
 const Navigation = (props) => {
   const navigate = useNavigate();
   const [clickLoginButton, setClickLoginButton] = useState(false);
+  const [userInfo, setUserInfo] = useRecoilState(userInfoState);
 
   return (
     <Container>
@@ -63,7 +66,7 @@ const Navigation = (props) => {
                   setClickLoginButton(true);
                 }}
               >
-                로그인
+                {userInfo.isLogin ? "로그아웃" : "로그인"}
               </LoginButtonLabel>
             </LoginButton>
             <div style={{ marginLeft: "40px" }}>

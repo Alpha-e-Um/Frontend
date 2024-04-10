@@ -13,7 +13,7 @@ const ContestCardGrid = (props) => {
         }}
       >
         {props.cardDatas.map((item) => (
-          <ContestCard key={item.id} data={item} />
+          <ContestCard key={item.deadline} data={item} />
         ))}
       </GridContainer>
     </div>
