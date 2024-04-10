@@ -49,7 +49,7 @@ export const jobCategories = [
     subCategories: ["관리", "홍보", "컨설팅"],
   },
   {
-    kind: "tralnstaion",
+    kind: "translation",
     mainCategory: "통번역",
     subCategories: [
       "영어",
