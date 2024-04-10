@@ -3,7 +3,7 @@ name: Deploy React
 on:
   push:
     branches:
-      - feature/#17/gitAction
+      - main
 
 jobs: 
   build:
