@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { axios2 } from "../../lib/axios";
+import { axiosWithAuth } from "../../lib/axios";
 
 const Login = (props) => {
   const location = useLocation();
@@ -22,7 +22,7 @@ const Login = (props) => {
       if (token) {
         console.log("토큰 저장");
         localStorage.setItem("access_token", token);
-        axios2.defaults.headers.Authorization = `Bearer ${token}`;
+        axiosWithAuth.defaults.headers.Authorization = `Bearer ${token}`;
         navigate("/");
       } else {
         // 토큰이 없거나 문제가 있다면 로그인 페이지나 오류 페이지로 리다이렉트

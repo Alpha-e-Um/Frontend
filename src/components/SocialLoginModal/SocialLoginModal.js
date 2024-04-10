@@ -17,7 +17,8 @@ const SocialLoginModal = ({ setClickLoginButton }) => {
   };
 
   const loginWithGoogle = () => {
-    window.location.href = "http://e-um.site/api/oauth2/google";
+    // window.location.href = "http://e-um.site/api/oauth2/google";
+    window.location.href = "http://localhost:8080/api/oauth2/google";
   };
 
   const loginWithNaver = () => {
