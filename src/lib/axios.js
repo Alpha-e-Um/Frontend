@@ -1,13 +1,18 @@
 import axios from "axios";
 
 export const axios2 = axios.create({
-  baseURL: "http://e-um.site",
+  baseURL:
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:3000"
+      : "http://e-um.site",
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("access_token")}`,
   },
   withCredentials: true,
 });
+
+console.log("process.env.NODE_ENV", process.env.NODE_ENV);
 
 axios2.interceptors.response.use(
   function (res) {
