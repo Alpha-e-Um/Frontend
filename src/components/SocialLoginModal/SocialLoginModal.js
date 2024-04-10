@@ -12,13 +12,17 @@ import {
 } from "./styles";
 
 const SocialLoginModal = ({ setClickLoginButton }) => {
+  const baseURL =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8080"
+      : "https://e-um.site";
+
   const loginWithKakao = () => {
     window.location.href = "/oauth2/authorization/kakao";
   };
 
   const loginWithGoogle = () => {
-    // window.location.href = "http://e-um.site/api/oauth2/google";
-    window.location.href = "http://localhost:8080/api/oauth2/google";
+    window.location.href = `${baseURL}/api/oauth2/google`;
   };
 
   const loginWithNaver = () => {
