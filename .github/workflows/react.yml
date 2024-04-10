@@ -21,12 +21,15 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_ID }}
+          username: ubuntu
           key: ${{ secrets.AWS_KEY }}
           script: |
-            sudo docker rm -f $(sudo docker ps -qa)
+            if [ "$(sudo docker ps -qa)" ]; then
+              sudo docker rm -f $(sudo docker ps -qa)
+            fi
             
             sudo docker pull ${{ secrets.DOCKER_REPO }}/eum-react:latest
             
-            sudo docker-compose -f /home/ubuntu/docker-compose.yaml up -d
+            cd alpha-e_um-deploy
+            sudo docker-compose -f home/ubuntu/alpha-e_um-deploy/docker-compose.yaml up -d
             sudo docker image prune -f
