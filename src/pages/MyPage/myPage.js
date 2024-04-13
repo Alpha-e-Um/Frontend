@@ -7,7 +7,7 @@ import MyInfo from "../../components/MyInfo/myInfo";
 import MyFavorites from "../../components/MyFavorites/myFavorites";
 import MySupport from "../../components/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
-import MyTeamCreate from "../../components/MyTeamCreate/myTeamCreate";
+import MyTeamPage from "../../components/MyTeamPage/myTeamPage";
 import MyResume from "../../components/MyResume/myResume";
 import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
@@ -67,7 +67,7 @@ const MyPage = (props) => {
               <div>
                 <PageName>팀관리</PageName>
                 {isCreateTeam ? (
-                  <MyTeamCreate />
+                  <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
                 ) : (
                   <MyTeam setIsCreateTeam={setIsCreateTeam} />
                 )}
