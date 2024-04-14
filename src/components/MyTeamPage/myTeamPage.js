@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { axiosWithAuth } from "../../lib/axios";
 import {
   Explanation,
   Profile,
@@ -9,26 +11,99 @@ import {
 } from "./styled";
 
 const MyTeamPage = ({ setIsCreateTeam }) => {
+  const [teamName, setTeamName] = useState("");
+  const [teamDescription, setTeamDescription] = useState("");
+  const [domain, setDomain] = useState("");
+  const [location, setLocation] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (value, setter) => {
+    setter(value);
+  };
+
+  const registerTeam = async () => {
+    if (
+      !teamName ||
+      !teamDescription ||
+      !domain ||
+      !location ||
+      !phoneNumber ||
+      !email
+    ) {
+      setErrors({
+        teamName: teamName ? "" : "팀명을 입력해 주세요",
+        teamDescription: teamDescription ? "" : "팀 상세 소개를 입력해 주세요",
+        domain: domain ? "" : "분야를 선택해 주세요",
+        location: location ? "" : "활동 지역을 선택해 주세요",
+        phoneNumber: phoneNumber ? "" : "연락처를 입력해 주세요",
+        email: email ? "" : "이메일을 입력해 주세요",
+      });
+      return;
+    }
+    // Proceed with API request if all fields are filled
+    axiosWithAuth
+      .post("/api/team", {
+        name: teamName,
+        introduction: teamDescription,
+        domain: domain,
+        location: location,
+        phoneNumber: phoneNumber,
+        email: email,
+      })
+      .then((res) => {
+        console.log(res);
+        setIsCreateTeam(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <Title>신규 팀 등록</Title>
-      <Profile></Profile>
+      <Profile />
 
       <Tag style={{ left: "52px", top: "185px" }}>프로필 설정</Tag>
-
       <Tag style={{ left: "337px", top: "185px" }}>팀 상세 소개</Tag>
-      <Explanation style={{ left: "337px", top: "219px" }} />
+      <Explanation
+        style={{ left: "337px", top: "219px" }}
+        value={teamDescription}
+        onChange={(e) => handleChange(e.target.value, setTeamDescription)}
+      />
+      {errors.teamDescription && (
+        <div style={{ color: "red" }}>{errors.teamDescription}</div>
+      )}
 
       <Tag style={{ left: "67px", top: "518px" }}>팀명</Tag>
-      <Input style={{ left: "63px", top: "549px" }} />
+      <Input
+        style={{ left: "63px", top: "549px" }}
+        value={teamName}
+        onChange={(e) => handleChange(e.target.value, setTeamName)}
+      />
+      {errors.teamName && <div style={{ color: "red" }}>{errors.teamName}</div>}
 
       <Tag style={{ left: "460px", top: "518px" }}>분야</Tag>
-      <Sel style={{ left: "456px", top: "549px" }}>
-        <option value="seoul">디자인</option>
+      <Sel
+        style={{ left: "456px", top: "549px" }}
+        value={domain}
+        onChange={(e) => handleChange(e.target.value, setDomain)}
+      >
+        <option value="">선택</option>
+        <option value="design">디자인</option>
+        {/* More options */}
       </Sel>
+      {errors.domain && <div style={{ color: "red" }}>{errors.domain}</div>}
 
       <Tag style={{ left: "67px", top: "638px" }}>활동 지역</Tag>
-      <Sel style={{ left: "67px", top: "670px" }}>
+      <Sel
+        style={{ left: "67px", top: "670px" }}
+        value={location}
+        onChange={(e) => handleChange(e.target.value, setLocation)}
+      >
+        <option value="">선택</option>
         <option value="seoul">서울</option>
         <option value="busan">부산</option>
         <option value="incheon">인천</option>
@@ -45,12 +120,29 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
         <option value="gyeongbuk">경상북도</option>
         <option value="gyeongnam">경상남도</option>
         <option value="jeju">제주도</option>
+        {/* More options */}
       </Sel>
+      {errors.location && <div style={{ color: "red" }}>{errors.location}</div>}
 
       <Tag style={{ left: "460px", top: "638px" }}>연락처</Tag>
-      <Input style={{ left: "456px", top: "670px" }} />
+      <Input
+        style={{ left: "456px", top: "670px" }}
+        value={phoneNumber}
+        onChange={(e) => handleChange(e.target.value, setPhoneNumber)}
+      />
+      {errors.phoneNumber && (
+        <div style={{ color: "red" }}>{errors.phoneNumber}</div>
+      )}
 
-      <SaveButton onClick={() => setIsCreateTeam(false)}>저장</SaveButton>
+      <Tag style={{ left: "67px", top: "758px" }}>연락처</Tag>
+      <Input
+        style={{ left: "67px", top: "790px" }}
+        value={email}
+        onChange={(e) => handleChange(e.target.value, setEmail)}
+      />
+      {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
+
+      <SaveButton onClick={registerTeam}>저장</SaveButton>
     </div>
   );
 };
