@@ -13,9 +13,11 @@ import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg"
 
 import { Title, Container, PageName } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
+import MyNewResume from "../../components/MyNewResume/myNewResume";
 
 const MyPage = (props) => {
   const [isCreateTeam, setIsCreateTeam] = useState(false);
+  const [isNewResume, setIsNewResume] = useState(false);
   const [isWithdrawal, setIsWithdrawal] = useState(false);
 
   return (
@@ -23,7 +25,10 @@ const MyPage = (props) => {
       <Navigation />
       <Container>
         <Title>마이페이지</Title>
-        <MyPageSideBar setIsCreateTeam={setIsCreateTeam} />
+        <MyPageSideBar
+          setIsCreateTeam={setIsCreateTeam}
+          setIsNewResume={setIsNewResume}
+        />
         <Vector
           style={{
             position: "absolute",
@@ -79,7 +84,11 @@ const MyPage = (props) => {
             element={
               <div>
                 <PageName>이력서 관리</PageName>
-                <MyResume />
+                {isNewResume ? (
+                  <MyNewResume setIsNewResume={setIsNewResume} />
+                ) : (
+                  <MyResume setIsNewResume={setIsNewResume} />
+                )}
               </div>
             }
           />

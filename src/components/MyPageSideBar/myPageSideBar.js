@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { ReactComponent as CheckCircle } from "../../assets/myPage/MyPageSidebarCircle.svg";
 import { Container, SelectPage, NotSelectPage } from "./styles";
 
-const MyPageSideBar = ({ setIsCreateTeam }) => {
+const MyPageSideBar = ({ setIsCreateTeam, setIsNewResume }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [curPage, setCurPage] = useState(0);
@@ -22,6 +22,7 @@ const MyPageSideBar = ({ setIsCreateTeam }) => {
 
   const sideButtonClick = (index) => {
     setIsCreateTeam(false);
+    setIsNewResume(false);
     navigate(pagePaths[index]);
     setCurPage(index);
   };
