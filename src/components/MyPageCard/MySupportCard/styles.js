@@ -24,7 +24,7 @@ export const TeamAndRegion = styled.label`
   top: 17px;
   font-size: 11px;
   font-weight: 600;
-  color: #c9c9c9;
+  color: #6d758f;
 `;
 
 export const DateLabel = styled.label`
@@ -42,7 +42,7 @@ export const TimeLabel = styled.label`
   top: 17px;
   font-size: 12px;
   font-weight: 400;
-  font-color: #7c7c7c;
+  color: #9a9a9a;
 `;
 
 export const Introduction = styled.label`

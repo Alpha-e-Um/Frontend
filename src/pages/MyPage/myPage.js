@@ -7,15 +7,17 @@ import MyInfo from "../../components/MyInfo/myInfo";
 import MyFavorites from "../../components/MyFavorites/myFavorites";
 import MySupport from "../../components/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
-import MyTeamCreate from "../../components/MyTeamCreate/myTeamCreate";
+import MyTeamPage from "../../components/MyTeamPage/myTeamPage";
 import MyResume from "../../components/MyResume/myResume";
 import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
 import { Title, Container, PageName } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
+import MyNewResume from "../../components/MyNewResume/myNewResume";
 
 const MyPage = (props) => {
   const [isCreateTeam, setIsCreateTeam] = useState(false);
+  const [isNewResume, setIsNewResume] = useState(false);
   const [isWithdrawal, setIsWithdrawal] = useState(false);
 
   return (
@@ -23,7 +25,10 @@ const MyPage = (props) => {
       <Navigation />
       <Container>
         <Title>마이페이지</Title>
-        <MyPageSideBar setIsCreateTeam={setIsCreateTeam} />
+        <MyPageSideBar
+          setIsCreateTeam={setIsCreateTeam}
+          setIsNewResume={setIsNewResume}
+        />
         <Vector
           style={{
             position: "absolute",
@@ -67,7 +72,7 @@ const MyPage = (props) => {
               <div>
                 <PageName>팀관리</PageName>
                 {isCreateTeam ? (
-                  <MyTeamCreate />
+                  <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
                 ) : (
                   <MyTeam setIsCreateTeam={setIsCreateTeam} />
                 )}
@@ -79,7 +84,11 @@ const MyPage = (props) => {
             element={
               <div>
                 <PageName>이력서 관리</PageName>
-                <MyResume />
+                {isNewResume ? (
+                  <MyNewResume setIsNewResume={setIsNewResume} />
+                ) : (
+                  <MyResume setIsNewResume={setIsNewResume} />
+                )}
               </div>
             }
           />

@@ -1,64 +1,54 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { ReactComponent as CheckCircleOn } from "../../assets/myPage/Circle.svg";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { ReactComponent as CheckCircle } from "../../assets/myPage/MyPageSidebarCircle.svg";
 import { Container, SelectPage, NotSelectPage } from "./styles";
 
-const MyPageSideBar = ({ setIsCreateTeam }) => {
+const MyPageSideBar = ({ setIsCreateTeam, setIsNewResume }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [curPage, setCurPage] = useState(0);
 
-  var arr = ["내정보", "즐겨찾기", "지원현황", "팀관리", "이력서"];
+  const pageTitles = ["내정보", "즐겨찾기", "지원현황", "팀관리", "이력서"];
+  const pagePaths = useMemo(
+    () => [
+      "/mypage",
+      "/mypage/favorites",
+      "/mypage/support",
+      "/mypage/team",
+      "/mypage/resume",
+    ],
+    [],
+  );
 
   const sideButtonClick = (index) => {
     setIsCreateTeam(false);
-    switch (index) {
-      case 0:
-        navigate("/mypage");
-        break;
-      case 1:
-        navigate("/mypage/favorites");
-        break;
-      case 2:
-        navigate("/mypage/support");
-        break;
-      case 3:
-        navigate("/mypage/team");
-        break;
-      case 4:
-        navigate("/mypage/resume");
-        break;
-      default:
-        break;
-    }
-
+    setIsNewResume(false);
+    navigate(pagePaths[index]);
     setCurPage(index);
   };
 
-  return (
-    <div>
-      <Container>
-        {arr.map((item, index) => {
-          const ItemComponent = curPage === index ? SelectPage : NotSelectPage;
+  useEffect(() => {
+    const currentPageIndex = pagePaths.findIndex(
+      (path) => path === location.pathname,
+    );
+    setCurPage(currentPageIndex >= 0 ? currentPageIndex : 0);
+  }, [location.pathname, pagePaths]);
 
-          return (
-            <ItemComponent
-              key={index}
-              onClick={() => sideButtonClick(index)}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {curPage === index && (
-                <CheckCircleOn style={{ marginRight: "20px" }} />
-              )}
-              {item}
-            </ItemComponent>
-          );
-        })}
-      </Container>
-    </div>
+  return (
+    <Container>
+      {pageTitles.map((item, index) => {
+        const ItemComponent = curPage === index ? SelectPage : NotSelectPage;
+
+        return (
+          <ItemComponent key={index} onClick={() => sideButtonClick(index)}>
+            {curPage === index && (
+              <CheckCircle style={{ marginRight: "20px" }} />
+            )}
+            {item}
+          </ItemComponent>
+        );
+      })}
+    </Container>
   );
 };
 

@@ -15,16 +15,16 @@ export const Container = styled.div`
   top: 201px;
   left: 55%;
   width: 898px;
-  height: 949px;
   border: solid;
   border-color: #c9c9c9;
   border-radius: 12px;
+  min-height: 949px;
 `;
 
 export const PageName = styled.label`
   position: absolute;
-  left: 50px;
-  top: 35px;
-  font-size: 30px;
-  font-weight: 900;
+  left: 36px;
+  top: 36px;
+  font-size: 24px;
+  font-weight: 700;
 `;
