@@ -1,10 +1,13 @@
 import axios from "axios";
 
+const getBaseUrl = () => {
+  return process.env.NODE_ENV === "development"
+    ? "http://localhost:8080/api"
+    : "https://e-um.site/api";
+};
+
 export const axiosWithAuth = axios.create({
-  baseURL:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8080"
-      : "https://e-um.site",
+  baseURL: getBaseUrl(),
   headers: {
     "Content-Type": "application/json",
     Authorization: `Bearer ${localStorage.getItem("access_token")}`,

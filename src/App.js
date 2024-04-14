@@ -7,17 +7,17 @@ import MemberSearch from "./pages/MemberSearch/memberSearch";
 import Login from "./pages/Login/login";
 import { useRecoilState } from "recoil";
 import { useEffect } from "react";
-import { axiosWithAuth } from "./lib/axios";
 import { userInfoState } from "./states/authState";
+import { userAPI } from "./api/userAPI";
 
 const App = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
-  const accessToken = localStorage.getItem("access_token");
 
   const getUserInfo = async () => {
-    axiosWithAuth
-      .get("/api/user/me")
+    userAPI
+      .getMyInfo()
       .then((res) => {
+        console.log(res);
         setUserInfo({
           isLogin: true,
           userId: res.data.userId,
@@ -27,10 +27,10 @@ const App = () => {
           avatar: res.data.avatar,
           mbti: res.data.mbti,
         });
-        console.log(res);
-        console.log("userInfo", userInfo);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {

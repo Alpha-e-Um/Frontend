@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { axiosWithAuth } from "../../lib/axios";
+import { axiosWithAuth } from "../../api/axios";
 
 const Login = (props) => {
   const location = useLocation();
