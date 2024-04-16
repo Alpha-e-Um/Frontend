@@ -4,8 +4,8 @@ import { useState } from "react";
 import TeamCard from "../Card/teamCard";
 import MemberCard from "../Card/memberCard";
 
-import teamTestData from "../../api/teamTestData";
-import memberTestData from "../../api/memberTestData";
+import teamTestData from "../../api/testDummyData/teamTestData";
+import memberTestData from "../../api/testDummyData/memberTestData";
 
 const MyFavorites = (props) => {
   const [isToggle, setIsToggle] = useState(false);

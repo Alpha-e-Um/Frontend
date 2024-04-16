@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { axiosWithAuth } from "../../lib/axios";
 import {
   Explanation,
   Profile,
@@ -9,6 +8,7 @@ import {
   Tag,
   Title,
 } from "./styled";
+import { teamAPI } from "../../api/teamAPI";
 
 const MyTeamPage = ({ setIsCreateTeam }) => {
   const [teamName, setTeamName] = useState("");
@@ -41,24 +41,26 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
         email: email ? "" : "이메일을 입력해 주세요",
       });
       return;
-    }
-    // Proceed with API request if all fields are filled
-    axiosWithAuth
-      .post("/api/team", {
+    } else {
+      const data = {
         name: teamName,
         introduction: teamDescription,
         domain: domain,
         location: location,
         phoneNumber: phoneNumber,
         email: email,
-      })
-      .then((res) => {
-        console.log(res);
-        setIsCreateTeam(false);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+      };
+
+      teamAPI
+        .postNewTeam(data)
+        .then((res) => {
+          console.log(res);
+          setIsCreateTeam(false);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -93,7 +95,7 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
       >
         <option value="">선택</option>
         <option value="design">디자인</option>
-        {/* More options */}
+        <option value="design">개발</option>
       </Sel>
       {errors.domain && <div style={{ color: "red" }}>{errors.domain}</div>}
 
@@ -120,7 +122,6 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
         <option value="gyeongbuk">경상북도</option>
         <option value="gyeongnam">경상남도</option>
         <option value="jeju">제주도</option>
-        {/* More options */}
       </Sel>
       {errors.location && <div style={{ color: "red" }}>{errors.location}</div>}
 
