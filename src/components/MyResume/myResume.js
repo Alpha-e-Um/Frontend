@@ -1,12 +1,12 @@
 import { ResumeButton, CardContainter } from "./styles";
 import { ReactComponent as Cross } from "../../assets/myPage/Cross.svg";
 import MyResumeCard from "../MyPageCard/MyResumeCard/myResumeCard";
-import MyResumeTestData from "../../api/myResumeTestData";
+import MyResumeTestData from "../../api/testDummyData/myResumeTestData";
 
-const MyResume = (props) => {
+const MyResume = ({ setIsNewResume }) => {
   return (
     <div>
-      <ResumeButton>
+      <ResumeButton onClick={() => setIsNewResume(true)}>
         <Cross style={{ marginRight: "10px" }} />
         이력서 생성
       </ResumeButton>

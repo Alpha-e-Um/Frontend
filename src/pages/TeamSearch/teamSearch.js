@@ -1,6 +1,6 @@
 import { useState } from "react";
-import teamTestData2 from "../../api/teamTestData2";
-import teamTestData3 from "../../api/teamTestData3";
+import teamTestData2 from "../../api/testDummyData/teamTestData2";
+import teamTestData3 from "../../api/testDummyData/teamTestData3";
 import TeamCardGrid from "../../components/CardGrid/teamCardGrid";
 import Introduce from "../../components/Introduce/introduce";
 import Navigation from "../../components/Navigation/navigation";

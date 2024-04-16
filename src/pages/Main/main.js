@@ -3,9 +3,9 @@ import Introduce from "../../components/Introduce/introduce";
 import SubNavigation from "../../components/SubNavigation/subNavigation";
 import TeamCardGrid from "../../components/CardGrid/teamCardGrid";
 import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
-import teamTestData from "../../api/teamTestData";
-import memberTestData from "../../api/memberTestData";
-import contestTestData from "../../api/contestTestData";
+import teamTestData from "../../api/testDummyData/teamTestData";
+import memberTestData from "../../api/testDummyData/memberTestData";
+import contestTestData from "../../api/testDummyData/contestTestData";
 import ContestCardGrid from "../../components/CardGrid/contestCardGrid";
 
 const Main = (props) => {

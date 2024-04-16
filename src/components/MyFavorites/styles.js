@@ -36,8 +36,8 @@ export const CardContainter = styled.div`
   top: 250px;
   width: 767px;
   height: 600px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   overflow-y: auto;
 `;

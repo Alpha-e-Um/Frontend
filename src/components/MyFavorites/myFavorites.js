@@ -1,8 +1,11 @@
 import { SelectButton, NotSelectButton, CardContainter } from "./styles";
 
-import MyFavoriteCard from "../MyPageCard/MyFavoriteCard/myFavoriteCard";
-import MyTeamTestData from "../../api/myTeamTestData";
 import { useState } from "react";
+import TeamCard from "../Card/teamCard";
+import MemberCard from "../Card/memberCard";
+
+import teamTestData from "../../api/testDummyData/teamTestData";
+import memberTestData from "../../api/testDummyData/memberTestData";
 
 const MyFavorites = (props) => {
   const [isToggle, setIsToggle] = useState(false);
@@ -31,6 +34,12 @@ const MyFavorites = (props) => {
           >
             팀원
           </NotSelectButton>
+
+          <CardContainter>
+            {teamTestData.map((item) => (
+              <TeamCard data={item} />
+            ))}
+          </CardContainter>
         </>
       ) : (
         <>
@@ -46,13 +55,14 @@ const MyFavorites = (props) => {
           >
             팀원
           </SelectButton>
+
+          <CardContainter>
+            {memberTestData.map((item) => (
+              <MemberCard data={item} />
+            ))}
+          </CardContainter>
         </>
       )}
-      <CardContainter>
-        {MyTeamTestData.map((item) => (
-          <MyFavoriteCard data={item} />
-        ))}
-      </CardContainter>
     </>
   );
 };

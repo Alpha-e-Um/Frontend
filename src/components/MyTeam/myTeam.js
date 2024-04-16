@@ -9,7 +9,7 @@ import { ReactComponent as CheckCircleOff } from "../../assets/myPage/CheckCircl
 import { ReactComponent as CheckCircleOn } from "../../assets/myPage/CheckCircleOn.svg";
 import { ReactComponent as Cross } from "../../assets/myPage/Cross.svg";
 import MyTeamCard from "../MyPageCard/MyTeamCard/myTeamCard";
-import MyTeamTestData from "../../api/myTeamTestData";
+import MyTeamTestData from "../../api/testDummyData/myTeamTestData";
 
 const MyTeam = ({ setIsCreateTeam }) => {
   const [isMyTeam, setIsMyTeam] = useState(false);

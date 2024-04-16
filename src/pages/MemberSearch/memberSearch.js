@@ -4,8 +4,8 @@ import Introduce from "../../components/Introduce/introduce";
 import Navigation from "../../components/Navigation/navigation";
 import PaginationComponent from "../../components/PagenationComponent/pagenationComponent";
 import SideNavigation from "../../components/SideNavigation/sideNavigation";
-import memberTestData2 from "../../api/memberTestDats2";
-import memberTestData3 from "../../api/memberTestData3";
+import memberTestData2 from "../../api/testDummyData/memberTestDats2";
+import memberTestData3 from "../../api/testDummyData/memberTestData3";
 import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
 const MemberSearch = () => {
   const [currentPage, setCurrentPage] = useState(1);
