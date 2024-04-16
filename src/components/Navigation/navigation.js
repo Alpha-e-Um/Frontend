@@ -72,19 +72,19 @@ const Navigation = (props) => {
               alignItems: "center",
             }}
           >
-            <LoginButton>
-              <LoginButtonLabel
-                onClick={() => {
-                  if (userInfo.isLogin) {
-                    setUserInfo({});
-                    localStorage.removeItem("access_token");
-                    window.location.href = "/";
-                    // TODO 로그아웃 API 요청 보내기
-                  } else {
-                    setClickLoginButton(true);
-                  }
-                }}
-              >
+            <LoginButton
+              onClick={() => {
+                if (userInfo.isLogin) {
+                  setUserInfo({});
+                  localStorage.removeItem("access_token");
+                  window.location.href = "/";
+                  // TODO 로그아웃 API 요청 보내기
+                } else {
+                  setClickLoginButton(true);
+                }
+              }}
+            >
+              <LoginButtonLabel>
                 {userInfo.isLogin ? "로그아웃" : "로그인"}
               </LoginButtonLabel>
             </LoginButton>
