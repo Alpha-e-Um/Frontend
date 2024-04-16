@@ -54,7 +54,7 @@ const Navigation = (props) => {
                 navigate("/mypage");
               }}
             >
-              마이페이지(임시)
+              마이페이지
             </MenuItem>
             <MenuItem
               style={{
@@ -78,6 +78,7 @@ const Navigation = (props) => {
                   if (userInfo.isLogin) {
                     setUserInfo({});
                     localStorage.removeItem("access_token");
+                    window.location.href = "/";
                     // TODO 로그아웃 API 요청 보내기
                   } else {
                     setClickLoginButton(true);
