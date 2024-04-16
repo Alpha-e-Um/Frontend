@@ -11,8 +11,8 @@ export const Container = styled.div`
 export const Slogan = styled.label`
   font-size: 40px;
   font-weight: 700;
-  margin-top: 80px;
-  margin-bottom: 20px;
+  margin-top: 100px;
+  margin-bottom: 16px;
 `;
 
 export const Description = styled.label`
@@ -23,23 +23,23 @@ export const Description = styled.label`
 
 export const GetTeamButton = styled.button`
   all: unset;
-  background-color: #376fff;
-  padding: 11px 30px;
-  margin-top: 60px;
-  margin-bottom: 80px;
+  background-color: #377bff;
+  padding: 10px 22px;
+  margin-top: 62px;
+  margin-bottom: 100px;
   border-radius: 12px;
   cursor: pointer;
 `;
 
 export const ButtonText = styled.label`
   color: #ffffff;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
   cursor: pointer;
 `;
 
 export const Box = styled.div`
-  background-color: #a6fcdc;
+  background-color: #6ee8e9;
   width: 100%;
   height: 100%;
   justify-content: center;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #7cfbcb;
+  background-color: #ffffff;
 `;
 
 export const Box = styled.div`
@@ -34,14 +34,15 @@ export const LoginButton = styled.button`
   font-size: 24px;
   all: unset;
   background-color: white;
-  padding: 10px 18px;
+  padding: 8px 16px;
   border-radius: 12px;
+  border: 2px solid #376fff;
   cursor: pointer;
 `;
 
 export const LoginButtonLabel = styled.label`
-  color: #000000;
-  font-size: 16px;
-  font-weight: 700;
+  color: #376fff;
+  font-size: 18px;
+  font-weight: 500;
   cursor: pointer;
 `;
