@@ -10,79 +10,64 @@ export const ContainerOut = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   align-items: center;
   justify-content: center;
+  z-index: 1000;
 `;
 
 export const Container = styled.div`
-  position: absolute;
-  width: 688px;
-  height: 590px;
+  width: 750px;
+  height: 641px;
   border-radius: 56px;
   background-color: #ffffff;
-`;
-
-export const Title = styled.label`
-  display: block;
-  font-size: 65px;
-  font-weight: 800;
-  margin-top: 76.01px;
-`;
-
-export const Explanation = styled.label`
-  display: block;
-  font-size: 20px;
-  font-weight: 400;
-`;
-
-export const KakaoButton = styled.button`
-  position: absolute;
-  font-size: 24px;
-  font-weight: 600;
-  top: 246.87px;
-  left: 102.42px;
-  width: 480px;
-  height: 82px;
-  border-radius: 12px;
-  background-color: #fee500;
-  color: black;
-  border: none;
-  cursor: pointer;
-`;
-export const GoogleButton = styled.button`
-  position: absolute;
-  font-size: 24px;
-  font-weight: 600;
-  top: 347.08px;
-  left: 102.42px;
-  width: 480px;
-  height: 82px;
-  border-radius: 12px;
-  background-color: #1c48ff;
-  color: white;
-  border: none;
-  cursor: pointer;
-`;
-export const NaverButton = styled.button`
-  position: absolute;
-  font-size: 24px;
-  font-weight: 600;
-  top: 447.28px;
-  left: 102.42px;
-  width: 480px;
-  height: 82px;
-  border-radius: 12px;
-  background-color: #5ab335;
-  color: white;
-  border: none;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 export const ExitButton = styled.button`
-  position: absolute;
-  top: 20px;
-  left: 603px;
+  margin-top: 30px;
+  margin-left: 648px;
   width: 61px;
   height: 61px;
   background-color: #ffffff;
   border: none;
+  cursor: pointer;
+`;
+
+export const Title = styled.label`
+  margin-top: 26px;
+  font-size: 65px;
+  font-weight: 400;
+`;
+
+export const Explanation = styled.label`
+  margin-top: 10px;
+  margin-bottom: 74px;
+  font-size: 20px;
+  font-weight: 500;
+`;
+
+export const LoginButton = styled.button`
+  width: 600px;
+  height: 90px;
+  margin-bottom: 15px;
+  border: none;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+export const GoogleButton = styled.button`
+  width: 600px;
+  height: 90px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 13px;
+  background-color: #f2f2f2;
+  font-size: 28px;
+  font-weight: 500;
+
+  display: flex;
+  align-items: center;
   cursor: pointer;
 `;
