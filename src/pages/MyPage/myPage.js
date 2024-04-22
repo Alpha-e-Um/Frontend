@@ -4,12 +4,11 @@ import { Routes, Route } from "react-router-dom";
 import Navigation from "../../components/Navigation/navigation";
 import MyPageSideBar from "../../components/MyPage/MyPageSideBar/myPageSideBar";
 import MyInfo from "../../components/MyPage/MyInfo/myInfo";
-import MyFavorites from "../../components/MyFavorites/myFavorites";
+import MyFavorites from "../../components/MyPage/MyFavorites/myFavorites";
 import MySupport from "../../components/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
 import MyTeamPage from "../../components/MyTeamPage/myTeamPage";
 import MyResume from "../../components/MyResume/myResume";
-import { ReactComponent as Vector } from "../../assets/myPage/myInfoVector1.svg";
 
 import { Title, Container, PageName } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
