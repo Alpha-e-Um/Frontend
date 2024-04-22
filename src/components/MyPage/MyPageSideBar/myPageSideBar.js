@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { ReactComponent as CheckCircle } from "../../assets/myPage/MyPageSidebarCircle.svg";
+import { ReactComponent as CheckCircle } from "../../../assets/myPage/MyPageSidebarCircle.svg";
 import { Container, SelectPage, NotSelectPage } from "./styles";
 
 const MyPageSideBar = ({ setIsCreateTeam, setIsNewResume }) => {

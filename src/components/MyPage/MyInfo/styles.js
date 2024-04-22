@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: 898px;
-  height: 880px;
   border: solid;
   border-color: #c9c9c9;
   border-radius: 12px;
@@ -31,97 +30,43 @@ export const ProfileChangeButton = styled.button`
 `;
 
 export const Tag = styled.label`
+  margin-bottom: 49px;
   font-size: 18px;
   font-weight: 600;
 `;
 
 export const Input = styled.input`
-  position: absolute;
+  height: 33px;
+  margin-bottom: 37px;
   border: 1px solid;
   border-radius: 9px;
   font-size: 16px;
   font-weight: 400;
   text-align: center;
   cursor: pointer;
-`;
-
-export const SchoolMailButton = styled.button`
-  position: absolute;
-  left: 534px;
-  top: 421px;
-  width: 135px;
-  height: 35px;
-  border: none;
-  border-radius: 9px;
-  background-color: #376fff;
-  font-size: 18px;
-  font-weight: 500;
-  color: #ffffff;
-  text-align: center;
-  user-select: none;
-  cursor: pointer;
-`;
-
-export const AlarmContainter = styled.div`
-  position: absolute;
-  flex-direction: column;
-  top: 608px;
-  left: 314px;
-  width: 500px;
-  height: 200px;
-`;
-
-export const Alarm = styled.button`
-  display: flex;
-  position: absolute;
-  width: 150px;
-  height: 50px;
-  align-items: center;
-  border: none;
-  background-color: #ffffff;
-`;
-
-export const AlarmLabel = styled.div`
-  margin-left: 30px;
-  font-size: 16px;
-  font-weight: 400;
-`;
-
-export const CallLabel = styled.label`
-  position: absolute;
-  top: 80px;
-  left: 0px;
-  font-size: 18px;
-  font-weight: 800;
-`;
-
-export const AlarmRow = styled.div`
-  position: absolute;
-  top: 120px;
-  display: flex;
-  justify-content: start;
-  align-items: center;
 `;
 
 export const AlarmButton = styled.button`
-  height: 32px;
+  height: 34px;
+  margin-left: 15px;
+  margin-bottom: 50px;
   border: 1px solid;
-  border-radius: 9px;
+  border-radius: 8px;
+  border-color: #c9c9c9;
   font-size: 16px;
   font-weight: 400;
-  background-color: white;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #ffffff;
+
   display: flex;
   align-items: center;
-  justify-content: center;
-  margin-right: 20px;
 `;
 
 export const SaveButton = styled.button`
-  position: absolute;
-  top: 804px;
-  right: 117px;
   width: 64px;
-  height: 32px;
+  height: 35px;
+  margin-right: 13px;
   background-color: #376fff;
   border: none;
   border-radius: 9px;
@@ -132,11 +77,9 @@ export const SaveButton = styled.button`
   cursor: pointer;
 `;
 export const CannelButton = styled.button`
-  position: absolute;
-  top: 804px;
-  right: 40px;
   width: 64px;
-  height: 32px;
+  height: 35px;
+  margin-right: 36px;
   background-color: #dedede;
   border: none;
   border-radius: 9px;

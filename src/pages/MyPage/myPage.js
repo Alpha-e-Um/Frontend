@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
-import MyPageSideBar from "../../components/MyPageSideBar/myPageSideBar";
-import MyInfo from "../../components/MyInfo/myInfo";
+import MyPageSideBar from "../../components/MyPage/MyPageSideBar/myPageSideBar";
+import MyInfo from "../../components/MyPage/MyInfo/myInfo";
 import MyFavorites from "../../components/MyFavorites/myFavorites";
 import MySupport from "../../components/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
@@ -25,74 +25,69 @@ const MyPage = (props) => {
       <Navigation />
       {/* <Container>
         <Title>마이페이지</Title>
+
+        /> */}
+
+      <div style={{ display: "flex", justifyContent: "center" }}>
         <MyPageSideBar
           setIsCreateTeam={setIsCreateTeam}
           setIsNewResume={setIsNewResume}
         />
-        <Vector
-          style={{
-            position: "absolute",
-            top: "86px",
-            left: "50%",
-            transform: "translateX(-50%)",
-          }}
-        /> */}
-
-      <Routes>
-        <Route
-          index
-          element={
-            <div>
-              <MyInfo IsWithdrawal={setIsWithdrawal} />
-            </div>
-          }
-        />
-        <Route
-          path="favorites"
-          element={
-            <div>
-              <PageName>즐겨찾기 목록</PageName>
-              <MyFavorites />
-            </div>
-          }
-        />
-        <Route
-          path="support"
-          element={
-            <div>
-              <PageName>지원 현황</PageName>
-              <MySupport />
-            </div>
-          }
-        />
-        <Route
-          path="team"
-          element={
-            <div>
-              <PageName>팀관리</PageName>
-              {isCreateTeam ? (
-                <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
-              ) : (
-                <MyTeam setIsCreateTeam={setIsCreateTeam} />
-              )}
-            </div>
-          }
-        />
-        <Route
-          path="resume"
-          element={
-            <div>
-              <PageName>이력서 관리</PageName>
-              {isNewResume ? (
-                <MyNewResume setIsNewResume={setIsNewResume} />
-              ) : (
-                <MyResume setIsNewResume={setIsNewResume} />
-              )}
-            </div>
-          }
-        />
-      </Routes>
-      {/* </Container> */}
+        <Routes>
+          <Route
+            index
+            element={
+              <div>
+                <MyInfo IsWithdrawal={setIsWithdrawal} />
+              </div>
+            }
+          />
+          <Route
+            path="favorites"
+            element={
+              <div>
+                <PageName>즐겨찾기 목록</PageName>
+                <MyFavorites />
+              </div>
+            }
+          />
+          <Route
+            path="support"
+            element={
+              <div>
+                <PageName>지원 현황</PageName>
+                <MySupport />
+              </div>
+            }
+          />
+          <Route
+            path="team"
+            element={
+              <div>
+                <PageName>팀관리</PageName>
+                {isCreateTeam ? (
+                  <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
+                ) : (
+                  <MyTeam setIsCreateTeam={setIsCreateTeam} />
+                )}
+              </div>
+            }
+          />
+          <Route
+            path="resume"
+            element={
+              <div>
+                <PageName>이력서 관리</PageName>
+                {isNewResume ? (
+                  <MyNewResume setIsNewResume={setIsNewResume} />
+                ) : (
+                  <MyResume setIsNewResume={setIsNewResume} />
+                )}
+              </div>
+            }
+          />
+        </Routes>
+      </div>
 
       {isWithdrawal ? (
         <WithdrawalModal IsWithdrawal={setIsWithdrawal} />
