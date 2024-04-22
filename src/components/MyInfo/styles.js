@@ -1,11 +1,27 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  width: 898px;
+  height: 880px;
+  border: solid;
+  border-color: #c9c9c9;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const Title = styled.label`
+  margin-top: 35px;
+  margin-left: 50px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
 export const ProfileChangeButton = styled.button`
-  position: absolute;
-  top: 297px;
-  left: 106px;
   width: 92px;
-  height: 32px;
+  height: 33px;
+  margin-top: 20px;
   border: 1px solid;
   border-radius: 48px;
   font-size: 16px;
@@ -14,23 +30,7 @@ export const ProfileChangeButton = styled.button`
   cursor: pointer;
 `;
 
-export const WithdrawalButton = styled.button`
-  position: absolute;
-  top: 341px;
-  left: 106px;
-  width: 92px;
-  height: 32px;
-  border: none;
-  border-radius: 48px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #646464;
-  background-color: #dedede;
-  cursor: pointer;
-`;
-
 export const Tag = styled.label`
-  position: absolute;
   font-size: 18px;
   font-weight: 600;
 `;

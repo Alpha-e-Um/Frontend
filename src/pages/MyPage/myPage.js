@@ -23,7 +23,7 @@ const MyPage = (props) => {
   return (
     <div>
       <Navigation />
-      <Container>
+      {/* <Container>
         <Title>마이페이지</Title>
         <MyPageSideBar
           setIsCreateTeam={setIsCreateTeam}
@@ -36,64 +36,63 @@ const MyPage = (props) => {
             left: "50%",
             transform: "translateX(-50%)",
           }}
-        />
+        /> */}
 
-        <Routes>
-          <Route
-            index
-            element={
-              <div>
-                <PageName>내정보</PageName>
-                <MyInfo IsWithdrawal={setIsWithdrawal} />
-              </div>
-            }
-          />
-          <Route
-            path="favorites"
-            element={
-              <div>
-                <PageName>즐겨찾기 목록</PageName>
-                <MyFavorites />
-              </div>
-            }
-          />
-          <Route
-            path="support"
-            element={
-              <div>
-                <PageName>지원 현황</PageName>
-                <MySupport />
-              </div>
-            }
-          />
-          <Route
-            path="team"
-            element={
-              <div>
-                <PageName>팀관리</PageName>
-                {isCreateTeam ? (
-                  <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
-                ) : (
-                  <MyTeam setIsCreateTeam={setIsCreateTeam} />
-                )}
-              </div>
-            }
-          />
-          <Route
-            path="resume"
-            element={
-              <div>
-                <PageName>이력서 관리</PageName>
-                {isNewResume ? (
-                  <MyNewResume setIsNewResume={setIsNewResume} />
-                ) : (
-                  <MyResume setIsNewResume={setIsNewResume} />
-                )}
-              </div>
-            }
-          />
-        </Routes>
-      </Container>
+      <Routes>
+        <Route
+          index
+          element={
+            <div>
+              <MyInfo IsWithdrawal={setIsWithdrawal} />
+            </div>
+          }
+        />
+        <Route
+          path="favorites"
+          element={
+            <div>
+              <PageName>즐겨찾기 목록</PageName>
+              <MyFavorites />
+            </div>
+          }
+        />
+        <Route
+          path="support"
+          element={
+            <div>
+              <PageName>지원 현황</PageName>
+              <MySupport />
+            </div>
+          }
+        />
+        <Route
+          path="team"
+          element={
+            <div>
+              <PageName>팀관리</PageName>
+              {isCreateTeam ? (
+                <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
+              ) : (
+                <MyTeam setIsCreateTeam={setIsCreateTeam} />
+              )}
+            </div>
+          }
+        />
+        <Route
+          path="resume"
+          element={
+            <div>
+              <PageName>이력서 관리</PageName>
+              {isNewResume ? (
+                <MyNewResume setIsNewResume={setIsNewResume} />
+              ) : (
+                <MyResume setIsNewResume={setIsNewResume} />
+              )}
+            </div>
+          }
+        />
+      </Routes>
+      {/* </Container> */}
 
       {isWithdrawal ? (
         <WithdrawalModal IsWithdrawal={setIsWithdrawal} />
