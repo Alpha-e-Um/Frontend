@@ -5,7 +5,7 @@ import Navigation from "../../components/Navigation/navigation";
 import MyPageSideBar from "../../components/MyPage/MyPageSideBar/myPageSideBar";
 import MyInfo from "../../components/MyPage/MyInfo/myInfo";
 import MyFavorites from "../../components/MyPage/MyFavorites/myFavorites";
-import MySupport from "../../components/MySupport/mySupport";
+import MySupport from "../../components/MyPage/MySupport/mySupport";
 import MyTeam from "../../components/MyTeam/myTeam";
 import MyTeamPage from "../../components/MyTeamPage/myTeamPage";
 import MyResume from "../../components/MyResume/myResume";

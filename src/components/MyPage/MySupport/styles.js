@@ -1,9 +1,23 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  width: 898px;
+  border: 2px solid;
+  border-color: #c9c9c9;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const Title = styled.label`
+  margin-top: 35px;
+  margin-left: 50px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
 export const Completed = styled.button`
-  position: absolute;
-  right: 55px;
-  top: 103px;
   border: none;
   background-color: #ffffff;
   display: flex;
@@ -19,11 +33,11 @@ export const CompletedLabel = styled.label`
 `;
 
 export const CardContainter = styled.div`
-  position: absolute;
-  top: 170px;
-  left: 50%;
+  margin-top: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 100px;
   width: 800px;
-  transform: translateX(-50%);
   height: 670px;
   display: grid;
   flex-direction: column;
