@@ -6,13 +6,13 @@ import MyPageSideBar from "../../components/MyPage/MyPageSideBar/myPageSideBar";
 import MyInfo from "../../components/MyPage/MyInfo/myInfo";
 import MyFavorites from "../../components/MyPage/MyFavorites/myFavorites";
 import MySupport from "../../components/MyPage/MySupport/mySupport";
-import MyTeam from "../../components/MyTeam/myTeam";
-import MyTeamPage from "../../components/MyTeamPage/myTeamPage";
-import MyResume from "../../components/MyResume/myResume";
+import MyTeam from "../../components/MyPage/MyTeam/myTeam";
+import MyTeamPage from "../../components/MyPage/MyTeamPage/myTeamPage";
+import MyResume from "../../components/MyPage/MyResume/myResume";
 
 import { Title, Container, PageName } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
-import MyNewResume from "../../components/MyNewResume/myNewResume";
+import MyNewResume from "../../components/MyPage/MyNewResume/myNewResume";
 
 const MyPage = (props) => {
   const [isCreateTeam, setIsCreateTeam] = useState(false);

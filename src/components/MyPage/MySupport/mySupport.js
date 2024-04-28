@@ -20,7 +20,7 @@ const MySupport = (props) => {
   };
   return (
     <Container>
-      <Title>즐겨찾기 목록</Title>
+      <Title>지원현황</Title>
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />

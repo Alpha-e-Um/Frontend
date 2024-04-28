@@ -1,29 +1,48 @@
 import styled from "styled-components";
 
-export const Title = styled.label`
-  position: relative;
-  font-size: 22px;
-  font-weight: 600;
-`;
-
 export const Container = styled.div`
-  position: relative;
-  border: solid;
-  border-width: 2px;
+  width: 889px;
+  border: 2px solid;
   border-radius: 12px;
   border-color: #c9c9c9;
-  margin-top: 36px;
-  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const Title = styled.label`
+  margin-top: 35px;
+  margin-left: 50px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+export const Lesson = styled.label`
+  margin-top: 35px;
+  margin-left: 50px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
+export const InformationContainter = styled.div`
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  width: 849px;
+  border: 2px solid;
+  border-radius: 12px;
+  border-color: #c9c9c9;
+  display: flex;
+  align-items: flex-start;
 `;
 
 export const InformationTag = styled.label`
-  position: absolute;
   font-size: 18px;
   font-weight: 600;
 `;
 
 export const Input = styled.input`
-  position: absolute;
+  height: 33px;
   border: 2px solid;
   border-radius: 8px;
   border-color: #c9c9c9;
@@ -33,9 +52,8 @@ export const Input = styled.input`
 `;
 
 export const AddButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 30px;
+  margin-right: 20px;
+  margin-top: 18px;
   width: 106px;
   height: 33px;
   border: 2px solid;
@@ -46,9 +64,8 @@ export const AddButton = styled.button`
 `;
 
 export const SaveButton = styled.button`
-  position: relative;
-  left: 700px;
-  top: 26px;
+  margin-left: 689px;
+  margin-right: 10px;
   width: 64px;
   height: 35px;
   background-color: #376fff;
@@ -61,9 +78,6 @@ export const SaveButton = styled.button`
   cursor: pointer;
 `;
 export const CannelButton = styled.button`
-  position: relative;
-  left: 710px;
-  top: 26px;
   width: 64px;
   height: 35px;
   background-color: #dedede;
