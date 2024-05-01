@@ -8,7 +8,7 @@ import MyResumeTestData from "../../../api/testDummyData/myResumeTestData";
 const MyResume = ({ setIsNewResume }) => {
   return (
     <Container>
-      <Title>팀관리</Title>
+      <Title>이력서 관리</Title>
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />
