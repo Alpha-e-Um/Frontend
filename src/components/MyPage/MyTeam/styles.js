@@ -1,9 +1,24 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  margin-top: 90px;
+  width: 898px;
+  border: 2px solid;
+  border-color: #c9c9c9;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const Title = styled.label`
+  margin-top: 35px;
+  margin-left: 50px;
+  font-size: 24px;
+  font-weight: 700;
+`;
+
 export const MyTeamButton = styled.button`
-  position: absolute;
-  top: 101px;
-  right: 55px;
   border: none;
   background-color: #ffffff;
   display: flex;
@@ -19,10 +34,9 @@ export const MyTeamLabel = styled.label`
 `;
 
 export const CreateTeamButton = styled.button`
-  position: absolute;
-  left: 50%;
-  top: 185px;
-  transform: translateX(-50%);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
   width: 749px;
   height: 39px;
   border: none;
@@ -38,10 +52,10 @@ export const CreateTeamButton = styled.button`
 `;
 
 export const CardContainter = styled.div`
-  position: absolute;
-  top: 255px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 50px;
   width: 767px;
   height: 600px;
   display: flex;

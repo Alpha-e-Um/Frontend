@@ -1,10 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: absolute;
-  transform: translateX(-100%);
-  left: -30px;
-  top: 0px;
+  margin-right: 60px;
   width: 212px;
   height: 496px;
   border: 2px solid;
