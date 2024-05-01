@@ -10,8 +10,46 @@ import {
   InformationContainter,
 } from "./styled";
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
+import { useState } from "react";
+import { resumeAPI } from "../../../api/resumeAPI";
 
 const MyNewResume = ({ setIsNewResume }) => {
+  const [jobCategory, setJobCategory] = useState("");
+  const [jobSubcategory, setJobSubcategory] = useState("");
+  const [gpa, setGpa] = useState("");
+  const [introduction, setIntroduction] = useState("");
+
+  const handleChange = (value, setter) => {
+    setter(value);
+  };
+
+  const save = () => {
+    const data = {
+      title: "",
+      jobCategory: jobCategory,
+      jobSubcategory: jobSubcategory,
+      gpa: 4.0,
+      totalScore: 0,
+      introduction: introduction,
+      isPublic: true,
+      careers: [],
+      certificates: [],
+      projects: [],
+      homepages: [],
+      activities: [],
+    };
+
+    resumeAPI
+      .postResume(data)
+      .then((res) => {
+        console.log(res);
+        setIsNewResume(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Container>
       <Title>신규 이력서 작성</Title>
@@ -91,9 +129,19 @@ const MyNewResume = ({ setIsNewResume }) => {
           }}
         >
           <InformationTag>직군</InformationTag>
-          <Input style={{ marginTop: 12, width: 332 }} />
+
+          <Input
+            style={{ marginTop: 12, width: 332 }}
+            value={jobCategory}
+            onChange={(e) => handleChange(e.target.value, setJobCategory)}
+          />
+
           <InformationTag style={{ marginTop: 45 }}>학점</InformationTag>
-          <Input style={{ marginTop: 12, width: 332 }} />
+          <Input
+            style={{ marginTop: 12, width: 332 }}
+            value={gpa}
+            onChange={(e) => handleChange(e.target.value, setGpa)}
+          />
         </div>
         <div
           style={{
@@ -103,11 +151,14 @@ const MyNewResume = ({ setIsNewResume }) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
-            alignItems: "flex-start",
           }}
         >
           <InformationTag>소분류</InformationTag>
-          <Input style={{ marginTop: 12, width: 332 }} />
+          <Input
+            style={{ marginTop: 12, width: 332 }}
+            value={jobSubcategory}
+            onChange={(e) => handleChange(e.target.value, setJobSubcategory)}
+          />
           <InformationTag style={{ marginTop: 45 }}>스킬</InformationTag>
           <Input style={{ marginTop: 12, width: 332 }} />
         </div>
@@ -199,6 +250,8 @@ const MyNewResume = ({ setIsNewResume }) => {
             width: "734px",
             height: "267px",
           }}
+          value={introduction}
+          onChange={(e) => handleChange(e.target.value, setIntroduction)}
         />
 
         <InformationTag
@@ -222,7 +275,7 @@ const MyNewResume = ({ setIsNewResume }) => {
       </InformationContainter>
 
       <div style={{ marginTop: 30, marginBottom: 30 }}>
-        <SaveButton onClick={() => setIsNewResume(false)}>저장</SaveButton>
+        <SaveButton onClick={() => save()}>저장</SaveButton>
         <CannelButton onClick={() => setIsNewResume(false)}>취소</CannelButton>
       </div>
     </Container>

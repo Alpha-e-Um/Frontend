@@ -10,7 +10,7 @@ import MyTeam from "../../components/MyPage/MyTeam/myTeam";
 import MyTeamPage from "../../components/MyPage/MyTeamPage/myTeamPage";
 import MyResume from "../../components/MyPage/MyResume/myResume";
 
-import { Title, Container, PageName } from "./styles";
+import { Title } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 import MyNewResume from "../../components/MyPage/MyNewResume/myNewResume";
 
@@ -22,16 +22,15 @@ const MyPage = (props) => {
   return (
     <div>
       <Navigation />
-      {/* <Container>
-        <Title>마이페이지</Title>
-
-        /> */}
 
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <MyPageSideBar
-          setIsCreateTeam={setIsCreateTeam}
-          setIsNewResume={setIsNewResume}
-        />
+        <div>
+          <Title>마이페이지</Title>
+          <MyPageSideBar
+            setIsCreateTeam={setIsCreateTeam}
+            setIsNewResume={setIsNewResume}
+          />
+        </div>
         <Routes>
           <Route
             index
@@ -45,7 +44,6 @@ const MyPage = (props) => {
             path="favorites"
             element={
               <div>
-                <PageName>즐겨찾기 목록</PageName>
                 <MyFavorites />
               </div>
             }
@@ -54,7 +52,6 @@ const MyPage = (props) => {
             path="support"
             element={
               <div>
-                <PageName>지원 현황</PageName>
                 <MySupport />
               </div>
             }
@@ -63,7 +60,6 @@ const MyPage = (props) => {
             path="team"
             element={
               <div>
-                <PageName>팀관리</PageName>
                 {isCreateTeam ? (
                   <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
                 ) : (
@@ -76,7 +72,6 @@ const MyPage = (props) => {
             path="resume"
             element={
               <div>
-                <PageName>이력서 관리</PageName>
                 {isNewResume ? (
                   <MyNewResume setIsNewResume={setIsNewResume} />
                 ) : (
