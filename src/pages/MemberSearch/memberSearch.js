@@ -7,8 +7,11 @@ import SideNavigation from "../../components/SideNavigation/sideNavigation";
 import memberTestData2 from "../../api/testDummyData/memberTestDats2";
 import memberTestData3 from "../../api/testDummyData/memberTestData3";
 import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
+import { WriteButton } from "../../components/SideNavigation/styles";
+import { useNavigate } from "react-router-dom";
 const MemberSearch = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -27,6 +30,13 @@ const MemberSearch = () => {
         <Introduce />
         <div style={{ display: "flex" }}>
           <div>
+            <WriteButton
+              onClick={() => {
+                navigate("/registerTeam");
+              }}
+            >
+              <label>+ 모집 공고 등록하기</label>
+            </WriteButton>
             <SideNavigation />
           </div>
           <div>

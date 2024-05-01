@@ -9,6 +9,7 @@ import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { userInfoState } from "./states/authState";
 import { userAPI } from "./api/userAPI";
+import RegisterTeam from "./pages/RegisterTeam/registerTeam";
 
 const App = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -46,6 +47,7 @@ const App = () => {
           <Route path="/team" element={<TeamSearch />} />
           <Route path="/member" element={<MemberSearch />} />
           <Route path="/login/*" element={<Login />} />
+          <Route path="/registerTeam" element={<RegisterTeam />} />
         </Routes>
       </BrowserRouter>
     </div>

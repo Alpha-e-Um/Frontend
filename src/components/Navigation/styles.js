@@ -9,6 +9,7 @@ export const Box = styled.div`
   align-items: center;
   justify-content: space-between;
   height: 76px;
+  border-bottom: 3px solid #ebebeb;
 `;
 
 export const Title = styled.label`

@@ -71,3 +71,18 @@ export const Item = styled.li`
   margin-left: 20px;
   cursor: pointer;
 `;
+
+export const WriteButton = styled.div`
+  background-color: #377bff;
+  padding: 14px 66px;
+  border-radius: 6px;
+  margin-bottom: 28px;
+  cursor: pointer;
+
+  > label {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
+`;
