@@ -13,6 +13,7 @@ import MyResume from "../../components/MyPage/MyResume/myResume";
 import { Title } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 import MyNewResume from "../../components/MyPage/MyNewResume/myNewResume";
+import TeamMemberRecruitmentNotice from "../../components/TeamMemberRecruitmentNotice/teamMemberRecruitmentNotice";
 
 const MyPage = (props) => {
   const [isCreateTeam, setIsCreateTeam] = useState(false);
@@ -22,6 +23,8 @@ const MyPage = (props) => {
   return (
     <div>
       <Navigation />
+
+      <TeamMemberRecruitmentNotice></TeamMemberRecruitmentNotice>
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
