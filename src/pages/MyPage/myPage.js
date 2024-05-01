@@ -10,7 +10,7 @@ import MyTeam from "../../components/MyPage/MyTeam/myTeam";
 import MyTeamPage from "../../components/MyPage/MyTeamPage/myTeamPage";
 import MyResume from "../../components/MyPage/MyResume/myResume";
 
-import { Title, Container, PageName } from "./styles";
+import { Title } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 import MyNewResume from "../../components/MyPage/MyNewResume/myNewResume";
 
@@ -23,12 +23,14 @@ const MyPage = (props) => {
     <div>
       <Navigation />
 
-      <div>마이페이지</div>
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <MyPageSideBar
-          setIsCreateTeam={setIsCreateTeam}
-          setIsNewResume={setIsNewResume}
-        />
+        <div>
+          <Title>마이페이지</Title>
+          <MyPageSideBar
+            setIsCreateTeam={setIsCreateTeam}
+            setIsNewResume={setIsNewResume}
+          />
+        </div>
         <Routes>
           <Route
             index

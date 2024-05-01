@@ -20,6 +20,7 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  setEmail("");
   const [errors, setErrors] = useState({});
 
   const handleChange = (value, setter) => {
