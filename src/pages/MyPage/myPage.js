@@ -24,8 +24,6 @@ const MyPage = (props) => {
     <div>
       <Navigation />
 
-      <TeamMemberRecruitmentNotice></TeamMemberRecruitmentNotice>
-
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div>
           <Title>마이페이지</Title>

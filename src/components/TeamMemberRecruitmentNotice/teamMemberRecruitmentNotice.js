@@ -1,4 +1,12 @@
-import { Container, Title, Tag, Input } from "./styles";
+import {
+  Container,
+  Title,
+  Tag,
+  Input,
+  Profile,
+  Introduce,
+  RegistrationButton,
+} from "./styles";
 import { ReactComponent as Line } from "../../assets/Line.svg";
 
 const TeamMemberRecruitmentNotice = (props) => {
@@ -22,6 +30,10 @@ const TeamMemberRecruitmentNotice = (props) => {
         <Tag>프로필 설정</Tag>
         <Tag style={{ marginLeft: 190 }}>팀 상세 소개</Tag>
       </div>
+      <div style={{ marginLeft: 60, marginTop: 20, display: "flex" }}>
+        <Profile></Profile>
+        <Introduce />
+      </div>
 
       <div style={{ marginLeft: 65, marginTop: 35, display: "flex" }}>
         <div
@@ -33,11 +45,11 @@ const TeamMemberRecruitmentNotice = (props) => {
           }}
         >
           <Tag>모집 분야</Tag>
-          <Input />
-          <Tag>모집 마감일</Tag>
-          <Input />
-          <Tag>프로젝트 단계</Tag>
-          <Input />
+          <Input style={{ marginTop: "10px", width: "330px" }} />
+          <Tag style={{ marginTop: "45px" }}>모집 마감일</Tag>
+          <Input style={{ marginTop: "10px", width: "330px" }} />
+          <Tag style={{ marginTop: "45px" }}>프로젝트 단계</Tag>
+          <Input style={{ marginTop: "10px", width: "330px" }} />
         </div>
         <div
           style={{
@@ -48,13 +60,15 @@ const TeamMemberRecruitmentNotice = (props) => {
           }}
         >
           <Tag>모집 인원</Tag>
-          <Input />
-          <Tag>활동지역</Tag>
-          <Input />
-          <Tag>원하는 스킬</Tag>
-          <Input />
+          <Input style={{ marginTop: "10px", width: "330px" }} />
+          <Tag style={{ marginTop: "45px" }}>활동지역</Tag>
+          <Input style={{ marginTop: "10px", width: "330px" }} />
+          <Tag style={{ marginTop: "45px" }}>원하는 스킬</Tag>
+          <Input style={{ marginTop: "10px", width: "330px" }} />
         </div>
       </div>
+
+      <RegistrationButton>등록하기</RegistrationButton>
     </Container>
   );
 };
