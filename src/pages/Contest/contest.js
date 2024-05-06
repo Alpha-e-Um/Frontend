@@ -8,6 +8,7 @@ import ContestCard from "../../components/ContestCard/contestCard";
 import ContestCardGrid from "../../components/CardGrid/contestCardGrid";
 import contestTestData2 from "../../api/testDummyData/contestTestData2";
 import { useState } from "react";
+import { contestCategory } from "../../api/testDummyData/jobPosition copy";
 
 const Contest = () => {
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const Contest = () => {
             >
               <label>+ 모집 공고 등록하기</label>
             </WriteButton>
-            <SideNavigation />
+            <SideNavigation categoryObject={contestCategory} />
           </div>
           <div>
             <div style={{ marginLeft: "120px" }}>
