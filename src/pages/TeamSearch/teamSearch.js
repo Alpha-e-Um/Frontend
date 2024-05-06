@@ -6,6 +6,7 @@ import Introduce from "../../components/Introduce/introduce";
 import Navigation from "../../components/Navigation/navigation";
 import PaginationComponent from "../../components/PagenationComponent/pagenationComponent";
 import SideNavigation from "../../components/SideNavigation/sideNavigation";
+import { jobCategories } from "../../api/testDummyData/jobPosition";
 
 const TeamSearch = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -27,7 +28,7 @@ const TeamSearch = () => {
         <Introduce />
         <div style={{ display: "flex" }}>
           <div>
-            <SideNavigation />
+            <SideNavigation categoryObject={jobCategories} />
           </div>
           <div>
             <div style={{ marginLeft: "120px" }}>
