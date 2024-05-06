@@ -9,6 +9,7 @@ import memberTestData3 from "../../api/testDummyData/memberTestData3";
 import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
 import { WriteButton } from "../../components/SideNavigation/styles";
 import { useNavigate } from "react-router-dom";
+import { jobCategories } from "../../api/testDummyData/jobPosition";
 const MemberSearch = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
@@ -37,7 +38,7 @@ const MemberSearch = () => {
             >
               <label>+ 모집 공고 등록하기</label>
             </WriteButton>
-            <SideNavigation />
+            <SideNavigation categoryObject={jobCategories} />
           </div>
           <div>
             <div style={{ marginLeft: "120px" }}>
