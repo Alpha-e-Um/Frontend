@@ -32,6 +32,7 @@ export const ResetButton = styled.button`
   cursor: pointer;
   color: #007bff;
   font-size: 1rem;
+  font-weight: 700;
 `;
 
 export const Section = styled.section`
