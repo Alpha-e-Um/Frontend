@@ -11,15 +11,14 @@ import {
   SectionTitleRow,
   Title,
 } from "./styles";
-import { jobCategories } from "./jobPosition";
 
-const SideNavigation = () => {
-  const initialMainCategoryStates = jobCategories.reduce((acc, category) => {
+const SideNavigation = ({ categoryObject }) => {
+  const initialMainCategoryStates = categoryObject.reduce((acc, category) => {
     acc[category.kind] = true;
     return acc;
   }, {});
 
-  const initialSubCategoryStates = jobCategories.reduce((acc, category) => {
+  const initialSubCategoryStates = categoryObject.reduce((acc, category) => {
     acc[category.kind] = new Array(category.subCategories.length).fill(true);
     return acc;
   }, {});
@@ -82,7 +81,7 @@ const SideNavigation = () => {
 
       {/* 직종 분류 섹션 */}
       <Title style={{ textAlign: "left" }}>직종 분류</Title>
-      {jobCategories.map((category) => (
+      {categoryObject.map((category) => (
         <Section key={category.mainCategory}>
           <SectionTitleRow>
             <Checkbox
