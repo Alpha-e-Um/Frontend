@@ -1,0 +1,88 @@
+const contestTestData2 = [
+  {
+    id: 1,
+    deadline: 5,
+    name: "창의력을 키우는 공모전",
+    organizer: "창의력 협회",
+    views: "1,234",
+  },
+  {
+    id: 2,
+    deadline: 6,
+    name: "예술과 기술을 결합한 공모전",
+    organizer: "미술과 기술 협회",
+    views: "987",
+  },
+  {
+    id: 3,
+    deadline: 7,
+    name: "환경 보호를 위한 공모전",
+    organizer: "환경 보호 단체",
+    views: "5,678",
+  },
+  {
+    id: 4,
+    deadline: 8,
+    name: "환경 보호를 위한 공모전",
+    organizer: "환경 보호 단체",
+    views: "5,678",
+  },
+  {
+    id: 5,
+    deadline: 9,
+    name: "지속 가능한 농업 경진대회",
+    organizer: "농업 혁신 협회",
+    views: "2,345",
+  },
+  {
+    id: 6,
+    deadline: 4,
+    name: "로봇 기술 혁신 대회",
+    organizer: "로봇 과학 협회",
+    views: "3,456",
+  },
+  {
+    id: 7,
+    deadline: 5,
+    name: "지역 사회 발전 프로젝트 경연",
+    organizer: "사회 발전 기구",
+    views: "1,789",
+  },
+  {
+    id: 8,
+    deadline: 6,
+    name: "디지털 아트 경연대회",
+    organizer: "디지털 예술 협회",
+    views: "4,321",
+  },
+  {
+    id: 9,
+    deadline: 10,
+    name: "교육 혁신 챌린지",
+    organizer: "교육 개발 협회",
+    views: "2,222",
+  },
+  {
+    id: 10,
+    deadline: 11,
+    name: "건강 증진 캠페인",
+    organizer: "국민 건강 단체",
+    views: "1,234",
+  },
+  {
+    id: 11,
+    deadline: 12,
+    name: "미래 도시 설계 경연",
+    organizer: "도시 계획 협회",
+    views: "3,456",
+  },
+  {
+    id: 12,
+    deadline: 3,
+    name: "청년 창업 경진대회",
+    organizer: "창업 지원 센터",
+    views: "2,678",
+  },
+];
+
+export default contestTestData2;

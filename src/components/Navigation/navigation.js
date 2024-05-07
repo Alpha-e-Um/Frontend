@@ -48,7 +48,13 @@ const Navigation = (props) => {
             >
               팀원구하기
             </MenuItem>
-            <MenuItem>대외활동</MenuItem>
+            <MenuItem
+              onClick={() => {
+                navigate("/contest");
+              }}
+            >
+              대외활동
+            </MenuItem>
             <MenuItem
               onClick={() => {
                 navigate("/mypage");
