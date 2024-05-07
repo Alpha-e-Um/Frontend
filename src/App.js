@@ -19,15 +19,16 @@ const App = () => {
     userAPI
       .getMyInfo()
       .then((res) => {
-        console.log(res);
+        const data = res.data.data;
+
         setUserInfo({
           isLogin: true,
-          userId: res.data.userId,
-          email: res.data.email,
-          name: res.data.name.first,
-          fullName: res.data.name.fullName,
-          avatar: res.data.avatar,
-          mbti: res.data.mbti,
+          userId: data.userId,
+          email: data.email,
+          name: data.name.first,
+          fullName: data.name.fullName,
+          avatar: data.avatar,
+          mbti: data.mbti,
         });
       })
       .catch((err) => {
