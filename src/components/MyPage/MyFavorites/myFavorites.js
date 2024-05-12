@@ -15,13 +15,12 @@ import memberTestData from "../../../api/testDummyData/memberTestData";
 
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 
-const MyFavorites = (props) => {
+const MyFavorites = ({ innerRef }) => {
   const [isToggle, setIsToggle] = useState(false);
   const [visible, setVisible] = useState({
     step0: false,
     step1: false,
     step2: false,
-    step3: false,
   });
 
   const TeamButton = () => {
@@ -33,19 +32,37 @@ const MyFavorites = (props) => {
   };
 
   const StartAnimation = () => {
-    const timers = [];
-    const delay = 50;
-
-    for (let i = 0; i <= 3; i++) {
-      const timer = setTimeout(() => {
-        setVisible((prev) => ({ ...prev, [`step${i}`]: true }));
-      }, i * delay + 300);
-      timers.push(timer);
-    }
+    const timer1 = setTimeout(() => {
+      setVisible((prev) => ({ ...prev, [`step0`]: true }));
+    }, 100);
+    const timer2 = setTimeout(() => {
+      setVisible((prev) => ({ ...prev, [`step1`]: true }));
+    }, 200);
+    const timer3 = setTimeout(() => {
+      setVisible((prev) => ({ ...prev, [`step2`]: true }));
+    }, 300);
 
     return () => {
-      timers.forEach(clearTimeout);
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      clearTimeout(timer3);
     };
+  };
+
+  const EndAnimation = async () => {
+    setTimeout(() => {
+      setVisible((prev) => ({ ...prev, [`step2`]: false }));
+    }, 0);
+    setTimeout(() => {
+      setVisible((prev) => ({ ...prev, [`step1`]: false }));
+    }, 0);
+    setTimeout(() => {
+      setVisible((prev) => ({ ...prev, [`step0`]: false }));
+    }, 200);
+  };
+
+  innerRef.current = {
+    EndAnimation,
   };
 
   useEffect(() => {
@@ -53,8 +70,8 @@ const MyFavorites = (props) => {
   }, []);
 
   return (
-    <Container>
-      <Title>즐겨찾기 목록</Title>
+    <Container isVisible={visible.step0}>
+      <Title isVisible={visible.step1}>즐겨찾기 목록</Title>
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />
@@ -69,13 +86,24 @@ const MyFavorites = (props) => {
       >
         {isToggle ? (
           <>
-            <SelectButton onClick={TeamButton}>팀</SelectButton>
-            <NotSelectButton onClick={TeamMemberButton}>팀원</NotSelectButton>
+            <SelectButton onClick={TeamButton} isVisible={visible.step2}>
+              팀
+            </SelectButton>
+            <NotSelectButton
+              onClick={TeamMemberButton}
+              isVisible={visible.step2}
+            >
+              팀원
+            </NotSelectButton>
           </>
         ) : (
           <>
-            <NotSelectButton onClick={TeamButton}>팀</NotSelectButton>
-            <SelectButton onClick={TeamMemberButton}>팀원</SelectButton>
+            <NotSelectButton onClick={TeamButton} isVisible={visible.step2}>
+              팀
+            </NotSelectButton>
+            <SelectButton onClick={TeamMemberButton} isVisible={visible.step2}>
+              팀원
+            </SelectButton>
           </>
         )}
       </div>

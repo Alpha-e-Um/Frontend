@@ -53,7 +53,7 @@ const MyPage = (props) => {
             path="favorites"
             element={
               <div>
-                <MyFavorites />
+                <MyFavorites innerRef={pageAnimationRef} />
               </div>
             }
           />
