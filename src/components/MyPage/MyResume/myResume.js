@@ -16,13 +16,13 @@ const MyResume = ({ setIsNewResume, innerRef }) => {
   const StartAnimation = () => {
     const timer1 = setTimeout(() => {
       setVisible((prev) => ({ ...prev, [`step0`]: true }));
-    }, 100);
+    }, 0);
     const timer2 = setTimeout(() => {
       setVisible((prev) => ({ ...prev, [`step1`]: true }));
-    }, 200);
+    }, 100);
     const timer3 = setTimeout(() => {
       setVisible((prev) => ({ ...prev, [`step2`]: true }));
-    }, 300);
+    }, 200);
 
     return () => {
       clearTimeout(timer1);

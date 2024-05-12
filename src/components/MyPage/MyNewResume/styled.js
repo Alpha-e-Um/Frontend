@@ -33,8 +33,9 @@ export const InformationContainter = styled.div`
   border: 2px solid;
   border-radius: 12px;
   border-color: #c9c9c9;
+
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
 `;
 
 export const InformationTag = styled.label`

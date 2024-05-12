@@ -25,7 +25,6 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
   const [birthday, setBirthDay] = useState("");
   const [school, setSchool] = useState("");
   const [residence, setResidence] = useState("");
-  const [errors, setErrors] = useState({});
 
   const [isAlarm, setIsAlarm] = useState(false);
   const [isMail, setIsMail] = useState(false);
@@ -74,7 +73,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
     for (let i = 0; i <= 11; i++) {
       const timer = setTimeout(() => {
         setVisible((prev) => ({ ...prev, [`step${i}`]: true }));
-      }, i * delay + 300);
+      }, i * delay);
       timers.push(timer);
     }
 
@@ -84,7 +83,6 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
   };
 
   const EndAnimation = async () => {
-    const timers = [];
     for (let i = 1; i <= 11; i++) {
       setVisible((prev) => ({ ...prev, [`step${i}`]: false }));
     }

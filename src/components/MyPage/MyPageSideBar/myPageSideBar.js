@@ -32,7 +32,7 @@ const MyPageSideBar = ({
       setIsNewResume(false);
       navigate(pagePaths[index]);
       setCurPage(index);
-    }, 1000);
+    }, 500);
   };
 
   useEffect(() => {

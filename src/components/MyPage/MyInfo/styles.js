@@ -5,7 +5,7 @@ import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg
 const fadeIn = css`
   opacity: 1;
   transform: translateY(0px);
-  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 `;
 
 export const Container = styled.div`
