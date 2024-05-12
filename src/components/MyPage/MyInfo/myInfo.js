@@ -5,7 +5,7 @@ import {
   Tag,
   Input,
   AlarmButton,
-  SaveButton,
+  BlueButton,
   CannelButton,
 } from "./styles";
 
@@ -13,7 +13,7 @@ import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg
 import { ReactComponent as Profile } from "../../../assets/myPage/profile.svg";
 import { ReactComponent as CheckCircleOff } from "../../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCircleOn.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const MyInfo = ({ IsWithdrawal }) => {
   const [firstName, setFirstName] = useState("");
@@ -30,6 +30,8 @@ const MyInfo = ({ IsWithdrawal }) => {
   const [isMail, setIsMail] = useState(false);
   const [isMessage, setIsMessage] = useState(false);
   const [isApplication, setIsApplication] = useState(false);
+
+  const [visible, setVisible] = useState({ title: false, line: false });
 
   const handleChange = (value, setter) => {
     setter(value);
@@ -99,26 +101,12 @@ const MyInfo = ({ IsWithdrawal }) => {
           style={{
             marginTop: "10px",
             marginLeft: "74px",
-            width: "108px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Tag>이름</Tag>
-          <Tag>닉네임</Tag>
-          <Tag>전화번호</Tag>
-          <Tag>생년월일</Tag>
-          <Tag>소속/학교</Tag>
-          <Tag>거주지역</Tag>
-        </div>
-        <div
-          style={{
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 70 }}>이름</Tag>
             <Input
               style={{ width: 60 }}
               value={firstName}
@@ -127,19 +115,39 @@ const MyInfo = ({ IsWithdrawal }) => {
             {errors.firstName && (
               <div style={{ color: "red" }}>{errors.firstName}</div>
             )}
+
+            <Tag style={{ paddingLeft: 165, paddingRight: 69 }}>성</Tag>
+            <Input
+              style={{ width: 46 }}
+              value={lastName}
+              onChange={(e) => handleChange(e.target.value, setLastName)}
+            />
+            {errors.lastName && (
+              <div style={{ color: "red" }}>{errors.lastName}</div>
+            )}
           </div>
 
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 56 }}>닉네임</Tag>
             <Input
-              style={{ width: 88 }}
+              style={{ width: 162 }}
               value={nickname}
               onChange={(e) => handleChange(e.target.value, setNickName)}
             />
             {errors.nickname && (
               <div style={{ color: "red" }}>{errors.nickname}</div>
             )}
+            <Tag style={{ paddingLeft: 63, paddingRight: 40 }}>MBTI</Tag>
+            <Input
+              style={{ width: 88 }}
+              value={mbti}
+              onChange={(e) => handleChange(e.target.value, setMbti)}
+            />
+            {errors.mbti && <div style={{ color: "red" }}>{errors.mbti}</div>}
           </div>
-          <div style={{ display: "flex" }}>
+
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 40 }}>전화번호</Tag>
             <Input
               style={{ width: 162 }}
               value={telephone}
@@ -151,9 +159,10 @@ const MyInfo = ({ IsWithdrawal }) => {
             )}
           </div>
 
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 40 }}> 생년월일</Tag>
             <Input
-              style={{ width: 139 }}
+              style={{ width: 162 }}
               value={birthday}
               onChange={(e) => handleChange(e.target.value, setBirthDay)}
             />
@@ -162,65 +171,31 @@ const MyInfo = ({ IsWithdrawal }) => {
             )}
           </div>
 
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 34 }}>소속/학교</Tag>
             <Input
-              style={{ width: 131 }}
+              style={{ width: 162, marginRight: 20 }}
+              value={residence}
+              onChange={(e) => handleChange(e.target.value, setResidence)}
+            />
+
+            <BlueButton>학교인증</BlueButton>
+
+            {errors.residence && (
+              <div style={{ color: "red" }}>{errors.residence}</div>
+            )}
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 36 }}>거주 지역</Tag>
+            <Input
+              style={{ width: 162 }}
               value={school}
               onChange={(e) => handleChange(e.target.value, setSchool)}
             />
             {errors.school && (
               <div style={{ color: "red" }}>{errors.school}</div>
             )}
-          </div>
-
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 179 }}
-              value={residence}
-              onChange={(e) => handleChange(e.target.value, setResidence)}
-            />
-            {errors.residence && (
-              <div style={{ color: "red" }}>{errors.residence}</div>
-            )}
-          </div>
-        </div>
-        <div
-          style={{
-            marginTop: "10px",
-            width: "108px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Tag>성</Tag>
-
-          <Tag>MBTI</Tag>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 46 }}
-              value={lastName}
-              onChange={(e) => handleChange(e.target.value, setLastName)}
-            />
-            {errors.lastName && (
-              <div style={{ color: "red" }}>{errors.lastName}</div>
-            )}
-          </div>
-
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 88 }}
-              value={mbti}
-              onChange={(e) => handleChange(e.target.value, setMbti)}
-            />
-            {errors.mbti && <div style={{ color: "red" }}>{errors.mbti}</div>}
           </div>
         </div>
       </div>
@@ -296,7 +271,7 @@ const MyInfo = ({ IsWithdrawal }) => {
           justifyContent: "flex-end",
         }}
       >
-        <SaveButton onClick={Save}>저장</SaveButton>
+        <BlueButton onClick={Save}>저장</BlueButton>
         <CannelButton>취소</CannelButton>
       </div>
     </Container>
