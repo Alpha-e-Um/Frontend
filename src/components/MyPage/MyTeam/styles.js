@@ -1,5 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
+const fadeIn = css`
+  opacity: 1;
+  transform: translateY(0px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+`;
 export const Container = styled.div`
   margin-top: 90px;
   width: 898px;
@@ -9,6 +14,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  height: ${({ isVisible }) =>
+    isVisible ? "900px" : "150px"}; // 조건에 따라 높이 변경
+  transition: height 0.3s ease-out;
 `;
 
 export const Title = styled.label`
@@ -16,6 +25,10 @@ export const Title = styled.label`
   margin-left: 50px;
   font-size: 24px;
   font-weight: 700;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  ${({ isVisible }) => isVisible && fadeIn}
 `;
 
 export const MyTeamButton = styled.button`
@@ -24,6 +37,10 @@ export const MyTeamButton = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  ${({ isVisible }) => isVisible && fadeIn}
 `;
 
 export const MyTeamLabel = styled.label`
@@ -49,6 +66,15 @@ export const CreateTeamButton = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #3268e5;
+  }
+
+  opacity: 0;
+  transform: translateY(-10px);
+  ${({ isVisible }) => isVisible && fadeIn}
 `;
 
 export const CardContainter = styled.div`

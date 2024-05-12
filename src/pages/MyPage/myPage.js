@@ -61,7 +61,7 @@ const MyPage = (props) => {
             path="support"
             element={
               <div>
-                <MySupport />
+                <MySupport innerRef={pageAnimationRef} />
               </div>
             }
           />
@@ -70,9 +70,15 @@ const MyPage = (props) => {
             element={
               <div>
                 {isCreateTeam ? (
-                  <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
+                  <MyTeamPage
+                    setIsCreateTeam={setIsCreateTeam}
+                    innerRef={pageAnimationRef}
+                  />
                 ) : (
-                  <MyTeam setIsCreateTeam={setIsCreateTeam} />
+                  <MyTeam
+                    setIsCreateTeam={setIsCreateTeam}
+                    innerRef={pageAnimationRef}
+                  />
                 )}
               </div>
             }
@@ -82,9 +88,15 @@ const MyPage = (props) => {
             element={
               <div>
                 {isNewResume ? (
-                  <MyNewResume setIsNewResume={setIsNewResume} />
+                  <MyNewResume
+                    setIsNewResume={setIsNewResume}
+                    innerRef={pageAnimationRef}
+                  />
                 ) : (
-                  <MyResume setIsNewResume={setIsNewResume} />
+                  <MyResume
+                    setIsNewResume={setIsNewResume}
+                    innerRef={pageAnimationRef}
+                  />
                 )}
               </div>
             }
