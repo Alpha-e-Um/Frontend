@@ -25,7 +25,7 @@ export const SelectPage = styled.button`
   justify-content: center;
   cursor: pointer;
 
-  transition: background-color 1s ease;
+  transition: background-color 0.3s ease;
   &:hover {
     background-color: #e6e6e6;
   }
@@ -45,7 +45,7 @@ export const NotSelectPage = styled.button`
   justify-content: center;
   cursor: pointer;
 
-  transition: background-color 1s ease;
+  transition: background-color 0.3s ease;
   &:hover {
     background-color: #e6e6e6;
   }

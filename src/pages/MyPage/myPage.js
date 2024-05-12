@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
@@ -13,12 +13,16 @@ import MyResume from "../../components/MyPage/MyResume/myResume";
 import { Title } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 import MyNewResume from "../../components/MyPage/MyNewResume/myNewResume";
-import TeamMemberRecruitmentNotice from "../../components/TeamMemberRecruitmentNotice/teamMemberRecruitmentNotice";
 
 const MyPage = (props) => {
   const [isCreateTeam, setIsCreateTeam] = useState(false);
   const [isNewResume, setIsNewResume] = useState(false);
   const [isWithdrawal, setIsWithdrawal] = useState(false);
+
+  const pageAnimationRef = useRef({});
+  const pageOutAnimation = () => {
+    pageAnimationRef.current.EndAnimation();
+  };
 
   return (
     <div>
@@ -30,6 +34,7 @@ const MyPage = (props) => {
           <MyPageSideBar
             setIsCreateTeam={setIsCreateTeam}
             setIsNewResume={setIsNewResume}
+            pageOutAnimation={pageOutAnimation}
           />
         </div>
         <Routes>
@@ -37,7 +42,10 @@ const MyPage = (props) => {
             index
             element={
               <div>
-                <MyInfo IsWithdrawal={setIsWithdrawal} />
+                <MyInfo
+                  IsWithdrawal={setIsWithdrawal}
+                  innerRef={pageAnimationRef}
+                />
               </div>
             }
           />

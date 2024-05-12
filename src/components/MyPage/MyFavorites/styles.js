@@ -9,6 +9,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  height: ${({ isVisible }) =>
+    isVisible ? "1000px" : "150px"}; // 조건에 따라 높이 변경
+  transition: height 0.3s ease-out;
 `;
 
 export const Title = styled.label`

@@ -6,7 +6,7 @@ import {
   CardContainter,
 } from "./styles";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TeamCard from "../../Card/teamCard";
 import MemberCard from "../../Card/memberCard";
 
@@ -17,6 +17,12 @@ import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg
 
 const MyFavorites = (props) => {
   const [isToggle, setIsToggle] = useState(false);
+  const [visible, setVisible] = useState({
+    step0: false,
+    step1: false,
+    step2: false,
+    step3: false,
+  });
 
   const TeamButton = () => {
     setIsToggle(true);
@@ -25,6 +31,26 @@ const MyFavorites = (props) => {
   const TeamMemberButton = () => {
     setIsToggle(false);
   };
+
+  const StartAnimation = () => {
+    const timers = [];
+    const delay = 50;
+
+    for (let i = 0; i <= 3; i++) {
+      const timer = setTimeout(() => {
+        setVisible((prev) => ({ ...prev, [`step${i}`]: true }));
+      }, i * delay + 300);
+      timers.push(timer);
+    }
+
+    return () => {
+      timers.forEach(clearTimeout);
+    };
+  };
+
+  useEffect(() => {
+    StartAnimation();
+  }, []);
 
   return (
     <Container>
