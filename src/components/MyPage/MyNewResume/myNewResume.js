@@ -13,8 +13,6 @@ import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg
 import { useState } from "react";
 
 const MyNewResume = ({ setIsNewResume }) => {
-  const save = () => {};
-
   return (
     <Container>
       <Title>신규 이력서 작성</Title>
@@ -87,102 +85,193 @@ const MyNewResume = ({ setIsNewResume }) => {
       <Lesson>이력서 정보</Lesson>
 
       <InformationContainter>
-        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 45,
+            marginLeft: 47,
+          }}
+        >
           <InformationTag>직군</InformationTag>
-          <InformationTag>소분류</InformationTag>
-
-          <Input style={{ marginTop: 12, width: 332 }} />
         </div>
-
-        <div style={{ display: "flex", justifyContent: "flex-start" }}>
-          <Input style={{ marginTop: 12, width: 332 }} />
-        </div>
-
-        <div style={{ display: "flex", justifyContent: "flex-start" }}>
-          <InformationTag>학점</InformationTag>
-          <InformationTag>소분류</InformationTag>
-        </div>
-        <div style={{ display: "flex", justifyContent: "flex-start" }}></div>
 
         <div
           style={{
-            marginLeft: 48,
-            marginTop: 55,
-            marginBottom: 46,
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            gap: 45,
           }}
         >
-          <Input style={{ marginTop: 12, width: 332 }} />
-          <InformationTag style={{ marginTop: 45 }}>스킬</InformationTag>
-          <Input style={{ marginTop: 12, width: 332 }} />
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 43,
+            marginLeft: 47,
+            gap: 360,
+          }}
+        >
+          <InformationTag>학점</InformationTag>
+          <InformationTag>스킬</InformationTag>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            marginBottom: 40,
+            gap: 45,
+          }}
+        >
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
         </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          수상/자격증
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>수상/자격증</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 45,
+            marginLeft: 47,
+            gap: 260,
+          }}
+        >
+          <InformationTag>수상 자격증 이름</InformationTag>
+          <InformationTag>수상 자격증 내용</InformationTag>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            gap: 45,
+          }}
+        >
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 43,
+            marginLeft: 47,
+            gap: 275,
+          }}
+        >
+          <InformationTag>수상 취득 기간</InformationTag>
+          <InformationTag>수상 자격증 관련 링크</InformationTag>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            marginBottom: 40,
+            gap: 45,
+          }}
+        >
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
+        </div>
+
+        <div>
+          <SaveButton
+            style={{
+              marginLeft: "560px",
+              marginRight: "10px",
+              marginBottom: "30px",
+            }}
+            onClick={() => {}}
+          >
+            저장
+          </SaveButton>
+          <CannelButton onClick={() => setIsNewResume(false)}>
+            취소
+          </CannelButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          경력
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>경력</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          프로젝트
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>프로젝트</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          외부활동
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>외부활동</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          홈페이지
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>홈페이지</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
       <InformationContainter
@@ -229,7 +318,15 @@ const MyNewResume = ({ setIsNewResume }) => {
       </InformationContainter>
 
       <div style={{ marginTop: 30, marginBottom: 30 }}>
-        <SaveButton onClick={() => save()}>저장</SaveButton>
+        <SaveButton
+          style={{
+            marginLeft: "689px",
+            marginRight: "10px",
+          }}
+          onClick={() => {}}
+        >
+          저장
+        </SaveButton>
         <CannelButton onClick={() => setIsNewResume(false)}>취소</CannelButton>
       </div>
     </Container>

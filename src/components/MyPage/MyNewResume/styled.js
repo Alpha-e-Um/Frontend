@@ -39,7 +39,7 @@ export const InformationContainter = styled.div`
 `;
 
 export const InformationTag = styled.label`
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
 `;
 
@@ -54,8 +54,6 @@ export const Input = styled.input`
 `;
 
 export const AddButton = styled.button`
-  margin-right: 20px;
-  margin-top: 18px;
   width: 106px;
   height: 33px;
   border: 2px solid;
@@ -66,8 +64,6 @@ export const AddButton = styled.button`
 `;
 
 export const SaveButton = styled.button`
-  margin-left: 689px;
-  margin-right: 10px;
   width: 64px;
   height: 35px;
   background-color: #376fff;
