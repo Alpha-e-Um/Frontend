@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   CardContainer,
   ContestDetails,
@@ -10,8 +11,13 @@ import {
 } from "./styles";
 
 const ContestCard = ({ data }) => {
+  const navigate = useNavigate();
   return (
-    <CardContainer>
+    <CardContainer
+      onClick={() => {
+        navigate("/contestDetail");
+      }}
+    >
       <DeadlineButton>
         <DeadlineText>D - {data.deadline}</DeadlineText>
       </DeadlineButton>

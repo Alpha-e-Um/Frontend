@@ -11,6 +11,7 @@ import { userInfoState } from "./states/authState";
 import { userAPI } from "./api/userAPI";
 import RegisterTeam from "./pages/RegisterTeam/registerTeam";
 import Contest from "./pages/Contest/contest";
+import ContestDetail from "./pages/ContestDetailPage/contestDetailPage";
 
 const App = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/login/*" element={<Login />} />
           <Route path="/registerTeam" element={<RegisterTeam />} />
           <Route path="/contest" element={<Contest />} />
+          <Route path="/contestDetail" element={<ContestDetail />} />
         </Routes>
       </BrowserRouter>
     </div>
