@@ -29,7 +29,7 @@ const MemberSearch = () => {
         }}
       >
         <Introduce />
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", padding: "20px" }}>
           <div>
             <WriteButton
               onClick={() => {

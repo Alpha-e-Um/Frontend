@@ -18,11 +18,27 @@ export const Title = styled.label`
   font-weight: 900;
   margin-left: 160px;
   cursor: pointer;
+
+  @media screen and (max-width: 1440px) {
+    margin-left: 100px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin-left: 60px;
+  }
 `;
 
 export const MenuBox = styled.div`
   display: flex;
   gap: 120px;
+
+  @media screen and (max-width: 1440px) {
+    gap: 80px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    gap: 60px;
+  }
 `;
 
 export const MenuItem = styled.label`
@@ -46,4 +62,18 @@ export const LoginButtonLabel = styled.label`
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
+`;
+
+export const RightBox = styled.div`
+  display: flex;
+  margin-right: 160px;
+  align-items: center;
+
+  @media screen and (max-width: 1440px) {
+    margin-right: 100px;
+  }
+
+  @media screen and (max-width: 1024px) {
+    margin-right: 60px;
+  }
 `;

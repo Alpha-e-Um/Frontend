@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Container,
@@ -6,6 +6,7 @@ import {
   LoginButtonLabel,
   MenuBox,
   MenuItem,
+  RightBox,
   Title,
 } from "./styles";
 import { ReactComponent as Alert } from "../../assets/icons/alert.svg";
@@ -18,6 +19,17 @@ const Navigation = (props) => {
   const navigate = useNavigate();
   const [clickLoginButton, setClickLoginButton] = useState(false);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 1024);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobileView(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <Container>
@@ -33,51 +45,50 @@ const Navigation = (props) => {
           >
             이음
           </Title>
-          <MenuBox>
-            <MenuItem
-              onClick={() => {
-                navigate("/team");
-              }}
-            >
-              팀구하기
-            </MenuItem>
-            <MenuItem
-              onClick={() => {
-                navigate("/member");
-              }}
-            >
-              팀원구하기
-            </MenuItem>
-            <MenuItem
-              onClick={() => {
-                navigate("/contest");
-              }}
-            >
-              대외활동
-            </MenuItem>
-            <MenuItem
-              onClick={() => {
-                navigate("/mypage");
-              }}
-            >
-              마이페이지
-            </MenuItem>
-            <MenuItem
-              style={{
-                color: "#000000",
-                fontWeight: "900",
-              }}
-            >
-              앱 다운로드
-            </MenuItem>
-          </MenuBox>
-          <div
-            style={{
-              display: "flex",
-              marginRight: "160px",
-              alignItems: "center",
-            }}
-          >
+          {isMobileView ? (
+            <div>☰</div>
+          ) : (
+            <MenuBox>
+              <MenuItem
+                onClick={() => {
+                  navigate("/team");
+                }}
+              >
+                팀구하기
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/member");
+                }}
+              >
+                팀원구하기
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/contest");
+                }}
+              >
+                대외활동
+              </MenuItem>
+              <MenuItem
+                onClick={() => {
+                  navigate("/mypage");
+                }}
+              >
+                마이페이지
+              </MenuItem>
+              <MenuItem
+                style={{
+                  color: "#000000",
+                  fontWeight: "900",
+                }}
+              >
+                앱 다운로드
+              </MenuItem>
+            </MenuBox>
+          )}
+
+          <RightBox>
             <LoginButton>
               <LoginButtonLabel
                 onClick={() => {
@@ -97,7 +108,7 @@ const Navigation = (props) => {
             <div style={{ marginLeft: "40px" }}>
               <Alert width={28} fill="true" />
             </div>
-          </div>
+          </RightBox>
         </Box>
       </div>
     </Container>
