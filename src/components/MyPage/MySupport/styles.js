@@ -1,4 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const fadeIn = css`
+  opacity: 1;
+  transform: translateY(0px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+`;
 
 export const Container = styled.div`
   margin-top: 90px;
@@ -9,6 +15,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  height: ${({ isVisible }) =>
+    isVisible ? "900px" : "150px"}; // 조건에 따라 높이 변경
+  transition: height 0.3s ease-out;
 `;
 
 export const Title = styled.label`
@@ -16,6 +26,10 @@ export const Title = styled.label`
   margin-left: 50px;
   font-size: 24px;
   font-weight: 700;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  ${({ isVisible }) => isVisible && fadeIn}
 `;
 
 export const Completed = styled.button`
@@ -24,6 +38,10 @@ export const Completed = styled.button`
   display: flex;
   align-items: center;
   cursor: pointer;
+
+  opacity: 0;
+  transform: translateY(-10px);
+  ${({ isVisible }) => isVisible && fadeIn}
 `;
 
 export const CompletedLabel = styled.label`

@@ -1,21 +1,22 @@
 import {
   Container,
   Title,
+  LineAnimation,
+  AnimatedProfile,
   ProfileChangeButton,
   Tag,
   Input,
+  AlarmSettingButton,
   AlarmButton,
-  SaveButton,
+  BlueButton,
   CannelButton,
 } from "./styles";
 
-import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
-import { ReactComponent as Profile } from "../../../assets/myPage/profile.svg";
 import { ReactComponent as CheckCircleOff } from "../../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCircleOn.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-const MyInfo = ({ IsWithdrawal }) => {
+const MyInfo = ({ IsWithdrawal, innerRef }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nickname, setNickName] = useState("");
@@ -24,12 +25,26 @@ const MyInfo = ({ IsWithdrawal }) => {
   const [birthday, setBirthDay] = useState("");
   const [school, setSchool] = useState("");
   const [residence, setResidence] = useState("");
-  const [errors, setErrors] = useState({});
 
   const [isAlarm, setIsAlarm] = useState(false);
   const [isMail, setIsMail] = useState(false);
   const [isMessage, setIsMessage] = useState(false);
   const [isApplication, setIsApplication] = useState(false);
+
+  const [visible, setVisible] = useState({
+    step0: false,
+    step1: false,
+    step2: false,
+    step3: false,
+    step4: false,
+    step5: false,
+    step6: false,
+    step7: false,
+    step8: false,
+    step9: false,
+    step10: false,
+    step11: false,
+  });
 
   const handleChange = (value, setter) => {
     setter(value);
@@ -49,37 +64,45 @@ const MyInfo = ({ IsWithdrawal }) => {
     setIsApplication(!isApplication);
   };
 
-  const Save = async () => {
-    if (
-      !firstName ||
-      !lastName ||
-      !nickname ||
-      !mbti ||
-      !telephone ||
-      !birthday ||
-      !school ||
-      !residence
-    ) {
-      setErrors({
-        firstName: firstName ? "" : "이름",
-        lastName: lastName ? "" : "성",
-        nickname: nickname ? "" : "닉네임",
-        mbti: mbti ? "" : "MBTI",
-        telephone: telephone ? "" : "전화번호",
-        birthday: birthday ? "" : "생년월일",
-        school: school ? "" : "학교",
-        residence: residence ? "" : "거주지역",
-      });
-      return;
+  const Save = async () => {};
+
+  const StartAnimation = () => {
+    const timers = [];
+    const delay = 50;
+
+    for (let i = 0; i <= 11; i++) {
+      const timer = setTimeout(() => {
+        setVisible((prev) => ({ ...prev, [`step${i}`]: true }));
+      }, i * delay);
+      timers.push(timer);
     }
+
+    return () => {
+      timers.forEach(clearTimeout);
+    };
   };
 
+  const EndAnimation = async () => {
+    for (let i = 1; i <= 11; i++) {
+      setVisible((prev) => ({ ...prev, [`step${i}`]: false }));
+    }
+    setTimeout(() => {
+      setVisible((prev) => ({ ...prev, [`step0`]: false }));
+    }, 200);
+  };
+
+  innerRef.current = {
+    EndAnimation,
+  };
+
+  useEffect(() => {
+    StartAnimation();
+  }, []);
+
   return (
-    <Container>
-      <Title>내정보</Title>
-      <Line
-        style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
-      />
+    <Container isVisible={visible.step0}>
+      <Title isVisible={visible.step1}>내정보</Title>
+      <LineAnimation style={{ top: 16 }} isVisible={visible.step2} />
 
       <div style={{ display: "flex", marginLeft: "83px", marginTop: "57px" }}>
         <div
@@ -89,8 +112,11 @@ const MyInfo = ({ IsWithdrawal }) => {
             alignItems: "center",
           }}
         >
-          <Profile />
-          <ProfileChangeButton onClick={profileChange}>
+          <AnimatedProfile isVisible={visible.step2} />
+          <ProfileChangeButton
+            onClick={profileChange}
+            isVisible={visible.step4}
+          >
             사진 변경
           </ProfileChangeButton>
         </div>
@@ -99,133 +125,113 @@ const MyInfo = ({ IsWithdrawal }) => {
           style={{
             marginTop: "10px",
             marginLeft: "74px",
-            width: "108px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Tag>이름</Tag>
-          <Tag>닉네임</Tag>
-          <Tag>전화번호</Tag>
-          <Tag>생년월일</Tag>
-          <Tag>소속/학교</Tag>
-          <Tag>거주지역</Tag>
-        </div>
-        <div
-          style={{
             display: "flex",
             flexDirection: "column",
           }}
         >
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 70 }} isVisible={visible.step2}>
+              이름
+            </Tag>
             <Input
               style={{ width: 60 }}
               value={firstName}
               onChange={(e) => handleChange(e.target.value, setFirstName)}
-            />
-            {errors.firstName && (
-              <div style={{ color: "red" }}>{errors.firstName}</div>
-            )}
-          </div>
-
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 88 }}
-              value={nickname}
-              onChange={(e) => handleChange(e.target.value, setNickName)}
-            />
-            {errors.nickname && (
-              <div style={{ color: "red" }}>{errors.nickname}</div>
-            )}
-          </div>
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 162 }}
-              value={telephone}
-              onChange={(e) => handleChange(e.target.value, setTelephone)}
+              isVisible={visible.step2}
             />
 
-            {errors.telephone && (
-              <div style={{ color: "red" }}>{errors.telephone}</div>
-            )}
-          </div>
-
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 139 }}
-              value={birthday}
-              onChange={(e) => handleChange(e.target.value, setBirthDay)}
-            />
-            {errors.birthday && (
-              <div style={{ color: "red" }}>{errors.birthday}</div>
-            )}
-          </div>
-
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 131 }}
-              value={school}
-              onChange={(e) => handleChange(e.target.value, setSchool)}
-            />
-            {errors.school && (
-              <div style={{ color: "red" }}>{errors.school}</div>
-            )}
-          </div>
-
-          <div style={{ display: "flex" }}>
-            <Input
-              style={{ width: 179 }}
-              value={residence}
-              onChange={(e) => handleChange(e.target.value, setResidence)}
-            />
-            {errors.residence && (
-              <div style={{ color: "red" }}>{errors.residence}</div>
-            )}
-          </div>
-        </div>
-        <div
-          style={{
-            marginTop: "10px",
-            width: "108px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Tag>성</Tag>
-
-          <Tag>MBTI</Tag>
-        </div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <div style={{ display: "flex" }}>
+            <Tag
+              style={{ paddingLeft: 165, paddingRight: 69 }}
+              isVisible={visible.step2}
+            >
+              성
+            </Tag>
             <Input
               style={{ width: 46 }}
               value={lastName}
               onChange={(e) => handleChange(e.target.value, setLastName)}
+              isVisible={visible.step2}
             />
-            {errors.lastName && (
-              <div style={{ color: "red" }}>{errors.lastName}</div>
-            )}
           </div>
 
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 56 }} isVisible={visible.step3}>
+              닉네임
+            </Tag>
+            <Input
+              style={{ width: 162 }}
+              value={nickname}
+              onChange={(e) => handleChange(e.target.value, setNickName)}
+              isVisible={visible.step3}
+            />
+            <Tag
+              style={{ paddingLeft: 63, paddingRight: 40 }}
+              isVisible={visible.step3}
+            >
+              MBTI
+            </Tag>
             <Input
               style={{ width: 88 }}
               value={mbti}
               onChange={(e) => handleChange(e.target.value, setMbti)}
+              isVisible={visible.step3}
             />
-            {errors.mbti && <div style={{ color: "red" }}>{errors.mbti}</div>}
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 40 }} isVisible={visible.step4}>
+              전화번호
+            </Tag>
+            <Input
+              style={{ width: 162 }}
+              value={telephone}
+              onChange={(e) => handleChange(e.target.value, setTelephone)}
+              isVisible={visible.step4}
+            />
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 40 }} isVisible={visible.step5}>
+              {" "}
+              생년월일
+            </Tag>
+            <Input
+              style={{ width: 162 }}
+              value={birthday}
+              onChange={(e) => handleChange(e.target.value, setBirthDay)}
+              isVisible={visible.step5}
+            />
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 34 }} isVisible={visible.step6}>
+              소속/학교
+            </Tag>
+            <Input
+              style={{ width: 162, marginRight: 20 }}
+              value={residence}
+              onChange={(e) => handleChange(e.target.value, setResidence)}
+              isVisible={visible.step6}
+            />
+
+            <BlueButton>학교인증</BlueButton>
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "flex-start" }}>
+            <Tag style={{ paddingRight: 36 }} isVisible={visible.step7}>
+              거주 지역
+            </Tag>
+            <Input
+              style={{ width: 162 }}
+              value={school}
+              onChange={(e) => handleChange(e.target.value, setSchool)}
+              isVisible={visible.step7}
+            />
           </div>
         </div>
       </div>
 
-      <Line style={{ marginLeft: "auto", marginRight: "auto" }} />
+      <LineAnimation isVisible={visible.step8} />
 
       <div
         style={{
@@ -236,7 +242,7 @@ const MyInfo = ({ IsWithdrawal }) => {
           alignItems: "flex-start",
         }}
       >
-        <button
+        <AlarmSettingButton
           onClick={() => AlarmSetting()}
           style={{
             display: "flex",
@@ -244,6 +250,7 @@ const MyInfo = ({ IsWithdrawal }) => {
             border: "none",
             backgroundColor: "#ffffff",
           }}
+          isVisible={visible.step9}
         >
           {isAlarm ? (
             <CheckCircleOn style={{ marginRight: 10 }} />
@@ -251,14 +258,20 @@ const MyInfo = ({ IsWithdrawal }) => {
             <CheckCircleOff style={{ marginRight: 10 }} />
           )}
           알림 설정
-        </button>
+        </AlarmSettingButton>
 
-        <Tag style={{ marginTop: 30, marginBottom: 22 }}>
+        <Tag
+          style={{ marginTop: 30, marginBottom: 22 }}
+          isVisible={visible.step9}
+        >
           합격/불합격 연락 받을 수단
         </Tag>
 
         <div style={{ display: "flex" }}>
-          <AlarmButton onClick={() => AlarmApplication()}>
+          <AlarmButton
+            onClick={() => AlarmApplication()}
+            isVisible={visible.step10}
+          >
             APPLICATION
             {isApplication ? (
               <CheckCircleOn style={{ marginLeft: 10 }} />
@@ -266,7 +279,7 @@ const MyInfo = ({ IsWithdrawal }) => {
               <CheckCircleOff style={{ marginLeft: 10 }} />
             )}
           </AlarmButton>
-          <AlarmButton onClick={() => AlarmMail()}>
+          <AlarmButton onClick={() => AlarmMail()} isVisible={visible.step10}>
             E-MAIL
             {isMail ? (
               <CheckCircleOn style={{ marginLeft: 10 }} />
@@ -274,7 +287,10 @@ const MyInfo = ({ IsWithdrawal }) => {
               <CheckCircleOff style={{ marginLeft: 10 }} />
             )}
           </AlarmButton>
-          <AlarmButton onClick={() => AlarmMessage()}>
+          <AlarmButton
+            onClick={() => AlarmMessage()}
+            isVisible={visible.step10}
+          >
             SMS
             {isMessage ? (
               <CheckCircleOn style={{ marginLeft: 10 }} />
@@ -285,7 +301,7 @@ const MyInfo = ({ IsWithdrawal }) => {
         </div>
       </div>
 
-      <Line style={{ marginLeft: "auto", marginRight: "auto" }} />
+      <LineAnimation isVisible={visible.step10} />
 
       <div
         style={{
@@ -296,8 +312,10 @@ const MyInfo = ({ IsWithdrawal }) => {
           justifyContent: "flex-end",
         }}
       >
-        <SaveButton onClick={Save}>저장</SaveButton>
-        <CannelButton>취소</CannelButton>
+        <BlueButton onClick={Save} isVisible={visible.step11}>
+          저장
+        </BlueButton>
+        <CannelButton isVisible={visible.step11}>취소</CannelButton>
       </div>
     </Container>
   );

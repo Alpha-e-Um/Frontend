@@ -11,45 +11,8 @@ import {
 } from "./styled";
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 import { useState } from "react";
-import { resumeAPI } from "../../../api/resumeAPI";
 
 const MyNewResume = ({ setIsNewResume }) => {
-  const [jobCategory, setJobCategory] = useState("");
-  const [jobSubcategory, setJobSubcategory] = useState("");
-  const [gpa, setGpa] = useState("");
-  const [introduction, setIntroduction] = useState("");
-
-  const handleChange = (value, setter) => {
-    setter(value);
-  };
-
-  const save = () => {
-    const data = {
-      title: "",
-      jobCategory: jobCategory,
-      jobSubcategory: jobSubcategory,
-      gpa: 4.0,
-      totalScore: 0,
-      introduction: introduction,
-      isPublic: true,
-      careers: [],
-      certificates: [],
-      projects: [],
-      homepages: [],
-      activities: [],
-    };
-
-    resumeAPI
-      .postResume(data)
-      .then((res) => {
-        console.log(res);
-        setIsNewResume(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   return (
     <Container>
       <Title>신규 이력서 작성</Title>
@@ -59,59 +22,63 @@ const MyNewResume = ({ setIsNewResume }) => {
 
       <Lesson>기본 정보</Lesson>
 
-      <InformationContainter>
+      <InformationContainter style={{ gap: 10 }}>
         <div
           style={{
-            paddingLeft: 128,
-            marginTop: 44,
             display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            justifyContent: "flex-start",
+            marginTop: 30,
+            marginLeft: 110,
           }}
         >
-          <InformationTag>이름</InformationTag>
-          <InformationTag style={{ marginTop: 28 }}>전화번호</InformationTag>
-          <InformationTag style={{ marginTop: 28 }}>생년월일</InformationTag>
-          <InformationTag style={{ marginTop: 28 }}>소속/학교</InformationTag>
-          <InformationTag style={{ marginTop: 28 }}>거주 지역</InformationTag>
+          <InformationTag style={{ paddingRight: 70 }}>이름</InformationTag>
+          <Input style={{ width: 60 }} />
+
+          <InformationTag style={{ paddingLeft: 165, paddingRight: 69 }}>
+            성
+          </InformationTag>
+          <Input style={{ width: 46 }} />
         </div>
-        <div
-          style={{
-            marginLeft: 28,
-            marginTop: 36,
-            marginBottom: 40,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Input style={{ marginBottom: 17, width: 60 }} />
-          <Input style={{ marginBottom: 17, width: 162 }} />
-          <Input style={{ marginBottom: 17, width: 140 }} />
-          <Input style={{ marginBottom: 17, width: 176 }} />
-          <Input style={{ width: 131 }} />
-        </div>
-        <div
-          style={{
-            marginLeft: 50,
-            marginTop: 44,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <InformationTag>성</InformationTag>
-          <InformationTag style={{ marginTop: 28 }}>MBTI</InformationTag>
-        </div>
-        <div
-          style={{
-            marginLeft: 28,
-            marginTop: 36,
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
-          <Input style={{ marginBottom: 17, width: 46 }} />
+
+        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+          <InformationTag style={{ paddingRight: 56, marginLeft: 110 }}>
+            닉네임
+          </InformationTag>
+          <Input style={{ width: 162 }} />
+          <InformationTag style={{ paddingLeft: 63, paddingRight: 40 }}>
+            MBTI
+          </InformationTag>
           <Input style={{ width: 88 }} />
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+          <InformationTag style={{ paddingRight: 40, marginLeft: 110 }}>
+            전화번호
+          </InformationTag>
+          <Input style={{ width: 162 }} />
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+          <InformationTag style={{ paddingRight: 40, marginLeft: 110 }}>
+            생년월일
+          </InformationTag>
+          <Input style={{ width: 162 }} />
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+          <InformationTag style={{ paddingRight: 34, marginLeft: 110 }}>
+            소속/학교
+          </InformationTag>
+          <Input style={{ width: 162, marginRight: 20 }} />
+        </div>
+
+        <div style={{ display: "flex", justifyContent: "flex-start" }}>
+          <InformationTag
+            style={{ paddingRight: 36, marginLeft: 110, marginBottom: 50 }}
+          >
+            거주 지역
+          </InformationTag>
+          <Input style={{ width: 162 }} />
         </div>
       </InformationContainter>
 
@@ -120,113 +87,191 @@ const MyNewResume = ({ setIsNewResume }) => {
       <InformationContainter>
         <div
           style={{
-            marginLeft: 48,
-            marginTop: 55,
-            marginBottom: 46,
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            marginTop: 45,
+            marginLeft: 47,
           }}
         >
           <InformationTag>직군</InformationTag>
+        </div>
 
-          <Input
-            style={{ marginTop: 12, width: 332 }}
-            value={jobCategory}
-            onChange={(e) => handleChange(e.target.value, setJobCategory)}
-          />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            gap: 45,
+          }}
+        >
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
+        </div>
 
-          <InformationTag style={{ marginTop: 45 }}>학점</InformationTag>
-          <Input
-            style={{ marginTop: 12, width: 332 }}
-            value={gpa}
-            onChange={(e) => handleChange(e.target.value, setGpa)}
-          />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 43,
+            marginLeft: 47,
+            gap: 360,
+          }}
+        >
+          <InformationTag>학점</InformationTag>
+          <InformationTag>스킬</InformationTag>
         </div>
         <div
           style={{
-            marginLeft: 48,
-            marginTop: 55,
-            marginBottom: 46,
             display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            marginBottom: 40,
+            gap: 45,
           }}
         >
-          <InformationTag>소분류</InformationTag>
-          <Input
-            style={{ marginTop: 12, width: 332 }}
-            value={jobSubcategory}
-            onChange={(e) => handleChange(e.target.value, setJobSubcategory)}
-          />
-          <InformationTag style={{ marginTop: 45 }}>스킬</InformationTag>
-          <Input style={{ marginTop: 12, width: 332 }} />
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
         </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          수상/자격증
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>수상/자격증</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 45,
+            marginLeft: 47,
+            gap: 260,
+          }}
+        >
+          <InformationTag>수상 자격증 이름</InformationTag>
+          <InformationTag>수상 자격증 내용</InformationTag>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            gap: 45,
+          }}
+        >
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 43,
+            marginLeft: 47,
+            gap: 275,
+          }}
+        >
+          <InformationTag>수상 취득 기간</InformationTag>
+          <InformationTag>수상 자격증 관련 링크</InformationTag>
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-start",
+            marginTop: 10,
+            marginLeft: 47,
+            marginBottom: 40,
+            gap: 45,
+          }}
+        >
+          <Input style={{ width: 332 }} />
+          <Input style={{ width: 332 }} />
+        </div>
+
+        <div>
+          <SaveButton
+            style={{
+              marginLeft: "560px",
+              marginRight: "10px",
+              marginBottom: "30px",
+            }}
+            onClick={() => {}}
+          >
+            저장
+          </SaveButton>
+          <CannelButton onClick={() => setIsNewResume(false)}>
+            취소
+          </CannelButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          경력
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>경력</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          프로젝트
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>프로젝트</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          외부활동
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>외부활동</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
-      <InformationContainter style={{ justifyContent: "space-between" }}>
-        <InformationTag
+      <InformationContainter>
+        <div
           style={{
-            marginLeft: "30px",
-            marginTop: "28px",
-            marginBottom: "25px",
+            margin: "18px 27px 18px 27px",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
           }}
         >
-          홈페이지
-        </InformationTag>
-        <AddButton>+ 정보 추가</AddButton>
+          <InformationTag>홈페이지</InformationTag>
+          <AddButton>+ 정보 추가</AddButton>
+        </div>
       </InformationContainter>
 
       <InformationContainter
@@ -250,8 +295,6 @@ const MyNewResume = ({ setIsNewResume }) => {
             width: "734px",
             height: "267px",
           }}
-          value={introduction}
-          onChange={(e) => handleChange(e.target.value, setIntroduction)}
         />
 
         <InformationTag
@@ -275,7 +318,15 @@ const MyNewResume = ({ setIsNewResume }) => {
       </InformationContainter>
 
       <div style={{ marginTop: 30, marginBottom: 30 }}>
-        <SaveButton onClick={() => save()}>저장</SaveButton>
+        <SaveButton
+          style={{
+            marginLeft: "689px",
+            marginRight: "10px",
+          }}
+          onClick={() => {}}
+        >
+          저장
+        </SaveButton>
         <CannelButton onClick={() => setIsNewResume(false)}>취소</CannelButton>
       </div>
     </Container>

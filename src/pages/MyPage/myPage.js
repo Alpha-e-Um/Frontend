@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Navigation from "../../components/Navigation/navigation";
@@ -13,12 +13,16 @@ import MyResume from "../../components/MyPage/MyResume/myResume";
 import { Title } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
 import MyNewResume from "../../components/MyPage/MyNewResume/myNewResume";
-import TeamMemberRecruitmentNotice from "../../components/TeamMemberRecruitmentNotice/teamMemberRecruitmentNotice";
 
 const MyPage = (props) => {
   const [isCreateTeam, setIsCreateTeam] = useState(false);
   const [isNewResume, setIsNewResume] = useState(false);
   const [isWithdrawal, setIsWithdrawal] = useState(false);
+
+  const pageAnimationRef = useRef({});
+  const pageOutAnimation = () => {
+    pageAnimationRef.current.EndAnimation();
+  };
 
   return (
     <div>
@@ -30,6 +34,7 @@ const MyPage = (props) => {
           <MyPageSideBar
             setIsCreateTeam={setIsCreateTeam}
             setIsNewResume={setIsNewResume}
+            pageOutAnimation={pageOutAnimation}
           />
         </div>
         <Routes>
@@ -37,7 +42,10 @@ const MyPage = (props) => {
             index
             element={
               <div>
-                <MyInfo IsWithdrawal={setIsWithdrawal} />
+                <MyInfo
+                  IsWithdrawal={setIsWithdrawal}
+                  innerRef={pageAnimationRef}
+                />
               </div>
             }
           />
@@ -45,7 +53,7 @@ const MyPage = (props) => {
             path="favorites"
             element={
               <div>
-                <MyFavorites />
+                <MyFavorites innerRef={pageAnimationRef} />
               </div>
             }
           />
@@ -53,7 +61,7 @@ const MyPage = (props) => {
             path="support"
             element={
               <div>
-                <MySupport />
+                <MySupport innerRef={pageAnimationRef} />
               </div>
             }
           />
@@ -62,9 +70,15 @@ const MyPage = (props) => {
             element={
               <div>
                 {isCreateTeam ? (
-                  <MyTeamPage setIsCreateTeam={setIsCreateTeam} />
+                  <MyTeamPage
+                    setIsCreateTeam={setIsCreateTeam}
+                    innerRef={pageAnimationRef}
+                  />
                 ) : (
-                  <MyTeam setIsCreateTeam={setIsCreateTeam} />
+                  <MyTeam
+                    setIsCreateTeam={setIsCreateTeam}
+                    innerRef={pageAnimationRef}
+                  />
                 )}
               </div>
             }
@@ -74,9 +88,15 @@ const MyPage = (props) => {
             element={
               <div>
                 {isNewResume ? (
-                  <MyNewResume setIsNewResume={setIsNewResume} />
+                  <MyNewResume
+                    setIsNewResume={setIsNewResume}
+                    innerRef={pageAnimationRef}
+                  />
                 ) : (
-                  <MyResume setIsNewResume={setIsNewResume} />
+                  <MyResume
+                    setIsNewResume={setIsNewResume}
+                    innerRef={pageAnimationRef}
+                  />
                 )}
               </div>
             }

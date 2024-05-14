@@ -2,19 +2,21 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   margin-right: 60px;
-  width: 212px;
-  height: 496px;
   border: 2px solid;
-  border-color: #c9c9c9;
   border-radius: 12px;
-  padding-top: 40px;
+  border-color: #c9c9c9;
+  padding: 30px 20px 30px 20px;
   display: flex;
   flex-direction: column;
+  gap: 50px;
+  user-select: none;
 `;
 
 export const SelectPage = styled.button`
-  margin-bottom: 70px;
+  width: 200px;
+  height: 60px;
   border: none;
+  border-radius: 12px;
   font-size: 20px;
   font-weight: 600;
   background-color: #ffffff;
@@ -22,17 +24,29 @@ export const SelectPage = styled.button`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #e6e6e6;
+  }
 `;
 
 export const NotSelectPage = styled.button`
-  margin-bottom: 70px;
+  width: 200px;
+  height: 60px;
+  border: none;
+  border-radius: 12px;
   font-size: 20px;
   font-weight: 400;
-  border: none;
-  background-color: #ffffff;
   color: #c9c9c9;
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #e6e6e6;
+  }
 `;
