@@ -9,6 +9,8 @@ import ContestCardGrid from "../../components/CardGrid/contestCardGrid";
 import contestTestData2 from "../../api/testDummyData/contestTestData2";
 import { useState } from "react";
 import { contestCategory } from "../../api/testDummyData/jobPosition copy";
+import CompetitionsList from "../../components/ContestListView/contestListView";
+import ContestCardGrid3 from "../../components/CardGrid/contestCardGrid3";
 
 const Contest = () => {
   const navigate = useNavigate();
@@ -41,8 +43,16 @@ const Contest = () => {
             <SideNavigation categoryObject={contestCategory} />
           </div>
           <div>
-            <div style={{ marginLeft: "120px" }}>
-              <ContestCardGrid cardDatas={contestTestData2} />
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "80px",
+                padding: "0px 160px",
+              }}
+            >
+              <ContestCardGrid3 cardDatas={contestTestData2} />
+              <CompetitionsList />
             </div>
             <div
               style={{
