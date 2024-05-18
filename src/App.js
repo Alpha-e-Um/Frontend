@@ -9,6 +9,8 @@ import { useRecoilState } from "recoil";
 import { useEffect } from "react";
 import { userInfoState } from "./states/authState";
 import { userAPI } from "./api/userAPI";
+import RegisterTeam from "./pages/RegisterTeam/registerTeam";
+import Contest from "./pages/Contest/contest";
 
 const App = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -17,15 +19,16 @@ const App = () => {
     userAPI
       .getMyInfo()
       .then((res) => {
-        console.log(res);
+        const data = res.data.data;
+
         setUserInfo({
           isLogin: true,
-          userId: res.data.userId,
-          email: res.data.email,
-          name: res.data.name.first,
-          fullName: res.data.name.fullName,
-          avatar: res.data.avatar,
-          mbti: res.data.mbti,
+          userId: data.userId,
+          email: data.email,
+          name: data.name.first,
+          fullName: data.name.fullName,
+          avatar: data.avatar,
+          mbti: data.mbti,
         });
       })
       .catch((err) => {
@@ -46,6 +49,8 @@ const App = () => {
           <Route path="/team" element={<TeamSearch />} />
           <Route path="/member" element={<MemberSearch />} />
           <Route path="/login/*" element={<Login />} />
+          <Route path="/registerTeam" element={<RegisterTeam />} />
+          <Route path="/contest" element={<Contest />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,18 +1,18 @@
-import { useState } from "react";
-import TeamCardGrid from "../../components/CardGrid/teamCardGrid";
+import { useNavigate } from "react-router-dom";
 import Introduce from "../../components/Introduce/introduce";
 import Navigation from "../../components/Navigation/navigation";
-import PaginationComponent from "../../components/PagenationComponent/pagenationComponent";
-import SideNavigation from "../../components/SideNavigation/sideNavigation";
-import memberTestData2 from "../../api/testDummyData/memberTestDats2";
-import memberTestData3 from "../../api/testDummyData/memberTestData3";
-import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
 import { WriteButton } from "../../components/SideNavigation/styles";
-import { useNavigate } from "react-router-dom";
-import { jobCategories } from "../../api/testDummyData/jobPosition";
-const MemberSearch = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+import SideNavigation from "../../components/SideNavigation/sideNavigation";
+import PaginationComponent from "../../components/PagenationComponent/pagenationComponent";
+import ContestCard from "../../components/ContestCard/contestCard";
+import ContestCardGrid from "../../components/CardGrid/contestCardGrid";
+import contestTestData2 from "../../api/testDummyData/contestTestData2";
+import { useState } from "react";
+import { contestCategory } from "../../api/testDummyData/jobPosition copy";
+
+const Contest = () => {
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -38,14 +38,11 @@ const MemberSearch = () => {
             >
               <label>+ 모집 공고 등록하기</label>
             </WriteButton>
-            <SideNavigation categoryObject={jobCategories} />
+            <SideNavigation categoryObject={contestCategory} />
           </div>
           <div>
             <div style={{ marginLeft: "120px" }}>
-              <MemberCardGrid cardDatas={memberTestData2} />
-            </div>
-            <div style={{ marginLeft: "120px", marginTop: "100px" }}>
-              <MemberCardGrid cardDatas={memberTestData3} />
+              <ContestCardGrid cardDatas={contestTestData2} />
             </div>
             <div
               style={{
@@ -68,4 +65,4 @@ const MemberSearch = () => {
   );
 };
 
-export default MemberSearch;
+export default Contest;

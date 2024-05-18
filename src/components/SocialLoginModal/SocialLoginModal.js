@@ -5,11 +5,14 @@ import {
   Container,
   Explanation,
   Title,
-  NaverButton,
+  LoginButton,
   GoogleButton,
-  KakaoButton,
   ExitButton,
 } from "./styles";
+
+import kakao from "../../assets/login/kakaologin.png";
+import google from "../../assets/login/googleLogin.png";
+import naver from "../../assets/login/naverLogin.png";
 
 const SocialLoginModal = ({ setClickLoginButton }) => {
   const baseURL =
@@ -33,13 +36,6 @@ const SocialLoginModal = ({ setClickLoginButton }) => {
     <div>
       <ContainerOut>
         <Container>
-          <Title>이음</Title>
-          <Explanation>간편하게 시작하는 회원가입</Explanation>
-          <KakaoButton onClick={loginWithKakao}>
-            카카오톡으로 진행하기
-          </KakaoButton>
-          <GoogleButton onClick={loginWithGoogle}>구글로 진행하기</GoogleButton>
-          <NaverButton onClick={loginWithNaver}>네이버로 진행하기</NaverButton>
           <ExitButton
             onClick={() => {
               setClickLoginButton(false);
@@ -47,6 +43,26 @@ const SocialLoginModal = ({ setClickLoginButton }) => {
           >
             <Vector />
           </ExitButton>
+
+          <Title>이음</Title>
+          <Explanation>간편하게 시작하는 회원가입</Explanation>
+
+          <LoginButton onClick={loginWithKakao}>
+            <img src={kakao} alt="이미지" />
+          </LoginButton>
+          <GoogleButton onClick={loginWithGoogle}>
+            <img
+              src={google}
+              alt="이미지"
+              width="70px"
+              style={{ marginRight: "180px" }}
+            />
+            구글 로그인
+          </GoogleButton>
+
+          <LoginButton onClick={loginWithNaver}>
+            <img src={naver} alt="이미지" />
+          </LoginButton>
         </Container>
       </ContainerOut>
     </div>

@@ -32,6 +32,7 @@ export const ResetButton = styled.button`
   cursor: pointer;
   color: #007bff;
   font-size: 1rem;
+  font-weight: 700;
 `;
 
 export const Section = styled.section`
@@ -70,4 +71,19 @@ export const Item = styled.li`
   margin-bottom: 8px;
   margin-left: 20px;
   cursor: pointer;
+`;
+
+export const WriteButton = styled.div`
+  background-color: #377bff;
+  padding: 14px 66px;
+  border-radius: 6px;
+  margin-bottom: 28px;
+  cursor: pointer;
+
+  > label {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+  }
 `;
