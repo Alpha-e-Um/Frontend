@@ -87,6 +87,7 @@ export const WriteButton = styled.div`
     color: white;
   }
 `;
+
 export const SearchInputContainer = styled.div`
   display: flex;
   align-items: center;
@@ -98,8 +99,6 @@ export const SearchInput = styled.input`
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #f3f3f3;
-  font-size: 14px;
 `;
 
 export const SearchButton = styled.button`

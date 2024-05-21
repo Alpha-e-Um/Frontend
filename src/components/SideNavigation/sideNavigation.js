@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   Checkbox,
   Item,
@@ -10,13 +10,12 @@ import {
   SectionTitle,
   SectionTitleRow,
   Title,
-} from "./styles";
-import {
   SearchInputContainer,
   SearchInput,
   SearchButton,
   SearchIcon,
 } from "./styles";
+import DatePickerPopup from "./datePickerPopup";
 
 const SideNavigation = ({ categoryObject }) => {
   const initialMainCategoryStates = categoryObject.reduce((acc, category) => {
@@ -46,6 +45,10 @@ const SideNavigation = ({ categoryObject }) => {
   const [subCategoryVisibility, setSubCategoryVisibility] = useState(
     initialSubCategoryVisibility,
   );
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [isDatePickerVisible, setIsDatePickerVisible] = useState(false);
+  const dateButtonRef = useRef(null);
 
   const handleMainCategoryCheckbox = (kind) => {
     const futureStateOfMain = !mainCategoryStates[kind];
@@ -73,6 +76,27 @@ const SideNavigation = ({ categoryObject }) => {
     setMainCategoryStates(initialMainCategoryStates);
     setSubCategoryStates(initialSubCategoryStates);
     setSubCategoryVisibility(initialSubCategoryVisibility);
+    setStartDate(null);
+    setEndDate(null);
+    setIsDatePickerVisible(false);
+  };
+
+  const handleDateChange = (dates) => {
+    const [start, end] = dates;
+    setStartDate(start);
+    setEndDate(end);
+    setIsDatePickerVisible(false);
+  };
+
+  const getPosition = () => {
+    if (dateButtonRef.current) {
+      const rect = dateButtonRef.current.getBoundingClientRect();
+      return {
+        top: rect.bottom + window.scrollY,
+        left: rect.left + window.scrollX,
+      };
+    }
+    return {};
   };
 
   return (
@@ -102,11 +126,33 @@ const SideNavigation = ({ categoryObject }) => {
         모집 기간
       </Title>
       <SearchInputContainer>
-        <SearchInput type="text" placeholder="기간 검색" />
-        <SearchButton>
+        <SearchInput
+          type="text"
+          placeholder="기간 검색"
+          value={
+            startDate && endDate
+              ? `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`
+              : ""
+          }
+          readOnly
+        />
+        <SearchButton
+          ref={dateButtonRef}
+          onClick={() => setIsDatePickerVisible(!isDatePickerVisible)}
+        >
           <SearchIcon src="icons/calendar.svg" alt="Calendar" />
         </SearchButton>
       </SearchInputContainer>
+
+      {isDatePickerVisible && (
+        <DatePickerPopup
+          startDate={startDate}
+          endDate={endDate}
+          onChange={handleDateChange}
+          onClose={() => setIsDatePickerVisible(false)}
+          position={getPosition()}
+        />
+      )}
 
       {/* 직종 분류 섹션 */}
       <Title style={{ textAlign: "left", marginTop: "20px" }}>직종 분류</Title>
