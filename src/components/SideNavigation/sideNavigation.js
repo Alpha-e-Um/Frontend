@@ -11,6 +11,12 @@ import {
   SectionTitleRow,
   Title,
 } from "./styles";
+import {
+  SearchInputContainer,
+  SearchInput,
+  SearchButton,
+  SearchIcon,
+} from "./styles";
 
 const SideNavigation = ({ categoryObject }) => {
   const initialMainCategoryStates = categoryObject.reduce((acc, category) => {
@@ -76,6 +82,15 @@ const SideNavigation = ({ categoryObject }) => {
         <ResetButton onClick={filterReset}>초기화</ResetButton>
       </NavHeader>
 
+      {/* 제목 검색 섹션 */}
+      <Title style={{ textAlign: "left" }}>제목 검색</Title>
+      <SearchInputContainer>
+        <SearchInput type="text" placeholder="제목 검색" />
+        <SearchButton>
+          <SearchIcon src="icons/search.svg" alt="Search" />
+        </SearchButton>
+      </SearchInputContainer>
+
       {/* 모집기간 섹션 */}
       <Title
         style={{
@@ -86,9 +101,15 @@ const SideNavigation = ({ categoryObject }) => {
       >
         모집 기간
       </Title>
+      <SearchInputContainer>
+        <SearchInput type="text" placeholder="기간 검색" />
+        <SearchButton>
+          <SearchIcon src="icons/calendar.svg" alt="Calendar" />
+        </SearchButton>
+      </SearchInputContainer>
 
       {/* 직종 분류 섹션 */}
-      <Title style={{ textAlign: "left" }}>직종 분류</Title>
+      <Title style={{ textAlign: "left", marginTop: "20px" }}>직종 분류</Title>
       {categoryObject.map((category) => (
         <Section key={category.mainCategory}>
           <SectionTitleRow>

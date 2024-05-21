@@ -87,3 +87,29 @@ export const WriteButton = styled.div`
     color: white;
   }
 `;
+export const SearchInputContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+`;
+
+export const SearchInput = styled.input`
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f3f3f3;
+  font-size: 14px;
+`;
+
+export const SearchButton = styled.button`
+  background: none;
+  border: none;
+  margin-left: 8px;
+  cursor: pointer;
+`;
+
+export const SearchIcon = styled.img`
+  width: 16px;
+  height: 16px;
+`;
