@@ -44,7 +44,9 @@ const SocialLoginModal = ({ setClickLoginButton }) => {
             <Vector />
           </ExitButton>
 
-          <Title>이음</Title>
+          <Title>
+            <img src="/logo.svg" width={200} />
+          </Title>
           <Explanation>간편하게 시작하는 회원가입</Explanation>
 
           <LoginButton onClick={loginWithKakao}>

@@ -31,7 +31,7 @@ const Navigation = (props) => {
               navigate("/");
             }}
           >
-            이음
+            <img src="/logo.svg" width={100} />
           </Title>
           <MenuBox>
             <MenuItem
