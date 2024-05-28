@@ -13,4 +13,7 @@ export const teamAPI = {
   inviteTeamMember(data) {
     return axiosWithAuth.post("/team/invite", data);
   },
+  getMyTeams() {
+    return axiosWithAuth.get("/user/me/teams");
+  },
 };
