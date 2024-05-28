@@ -66,7 +66,7 @@ const MyResume = ({ setIsNewResume, innerRef }) => {
       </ResumeButton>
       <CardContainter>
         {MyResumeTestData.map((item) => (
-          <MyResumeCard data={item} />
+          <MyResumeCard key={item.id} data={item} />
         ))}
       </CardContainter>
     </Container>

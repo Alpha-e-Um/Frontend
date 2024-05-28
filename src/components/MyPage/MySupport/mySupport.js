@@ -85,7 +85,7 @@ const MySupport = ({ innerRef }) => {
 
       <CardContainter>
         {supportTestData.map((item) => (
-          <MySupportCard data={item} />
+          <MySupportCard key={item.id} data={item} />
         ))}
       </CardContainter>
     </Container>

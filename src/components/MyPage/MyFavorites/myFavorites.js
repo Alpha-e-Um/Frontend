@@ -110,8 +110,10 @@ const MyFavorites = ({ innerRef }) => {
 
       <CardContainter>
         {isToggle
-          ? teamTestData.map((item) => <TeamCard data={item} />)
-          : memberTestData.map((item) => <MemberCard data={item} />)}
+          ? teamTestData.map((item) => <TeamCard key={item.id} data={item} />)
+          : memberTestData.map((item) => (
+              <MemberCard key={item.id} data={item} />
+            ))}
       </CardContainter>
     </Container>
   );
