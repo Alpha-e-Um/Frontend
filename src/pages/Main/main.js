@@ -7,6 +7,7 @@ import teamTestData from "../../api/testDummyData/teamTestData";
 import memberTestData from "../../api/testDummyData/memberTestData";
 import contestTestData from "../../api/testDummyData/contestTestData";
 import ContestCardGrid from "../../components/CardGrid/contestCardGrid";
+import Footer from "../../components/Footer/footer";
 
 const Main = (props) => {
   return (
@@ -31,6 +32,8 @@ const Main = (props) => {
           <ContestCardGrid cardDatas={contestTestData} />
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };

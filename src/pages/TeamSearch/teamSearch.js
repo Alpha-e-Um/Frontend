@@ -9,6 +9,7 @@ import SideNavigation from "../../components/SideNavigation/sideNavigation";
 import { jobCategories } from "../../api/testDummyData/jobPosition";
 import { WriteButton } from "../../components/SideNavigation/styles";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer/footer";
 
 const TeamSearch = () => {
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const TeamSearch = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

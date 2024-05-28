@@ -13,6 +13,7 @@ import Navigation from "../../components/Navigation/navigation";
 import { CardContainter } from "../../components/MyPage/MyFavorites/styles";
 import MyResumeTestData from "../../api/testDummyData/myResumeTestData";
 import MyResumeCard from "../../components/MyPageCard/MyResumeCard/myResumeCard";
+import Footer from "../../components/Footer/footer";
 
 const RegisterTeam = ({ setIsCreateTeam }) => {
   const [teamName, setTeamName] = useState("");
@@ -214,6 +215,7 @@ const RegisterTeam = ({ setIsCreateTeam }) => {
           </SaveButton>
         </Container>
       </div>
+      <Footer />
     </div>
   );
 };

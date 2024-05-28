@@ -10,6 +10,7 @@ import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
 import { WriteButton } from "../../components/SideNavigation/styles";
 import { useNavigate } from "react-router-dom";
 import { jobCategories } from "../../api/testDummyData/jobPosition";
+import Footer from "../../components/Footer/footer";
 const MemberSearch = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
@@ -64,6 +65,7 @@ const MemberSearch = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

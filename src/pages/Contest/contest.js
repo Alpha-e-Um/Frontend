@@ -11,6 +11,7 @@ import { useState } from "react";
 import { contestCategory } from "../../api/testDummyData/jobPosition copy";
 import CompetitionsList from "../../components/ContestListView/contestListView";
 import ContestCardGrid3 from "../../components/CardGrid/contestCardGrid3";
+import Footer from "../../components/Footer/footer";
 
 const Contest = () => {
   const navigate = useNavigate();
@@ -71,6 +72,7 @@ const Contest = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

@@ -17,6 +17,7 @@ import Navigation from "../../components/Navigation/navigation";
 import { ReactComponent as Line } from "../../assets/Line.svg";
 import { teamAPI } from "../../api/teamAPI";
 import { useNavigate } from "react-router-dom";
+import Footer from "../../components/Footer/footer";
 
 const occupationOptions = [
   { value: "design_ui_ux", label: "UI/UX 디자인" },
@@ -210,6 +211,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
           </RegistrationButton>
         </Container>
       </div>
+      <Footer />
     </div>
   );
 };
