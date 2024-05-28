@@ -13,11 +13,11 @@ const PageItem = styled.div`
   padding: 8px 12px;
   margin: 4px;
   cursor: pointer;
-  background-color: ${(props) => (props.isActive ? "#2F80ED" : "white")};
-  color: ${(props) => (props.isActive ? "white" : "black")};
+  background-color: ${(props) => (props.$isActive ? "#2F80ED" : "white")};
+  color: ${(props) => (props.$isActive ? "white" : "black")};
 
   &:hover {
-    background-color: ${(props) => (props.isActive ? "#2F80ED" : "#f0f0f0")};
+    background-color: ${(props) => (props.$isActive ? "#2F80ED" : "#f0f0f0")};
   }
 `;
 
@@ -29,7 +29,7 @@ const PaginationComponent = ({ pages, currentPage, onPageChange }) => {
     pageNumbers.push(
       <PageItem
         key={number}
-        isActive={number === currentPage}
+        $isActive={number === currentPage}
         onClick={() => onPageChange(number)}
       >
         {number}
