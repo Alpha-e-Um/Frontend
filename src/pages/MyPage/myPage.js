@@ -9,6 +9,7 @@ import MySupport from "../../components/MyPage/MySupport/mySupport";
 import MyTeam from "../../components/MyPage/MyTeam/myTeam";
 import MyTeamPage from "../../components/MyPage/MyTeamPage/myTeamPage";
 import MyResume from "../../components/MyPage/MyResume/myResume";
+import MyTeamDetail from "../../components/MyPage/MyTeamDetail/myTeamDetail";
 
 import { Title } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
@@ -101,6 +102,7 @@ const MyPage = (props) => {
               </div>
             }
           />
+          <Route path="team/:id" element={<MyTeamDetail />} />
         </Routes>
       </div>
 
