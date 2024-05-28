@@ -20,18 +20,18 @@ axiosWithAuth.interceptors.response.use(
     return res;
   },
   async function (err) {
-    // const { config: originRequest } = err;
+    const { config: originRequest } = err;
     if (err.response.status === 401) {
       // access token이 만료되어서 refresh token을 사용해서 재발급 요청할 때
-      const reIssueResponse = await axiosWithAuth.post("/api/auth/reissue");
+      const reIssueResponse = await axiosWithAuth.post("auth/reissue");
       if (reIssueResponse.status === 200) {
-        const { accessToken } = reIssueResponse.data;
+        const { accessToken } = reIssueResponse.data.data;
         localStorage.setItem("access_token", accessToken);
         axiosWithAuth.defaults.headers.Authorization = `Bearer ${accessToken}`;
-        // await axios(originRequest).then((res) => {});
-        window.location.replace("/");
+        await axios(originRequest).then((res) => {});
+        // window.location.replace("/");
       } else {
-        window.location.replace("/sign-in");
+        // window.location.replace("/sign-in");
       }
     } else if (err.response.status === 403) {
       // refresh token이 만료 혹은 없을 때

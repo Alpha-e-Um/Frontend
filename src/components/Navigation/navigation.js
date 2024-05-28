@@ -13,11 +13,19 @@ import { useNavigate } from "react-router-dom";
 import SocialLoginModal from "../SocialLoginModal/SocialLoginModal";
 import { useRecoilState } from "recoil";
 import { userInfoState } from "../../states/authState";
+import { authAPI } from "../../api/authAPI";
 
 const Navigation = (props) => {
   const navigate = useNavigate();
   const [clickLoginButton, setClickLoginButton] = useState(false);
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
+
+  const logoutProcess = async () => {
+    setUserInfo({});
+    await authAPI.logout();
+    localStorage.removeItem("access_token");
+    window.location.href = "/";
+  };
 
   return (
     <Container>
@@ -81,10 +89,7 @@ const Navigation = (props) => {
             <LoginButton
               onClick={() => {
                 if (userInfo.isLogin) {
-                  setUserInfo({});
-                  localStorage.removeItem("access_token");
-                  window.location.href = "/";
-                  // TODO 로그아웃 API 요청 보내기
+                  logoutProcess();
                 } else {
                   setClickLoginButton(true);
                 }
