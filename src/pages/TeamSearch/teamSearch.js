@@ -7,8 +7,11 @@ import Navigation from "../../components/Navigation/navigation";
 import PaginationComponent from "../../components/PagenationComponent/pagenationComponent";
 import SideNavigation from "../../components/SideNavigation/sideNavigation";
 import { jobCategories } from "../../api/testDummyData/jobPosition";
+import { WriteButton } from "../../components/SideNavigation/styles";
+import { useNavigate } from "react-router-dom";
 
 const TeamSearch = () => {
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
 
   const handlePageChange = (pageNumber) => {
@@ -28,6 +31,13 @@ const TeamSearch = () => {
         <Introduce />
         <div style={{ display: "flex" }}>
           <div>
+            <WriteButton
+              onClick={() => {
+                navigate("/registerMember");
+              }}
+            >
+              <label>+ 모집 공고 등록하기</label>
+            </WriteButton>
             <SideNavigation categoryObject={jobCategories} />
           </div>
           <div>

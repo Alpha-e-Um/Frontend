@@ -7,4 +7,7 @@ export const teamAPI = {
   getTeamById(id) {
     return axiosWithAuth.get(`/team/${id}`);
   },
+  postNewTeamAnnouncement(data, teamId) {
+    return axiosWithAuth.post(`/team/${teamId}/announcement`, data);
+  },
 };
