@@ -16,8 +16,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
 
-  height: ${({ isVisible }) =>
-    isVisible ? "900px" : "150px"}; // 조건에 따라 높이 변경
+  height: ${({ $isVisible }) =>
+    $isVisible ? "900px" : "150px"}; // 조건에 따라 높이 변경
   transition: height 0.3s ease-out;
 `;
 
@@ -29,7 +29,7 @@ export const Title = styled.label`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const ResumeButton = styled.button`
@@ -55,7 +55,7 @@ export const ResumeButton = styled.button`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const CardContainter = styled.div`

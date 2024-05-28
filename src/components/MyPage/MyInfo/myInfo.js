@@ -100,9 +100,9 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
   }, []);
 
   return (
-    <Container isVisible={visible.step0}>
-      <Title isVisible={visible.step1}>내정보</Title>
-      <LineAnimation style={{ top: 16 }} isVisible={visible.step2} />
+    <Container $isVisible={visible.step0}>
+      <Title $isVisible={visible.step1}>내정보</Title>
+      <LineAnimation style={{ top: 16 }} $isVisible={visible.step2} />
 
       <div style={{ display: "flex", marginLeft: "83px", marginTop: "57px" }}>
         <div
@@ -112,10 +112,10 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             alignItems: "center",
           }}
         >
-          <AnimatedProfile isVisible={visible.step2} />
+          <AnimatedProfile $isVisible={visible.step2} />
           <ProfileChangeButton
             onClick={profileChange}
-            isVisible={visible.step4}
+            $isVisible={visible.step4}
           >
             사진 변경
           </ProfileChangeButton>
@@ -130,19 +130,19 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
           }}
         >
           <div style={{ display: "flex", justifyContent: "flex-start" }}>
-            <Tag style={{ paddingRight: 70 }} isVisible={visible.step2}>
+            <Tag style={{ paddingRight: 70 }} $isVisible={visible.step2}>
               이름
             </Tag>
             <Input
               style={{ width: 60 }}
               value={firstName}
               onChange={(e) => handleChange(e.target.value, setFirstName)}
-              isVisible={visible.step2}
+              $isVisible={visible.step2}
             />
 
             <Tag
               style={{ paddingLeft: 165, paddingRight: 69 }}
-              isVisible={visible.step2}
+              $isVisible={visible.step2}
             >
               성
             </Tag>
@@ -150,23 +150,23 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
               style={{ width: 46 }}
               value={lastName}
               onChange={(e) => handleChange(e.target.value, setLastName)}
-              isVisible={visible.step2}
+              $isVisible={visible.step2}
             />
           </div>
 
           <div style={{ display: "flex", justifyContent: "flex-start" }}>
-            <Tag style={{ paddingRight: 56 }} isVisible={visible.step3}>
+            <Tag style={{ paddingRight: 56 }} $isVisible={visible.step3}>
               닉네임
             </Tag>
             <Input
               style={{ width: 162 }}
               value={nickname}
               onChange={(e) => handleChange(e.target.value, setNickName)}
-              isVisible={visible.step3}
+              $isVisible={visible.step3}
             />
             <Tag
               style={{ paddingLeft: 63, paddingRight: 40 }}
-              isVisible={visible.step3}
+              $isVisible={visible.step3}
             >
               MBTI
             </Tag>
@@ -174,24 +174,24 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
               style={{ width: 88 }}
               value={mbti}
               onChange={(e) => handleChange(e.target.value, setMbti)}
-              isVisible={visible.step3}
+              $isVisible={visible.step3}
             />
           </div>
 
           <div style={{ display: "flex", justifyContent: "flex-start" }}>
-            <Tag style={{ paddingRight: 40 }} isVisible={visible.step4}>
+            <Tag style={{ paddingRight: 40 }} $isVisible={visible.step4}>
               전화번호
             </Tag>
             <Input
               style={{ width: 162 }}
               value={telephone}
               onChange={(e) => handleChange(e.target.value, setTelephone)}
-              isVisible={visible.step4}
+              $isVisible={visible.step4}
             />
           </div>
 
           <div style={{ display: "flex", justifyContent: "flex-start" }}>
-            <Tag style={{ paddingRight: 40 }} isVisible={visible.step5}>
+            <Tag style={{ paddingRight: 40 }} $isVisible={visible.step5}>
               {" "}
               생년월일
             </Tag>
@@ -199,39 +199,39 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
               style={{ width: 162 }}
               value={birthday}
               onChange={(e) => handleChange(e.target.value, setBirthDay)}
-              isVisible={visible.step5}
+              $isVisible={visible.step5}
             />
           </div>
 
           <div style={{ display: "flex", justifyContent: "flex-start" }}>
-            <Tag style={{ paddingRight: 34 }} isVisible={visible.step6}>
+            <Tag style={{ paddingRight: 34 }} $isVisible={visible.step6}>
               소속/학교
             </Tag>
             <Input
               style={{ width: 162, marginRight: 20 }}
               value={residence}
               onChange={(e) => handleChange(e.target.value, setResidence)}
-              isVisible={visible.step6}
+              $isVisible={visible.step6}
             />
 
             <BlueButton>학교인증</BlueButton>
           </div>
 
           <div style={{ display: "flex", justifyContent: "flex-start" }}>
-            <Tag style={{ paddingRight: 36 }} isVisible={visible.step7}>
+            <Tag style={{ paddingRight: 36 }} $isVisible={visible.step7}>
               거주 지역
             </Tag>
             <Input
               style={{ width: 162 }}
               value={school}
               onChange={(e) => handleChange(e.target.value, setSchool)}
-              isVisible={visible.step7}
+              $isVisible={visible.step7}
             />
           </div>
         </div>
       </div>
 
-      <LineAnimation isVisible={visible.step8} />
+      <LineAnimation $isVisible={visible.step8} />
 
       <div
         style={{
@@ -250,7 +250,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             border: "none",
             backgroundColor: "#ffffff",
           }}
-          isVisible={visible.step9}
+          $isVisible={visible.step9}
         >
           {isAlarm ? (
             <CheckCircleOn style={{ marginRight: 10 }} />
@@ -262,7 +262,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
 
         <Tag
           style={{ marginTop: 30, marginBottom: 22 }}
-          isVisible={visible.step9}
+          $isVisible={visible.step9}
         >
           합격/불합격 연락 받을 수단
         </Tag>
@@ -270,7 +270,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
         <div style={{ display: "flex" }}>
           <AlarmButton
             onClick={() => AlarmApplication()}
-            isVisible={visible.step10}
+            $isVisible={visible.step10}
           >
             APPLICATION
             {isApplication ? (
@@ -279,7 +279,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
               <CheckCircleOff style={{ marginLeft: 10 }} />
             )}
           </AlarmButton>
-          <AlarmButton onClick={() => AlarmMail()} isVisible={visible.step10}>
+          <AlarmButton onClick={() => AlarmMail()} $isVisible={visible.step10}>
             E-MAIL
             {isMail ? (
               <CheckCircleOn style={{ marginLeft: 10 }} />
@@ -289,7 +289,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
           </AlarmButton>
           <AlarmButton
             onClick={() => AlarmMessage()}
-            isVisible={visible.step10}
+            $isVisible={visible.step10}
           >
             SMS
             {isMessage ? (
@@ -301,7 +301,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
         </div>
       </div>
 
-      <LineAnimation isVisible={visible.step10} />
+      <LineAnimation $isVisible={visible.step10} />
 
       <div
         style={{
@@ -312,10 +312,10 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
           justifyContent: "flex-end",
         }}
       >
-        <BlueButton onClick={Save} isVisible={visible.step11}>
+        <BlueButton onClick={Save} $isVisible={visible.step11}>
           저장
         </BlueButton>
-        <CannelButton isVisible={visible.step11}>취소</CannelButton>
+        <CannelButton $isVisible={visible.step11}>취소</CannelButton>
       </div>
     </Container>
   );

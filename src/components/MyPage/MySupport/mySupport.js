@@ -63,8 +63,8 @@ const MySupport = ({ innerRef }) => {
   }, []);
 
   return (
-    <Container isVisible={visible.step0}>
-      <Title isVisible={visible.step1}>지원현황</Title>
+    <Container $isVisible={visible.step0}>
+      <Title $isVisible={visible.step1}>지원현황</Title>
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />
@@ -77,7 +77,7 @@ const MySupport = ({ innerRef }) => {
           justifyContent: "flex-end",
         }}
       >
-        <Completed onClick={CompletedSetting} isVisible={visible.step2}>
+        <Completed onClick={CompletedSetting} $isVisible={visible.step2}>
           {isCompleted ? <CheckCircleOn /> : <CheckCircleOff />}
           <CompletedLabel>모집 완료 제외하기</CompletedLabel>
         </Completed>

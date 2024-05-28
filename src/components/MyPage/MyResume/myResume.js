@@ -52,14 +52,14 @@ const MyResume = ({ setIsNewResume, innerRef }) => {
   }, []);
 
   return (
-    <Container isVisible={visible.step0}>
-      <Title isVisible={visible.step1}>이력서 관리</Title>
+    <Container $isVisible={visible.step0}>
+      <Title $isVisible={visible.step1}>이력서 관리</Title>
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />
       <ResumeButton
         onClick={() => setIsNewResume(true)}
-        isVisible={visible.step2}
+        $isVisible={visible.step2}
       >
         <Cross style={{ marginRight: "10px" }} />
         이력서 생성

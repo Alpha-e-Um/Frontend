@@ -70,8 +70,8 @@ const MyFavorites = ({ innerRef }) => {
   }, []);
 
   return (
-    <Container isVisible={visible.step0}>
-      <Title isVisible={visible.step1}>즐겨찾기 목록</Title>
+    <Container $isVisible={visible.step0}>
+      <Title $isVisible={visible.step1}>즐겨찾기 목록</Title>
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />
@@ -86,22 +86,22 @@ const MyFavorites = ({ innerRef }) => {
       >
         {isToggle ? (
           <>
-            <SelectButton onClick={TeamButton} isVisible={visible.step2}>
+            <SelectButton onClick={TeamButton} $isVisible={visible.step2}>
               팀
             </SelectButton>
             <NotSelectButton
               onClick={TeamMemberButton}
-              isVisible={visible.step2}
+              $isVisible={visible.step2}
             >
               팀원
             </NotSelectButton>
           </>
         ) : (
           <>
-            <NotSelectButton onClick={TeamButton} isVisible={visible.step2}>
+            <NotSelectButton onClick={TeamButton} $isVisible={visible.step2}>
               팀
             </NotSelectButton>
-            <SelectButton onClick={TeamMemberButton} isVisible={visible.step2}>
+            <SelectButton onClick={TeamMemberButton} $isVisible={visible.step2}>
               팀원
             </SelectButton>
           </>

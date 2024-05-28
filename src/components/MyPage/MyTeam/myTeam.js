@@ -67,8 +67,8 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
   }, []);
 
   return (
-    <Container isVisible={visible.step0}>
-      <Title isVisible={visible.step1}>팀관리</Title>
+    <Container $isVisible={visible.step0}>
+      <Title $isVisible={visible.step1}>팀관리</Title>
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />
@@ -81,7 +81,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
           justifyContent: "flex-end",
         }}
       >
-        <MyTeamButton onClick={MyTeamBtn} isVisible={visible.step2}>
+        <MyTeamButton onClick={MyTeamBtn} $isVisible={visible.step2}>
           {isMyTeam ? <CheckCircleOn /> : <CheckCircleOff />}
           <MyTeamLabel>나의 팀만 보기</MyTeamLabel>
         </MyTeamButton>
@@ -89,7 +89,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
 
       <CreateTeamButton
         onClick={() => setIsCreateTeam(true)}
-        isVisible={visible.step2}
+        $isVisible={visible.step2}
       >
         <Cross style={{ marginRight: "10px" }} />팀 생성
       </CreateTeamButton>

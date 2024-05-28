@@ -19,8 +19,8 @@ export const Container = styled.div`
   align-items: flex-start;
   user-select: none;
 
-  height: ${({ isVisible }) =>
-    isVisible ? "1000px" : "150px"}; // 조건에 따라 높이 변경
+  height: ${({ $isVisible }) =>
+    $isVisible ? "1000px" : "150px"}; // 조건에 따라 높이 변경
   transition: height 0.3s ease-out;
 `;
 
@@ -32,14 +32,14 @@ export const Title = styled.label`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const AnimatedProfile = styled(Profile)`
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const ProfileChangeButton = styled.button`
@@ -55,7 +55,7 @@ export const ProfileChangeButton = styled.button`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const LineAnimation = styled(Line)`
@@ -65,7 +65,7 @@ export const LineAnimation = styled(Line)`
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const Tag = styled.label`
@@ -75,7 +75,7 @@ export const Tag = styled.label`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const Input = styled.input`
@@ -90,13 +90,13 @@ export const Input = styled.input`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const AlarmSettingButton = styled.button`
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const AlarmButton = styled.button`
@@ -117,7 +117,7 @@ export const AlarmButton = styled.button`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const BlueButton = styled.button`
@@ -141,7 +141,7 @@ export const BlueButton = styled.button`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
 export const CannelButton = styled.button`
@@ -164,5 +164,5 @@ export const CannelButton = styled.button`
 
   opacity: 0;
   transform: translateY(-10px);
-  ${({ isVisible }) => isVisible && fadeIn}
+  ${({ $isVisible }) => $isVisible && fadeIn}
 `;
