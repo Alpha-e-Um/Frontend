@@ -36,6 +36,7 @@ export const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-left: 80px;
 `;
 
 export const DetailItem = styled.div`
