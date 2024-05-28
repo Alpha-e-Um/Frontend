@@ -36,7 +36,6 @@ export const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  margin-left: 80px;
 `;
 
 export const DetailItem = styled.div`
@@ -85,41 +84,4 @@ export const FilterText = styled.label`
   color: ${(props) => (props.active ? "#377bff" : "#6D758F")};
   cursor: pointer;
   padding: 0 10px;
-`;
-
-export const DescriptionWrapper = styled.div`
-  max-height: ${(props) => (props.isExpanded ? "none" : "300px")};
-  overflow: hidden;
-  position: relative;
-  transition: max-height 0.3s ease;
-
-  &::after {
-    content: "";
-    display: ${(props) => (props.isExpanded ? "none" : "block")};
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    background: linear-gradient(to bottom, transparent, white);
-  }
-`;
-
-export const MoreButton = styled.button`
-  display: ${(props) => (props.isExpanded ? "none" : "visible")};
-  background: #fafafa;
-  border: none;
-  cursor: pointer;
-  padding: 16px;
-  text-align: center;
-  margin-top: 10px;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
-export const MoreButtonText = styled.label`
-  font-size: 20px;
-  color: #292929;
 `;
