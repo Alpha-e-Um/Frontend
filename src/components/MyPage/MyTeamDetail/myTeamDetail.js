@@ -13,6 +13,7 @@ import {
   SelectedEmailList,
   CloseButton,
 } from "./styles";
+import Navigation from "../../Navigation/navigation";
 
 const MyTeamDetail = () => {
   const { id } = useParams();
@@ -81,36 +82,39 @@ const MyTeamDetail = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   return (
-    <Container>
-      <Title>{teamDetails.name}</Title>
-      <Details>
-        <p>Email: {teamDetails.email}</p>
-        <p>FormationDate: {teamDetails.formationDate}</p>
-        <p>id: {teamDetails.id}</p>
-        <p>Introduction: {teamDetails.introduction}</p>
-        <p>phoneNumber: {teamDetails.phoneNumber}</p>
-        <p>logo: {teamDetails.logo}</p>
-      </Details>
-      <InviteContainer>
-        <InviteInput
-          type="text"
-          placeholder="팀원 이메일 입력"
-          value={inputValue}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-        />
-        <SelectedEmailList>
-          {selectedEmails.map((email) => (
-            <SelectedEmail key={email.value}>
-              {email.label}
-              <CloseButton onClick={() => removeEmail(email)}>x</CloseButton>
-            </SelectedEmail>
-          ))}
-        </SelectedEmailList>
-        <InviteButton onClick={handleInvite}>초대</InviteButton>
-      </InviteContainer>
-      {inviteError && <div>Error: {inviteError.message}</div>}
-    </Container>
+    <div>
+      <Navigation />
+      <Container>
+        <Title>{teamDetails.name}</Title>
+        <Details>
+          <p>Email: {teamDetails.email}</p>
+          <p>FormationDate: {teamDetails.formationDate}</p>
+          <p>id: {teamDetails.id}</p>
+          <p>Introduction: {teamDetails.introduction}</p>
+          <p>phoneNumber: {teamDetails.phoneNumber}</p>
+          <p>logo: {teamDetails.logo}</p>
+        </Details>
+        <InviteContainer>
+          <InviteInput
+            type="text"
+            placeholder="팀원 이메일 입력"
+            value={inputValue}
+            onChange={handleInputChange}
+            onKeyDown={handleKeyDown}
+          />
+          <SelectedEmailList>
+            {selectedEmails.map((email) => (
+              <SelectedEmail key={email.value}>
+                {email.label}
+                <CloseButton onClick={() => removeEmail(email)}>x</CloseButton>
+              </SelectedEmail>
+            ))}
+          </SelectedEmailList>
+          <InviteButton onClick={handleInvite}>초대</InviteButton>
+        </InviteContainer>
+        {inviteError && <div>Error: {inviteError.message}</div>}
+      </Container>
+    </div>
   );
 };
 
