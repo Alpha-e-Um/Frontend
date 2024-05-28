@@ -96,7 +96,13 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
     EndAnimation,
   };
 
-  const LoadUserData = () => {};
+  const LoadUserData = (data) => {
+    console.log(data);
+
+    setFirstName(data.name.first);
+    setLastName(data.name.last);
+    console.log(firstName);
+  };
 
   useEffect(() => {
     StartAnimation();
@@ -104,7 +110,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
     userAPI
       .getMyInfo()
       .then((res) => {
-        console.log(res.data);
+        LoadUserData(res.data);
       })
       .catch((error) => {});
   }, []);
