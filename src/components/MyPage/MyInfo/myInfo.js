@@ -15,16 +15,17 @@ import {
 import { ReactComponent as CheckCircleOff } from "../../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCircleOn.svg";
 import { useEffect, useState } from "react";
+import { userAPI } from "../../../api/userAPI";
 
 const MyInfo = ({ IsWithdrawal, innerRef }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [nickname, setNickName] = useState("");
   const [mbti, setMbti] = useState("");
-  const [telephone, setTelephone] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [birthday, setBirthDay] = useState("");
   const [school, setSchool] = useState("");
-  const [residence, setResidence] = useState("");
+  const [region, setRegion] = useState("");
 
   const [isAlarm, setIsAlarm] = useState(false);
   const [isMail, setIsMail] = useState(false);
@@ -51,9 +52,11 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
   };
 
   const profileChange = () => {};
+
   const AlarmSetting = () => {
     setIsAlarm(!isAlarm);
   };
+
   const AlarmMail = () => {
     setIsMail(!isMail);
   };
@@ -63,8 +66,6 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
   const AlarmApplication = () => {
     setIsApplication(!isApplication);
   };
-
-  const Save = async () => {};
 
   const StartAnimation = () => {
     const timers = [];
@@ -95,8 +96,50 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
     EndAnimation,
   };
 
+  const LoadUserData = () => {
+    userAPI
+      .getMyInfo()
+      .then((res) => {
+        const data = res.data.data;
+        console.log(data);
+
+        setFirstName(data.name.first);
+        setLastName(data.name.last);
+        setNickName(data.nickname ?? "");
+        setMbti(data.mbti ?? "");
+        setPhoneNumber(data.phoneNumber ?? "");
+        setBirthDay(data.birthday ?? "");
+        setSchool(data.school ?? "");
+        setRegion(data.region ?? "");
+      })
+      .catch((error) => {});
+  };
+
+  const SaveUserData = async () => {
+    const data = {
+      avatar: "asdf",
+      firstName: firstName,
+      lastName: lastName,
+      nickname: nickname,
+      mbti: mbti,
+      phoneNumber: phoneNumber,
+      birthday: birthday,
+      school: school,
+      region: region,
+    };
+    console.log(data);
+    userAPI
+      .putUser(data)
+      .then((res) => {})
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     StartAnimation();
+
+    LoadUserData();
   }, []);
 
   return (
@@ -184,8 +227,8 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             </Tag>
             <Input
               style={{ width: 162 }}
-              value={telephone}
-              onChange={(e) => handleChange(e.target.value, setTelephone)}
+              value={phoneNumber}
+              onChange={(e) => handleChange(e.target.value, setPhoneNumber)}
               $isVisible={visible.step4}
             />
           </div>
@@ -209,8 +252,8 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             </Tag>
             <Input
               style={{ width: 162, marginRight: 20 }}
-              value={residence}
-              onChange={(e) => handleChange(e.target.value, setResidence)}
+              value={region}
+              onChange={(e) => handleChange(e.target.value, setRegion)}
               $isVisible={visible.step6}
             />
 
@@ -312,7 +355,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
           justifyContent: "flex-end",
         }}
       >
-        <BlueButton onClick={Save} $isVisible={visible.step11}>
+        <BlueButton onClick={() => SaveUserData()} isVisible={visible.step11}>
           저장
         </BlueButton>
         <CannelButton $isVisible={visible.step11}>취소</CannelButton>
