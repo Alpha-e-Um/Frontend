@@ -29,7 +29,7 @@ const TeamSearch = () => {
         }}
       >
         <Introduce />
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex", padding: "0px 60px" }}>
           <div>
             <WriteButton
               onClick={() => {
