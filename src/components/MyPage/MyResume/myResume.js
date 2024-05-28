@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Container,
   CreateButton,
@@ -5,27 +7,28 @@ import {
   ResumeTitle,
   Title,
 } from "./styles";
-
-import { useNavigate } from "react-router-dom";
-
-import { resumeAPI } from "../../../api/resumeAPI";
-
 import { ReactComponent as Edit } from "../../../assets/myPage/EditButton.svg";
 import { ReactComponent as Setting } from "../../../assets/myPage/ResumeSettingButton.svg";
+import { resumeAPI } from "../../../api/resumeAPI";
 
 const MyResume = () => {
-  // resumeAPI
-  //   .getResume()
-  //   .then((res) => {
-  //     console.log(res);
-  //   })
-  //   .catch((error) => {});
-
   const navigate = useNavigate();
 
-  const CreateResumeButton = async () => {
-    navigate("/mypage/newresume");
+  const [resumeData, setResumeData] = useState([]);
+
+  const CreateResume = async () => {
+    navigate("/mypage/createResume");
   };
+
+  useEffect(() => {
+    resumeAPI
+      .getResume()
+      .then((res) => {
+        console.log(res.data.data);
+        setResumeData(res.data.data);
+      })
+      .catch((error) => {});
+  }, []);
 
   return (
     <Container>
@@ -43,37 +46,40 @@ const MyResume = () => {
           background: "#F9F9F9",
         }}
       >
-        <CreateButton onClick={() => CreateResumeButton()}>
-          이력서 생성
-        </CreateButton>
+        <CreateButton onClick={() => CreateResume()}>이력서 생성</CreateButton>
       </div>
-      <div
-        style={{
-          marginLeft: "22px",
-          padding: "18px 0px 18px 0px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          border: "solid",
-          borderWidth: "2px 0px",
-          borderColor: "#EBEBEB",
-        }}
-      >
+
+      {resumeData.map((item, index) => (
         <div
+          key={item.id}
           style={{
-            width: "853px",
+            marginLeft: "22px",
+            padding: "18px 0px 18px 0px",
             display: "flex",
-            justifyContent: "space-between",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            border: "solid",
+            borderWidth: "2px 0px 0px 0px",
+            borderColor: "#EBEBEB",
           }}
         >
-          <ResumeTitle>이력서 제목</ResumeTitle>
-          <div>
-            <Edit />
-            <Setting />
+          <div
+            style={{
+              width: "853px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <ResumeTitle>{item.title}</ResumeTitle>
+            <div>
+              <Edit />
+              <Setting />
+            </div>
           </div>
+          <ResumeDate>{item.timeStamp.updateAt.substr(0, 10)}</ResumeDate>
         </div>
-        <ResumeDate>이력서 날자</ResumeDate>
-      </div>
+      ))}
+
       <ResumeTitle></ResumeTitle>
     </Container>
   );

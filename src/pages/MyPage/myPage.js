@@ -92,7 +92,7 @@ const MyPage = (props) => {
             }
           />
           <Route
-            path="newresume"
+            path="createResume"
             element={
               <div>
                 <MyNewResume />
