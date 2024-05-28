@@ -11,8 +11,34 @@ import {
 } from "./styled";
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 import { useState } from "react";
+import { resumeAPI } from "../../../api/resumeAPI";
 
-const MyNewResume = ({ setIsNewResume }) => {
+const MyNewResume = () => {
+  const Save = async () => {
+    const data = {
+      title: "테스트",
+      description: "test",
+      jobCategory: "test",
+      jobSubcategory: "test",
+      gpa: 0,
+      totalScore: 0,
+      isPublic: true,
+
+      careers: [],
+      certificates: [],
+      projects: [],
+      homepages: [],
+      activities: [],
+    };
+
+    resumeAPI
+      .postResume(data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {});
+  };
+
   return (
     <Container>
       <Title>신규 이력서 작성</Title>
@@ -212,9 +238,7 @@ const MyNewResume = ({ setIsNewResume }) => {
           >
             저장
           </SaveButton>
-          <CannelButton onClick={() => setIsNewResume(false)}>
-            취소
-          </CannelButton>
+          <CannelButton>취소</CannelButton>
         </div>
       </InformationContainter>
 
@@ -323,11 +347,13 @@ const MyNewResume = ({ setIsNewResume }) => {
             marginLeft: "689px",
             marginRight: "10px",
           }}
-          onClick={() => {}}
+          onClick={() => {
+            Save();
+          }}
         >
           저장
         </SaveButton>
-        <CannelButton onClick={() => setIsNewResume(false)}>취소</CannelButton>
+        <CannelButton>취소</CannelButton>
       </div>
     </Container>
   );
