@@ -15,6 +15,7 @@ import {
 import { ReactComponent as CheckCircleOff } from "../../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCircleOn.svg";
 import { useEffect, useState } from "react";
+import { userAPI } from "../../../api/userAPI";
 
 const MyInfo = ({ IsWithdrawal, innerRef }) => {
   const [firstName, setFirstName] = useState("");
@@ -95,8 +96,17 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
     EndAnimation,
   };
 
+  const LoadUserData = () => {};
+
   useEffect(() => {
     StartAnimation();
+
+    userAPI
+      .getMyInfo()
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((error) => {});
   }, []);
 
   return (
