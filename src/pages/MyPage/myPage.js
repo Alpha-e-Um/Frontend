@@ -87,17 +87,15 @@ const MyPage = (props) => {
             path="resume"
             element={
               <div>
-                {isNewResume ? (
-                  <MyNewResume
-                    setIsNewResume={setIsNewResume}
-                    innerRef={pageAnimationRef}
-                  />
-                ) : (
-                  <MyResume
-                    setIsNewResume={setIsNewResume}
-                    innerRef={pageAnimationRef}
-                  />
-                )}
+                <MyResume />
+              </div>
+            }
+          />
+          <Route
+            path="newresume"
+            element={
+              <div>
+                <MyNewResume />
               </div>
             }
           />

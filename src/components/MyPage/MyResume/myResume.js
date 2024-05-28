@@ -6,6 +6,8 @@ import {
   Title,
 } from "./styles";
 
+import { useNavigate } from "react-router-dom";
+
 import { resumeAPI } from "../../../api/resumeAPI";
 
 import { ReactComponent as Edit } from "../../../assets/myPage/EditButton.svg";
@@ -18,6 +20,12 @@ const MyResume = () => {
   //     console.log(res);
   //   })
   //   .catch((error) => {});
+
+  const navigate = useNavigate();
+
+  const CreateResumeButton = async () => {
+    navigate("/mypage/newresume");
+  };
 
   return (
     <Container>
@@ -35,7 +43,9 @@ const MyResume = () => {
           background: "#F9F9F9",
         }}
       >
-        <CreateButton>이력서 생성</CreateButton>
+        <CreateButton onClick={() => CreateResumeButton()}>
+          이력서 생성
+        </CreateButton>
       </div>
       <div
         style={{
