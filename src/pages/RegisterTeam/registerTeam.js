@@ -13,9 +13,6 @@ import Navigation from "../../components/Navigation/navigation";
 import { CardContainter } from "../../components/MyPage/MyFavorites/styles";
 import MyResumeTestData from "../../api/testDummyData/myResumeTestData";
 import MyResumeCard from "../../components/MyPageCard/MyResumeCard/myResumeCard";
-// import { teamAPI } from "../../../api/teamAPI";
-
-// import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 
 const RegisterTeam = ({ setIsCreateTeam }) => {
   const [teamName, setTeamName] = useState("");

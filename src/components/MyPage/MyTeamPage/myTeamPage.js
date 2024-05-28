@@ -43,7 +43,6 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
         phoneNumber: phoneNumber ? "" : "연락처를 입력해 주세요",
         email: email ? "" : "이메일을 입력해 주세요",
       });
-      return;
     } else {
       const data = {
         name: teamName,
@@ -186,6 +185,14 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
           {errors.phoneNumber && (
             <div style={{ color: "red" }}>{errors.phoneNumber}</div>
           )}
+
+          <Tag style={{ marginTop: 50 }}>이메일</Tag>
+          <Input
+            style={{ marginTop: 15 }}
+            value={email}
+            onChange={(e) => handleChange(e.target.value, setEmail)}
+          />
+          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
         </div>
       </div>
       <SaveButton
