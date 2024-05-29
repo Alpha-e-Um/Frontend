@@ -1,6 +1,4 @@
-import { useState } from "react";
-import teamTestData2 from "../../api/testDummyData/teamTestData2";
-import teamTestData3 from "../../api/testDummyData/teamTestData3";
+import React, { useState, useEffect } from "react";
 import TeamCardGrid from "../../components/CardGrid/teamCardGrid";
 import Introduce from "../../components/Introduce/introduce";
 import Navigation from "../../components/Navigation/navigation";
@@ -10,15 +8,44 @@ import { jobCategories } from "../../api/testDummyData/jobPosition";
 import { WriteButton } from "../../components/SideNavigation/styles";
 import { useNavigate } from "react-router-dom";
 import Footer from "../../components/Footer/footer";
+import { teamAPI } from "../../api/teamAPI";
+import { useRecoilValue } from "recoil";
+import { occupationClassificationsState } from "../../states/occupationState";
 
 const TeamSearch = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
+  const [announcements, setAnnouncements] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const occupationClassifications = useRecoilValue(
+    occupationClassificationsState,
+  );
+
+  const fetchTeamAnnouncements = async (page) => {
+    try {
+      const filter = {
+        page: page - 1, // 서버에서 페이지 번호가 0부터 시작하기 때문에
+        size: 10,
+        occupationClassifications, // Recoil 상태에서 필터를 가져옴
+      };
+
+      const response = await teamAPI.getTeamAnnouncements(filter);
+      setAnnouncements(response.data.data.content);
+      setTotalPages(response.data.data.totalPages);
+      console.log(response.data.data.content);
+    } catch (error) {
+      console.error("Error fetching team announcements:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchTeamAnnouncements(currentPage);
+  }, [currentPage, occupationClassifications]); // occupationClassifications 상태가 변경될 때마다 호출
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    // 추가적인 페이지 변경 처리 로직
   };
+
   return (
     <div>
       <Navigation />
@@ -43,10 +70,7 @@ const TeamSearch = () => {
           </div>
           <div>
             <div style={{ marginLeft: "120px" }}>
-              <TeamCardGrid cardDatas={teamTestData2} />
-            </div>
-            <div style={{ marginLeft: "120px", marginTop: "100px" }}>
-              <TeamCardGrid cardDatas={teamTestData3} />
+              <TeamCardGrid cardDatas={announcements} />
             </div>
             <div
               style={{
@@ -57,7 +81,7 @@ const TeamSearch = () => {
               }}
             >
               <PaginationComponent
-                pages={10}
+                pages={totalPages}
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
               />

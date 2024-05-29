@@ -1,4 +1,5 @@
 import { axiosWithAuth } from "./axios";
+import qs from "qs";
 
 export const teamAPI = {
   postNewTeam(data) {
@@ -41,5 +42,13 @@ export const teamAPI = {
   },
   getMyTeams() {
     return axiosWithAuth.get("/user/me/teams");
+  },
+  getTeamAnnouncements(filter) {
+    return axiosWithAuth.get("/team-announcement", {
+      params: filter,
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: "repeat" });
+      },
+    });
   },
 };
