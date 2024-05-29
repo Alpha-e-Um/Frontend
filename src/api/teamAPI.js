@@ -22,7 +22,7 @@ export const teamAPI = {
     );
 
     if (data.profileImage) {
-      formData.append("logo", data.profileImage);
+      formData.append("file", data.profileImage);
     }
 
     return axiosWithAuth.post("/team", formData, {
