@@ -50,7 +50,7 @@ export const Sel = styled.select`
 `;
 
 export const Explanation = styled.textarea`
-  width: 496px;
+  width: 350px;
   height: 229px;
   border: 1.9px solid;
   border-radius: 6px;

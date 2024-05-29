@@ -101,6 +101,8 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
               border: "1px dashed gray",
               padding: "20px",
               cursor: "pointer",
+              width: "200px",
+              height: "200px",
             }}
           >
             <input {...getInputProps()} />
@@ -108,10 +110,12 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
               <img
                 src={URL.createObjectURL(profileImage)}
                 alt="Profile Preview"
-                style={{ width: "100px", height: "100px" }}
+                style={{ width: "200px", height: "200px" }}
               />
             ) : (
-              <p>사진을 여기에 드래그 하거나 클릭하여 업로드하세요</p>
+              <p style={{ textAlign: "center" }}>
+                사진을 여기에 드래그 하거나 클릭하여 업로드하세요 1:1 비율 권장
+              </p>
             )}
           </div>
         </div>
