@@ -1,74 +1,86 @@
-import { Container, Title, ResumeButton, CardContainter } from "./styles";
-
 import { useState, useEffect } from "react";
-import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
-import { ReactComponent as Cross } from "../../../assets/myPage/Cross.svg";
-import MyResumeCard from "../../MyPageCard/MyResumeCard/myResumeCard";
-import MyResumeTestData from "../../../api/testDummyData/myResumeTestData";
+import { useNavigate } from "react-router-dom";
+import {
+  Container,
+  CreateButton,
+  ResumeDate,
+  ResumeTitle,
+  Title,
+} from "./styles";
+import { ReactComponent as Edit } from "../../../assets/myPage/EditButton.svg";
+import { ReactComponent as Setting } from "../../../assets/myPage/ResumeSettingButton.svg";
+import { resumeAPI } from "../../../api/resumeAPI";
 
-const MyResume = ({ setIsNewResume, innerRef }) => {
-  const [visible, setVisible] = useState({
-    step0: false,
-    step1: false,
-    step2: false,
-  });
+const MyResume = () => {
+  const navigate = useNavigate();
 
-  const StartAnimation = () => {
-    const timer1 = setTimeout(() => {
-      setVisible((prev) => ({ ...prev, [`step0`]: true }));
-    }, 0);
-    const timer2 = setTimeout(() => {
-      setVisible((prev) => ({ ...prev, [`step1`]: true }));
-    }, 100);
-    const timer3 = setTimeout(() => {
-      setVisible((prev) => ({ ...prev, [`step2`]: true }));
-    }, 200);
+  const [resumeData, setResumeData] = useState([]);
 
-    return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
-    };
-  };
-
-  const EndAnimation = async () => {
-    setTimeout(() => {
-      setVisible((prev) => ({ ...prev, [`step2`]: false }));
-    }, 0);
-    setTimeout(() => {
-      setVisible((prev) => ({ ...prev, [`step1`]: false }));
-    }, 0);
-    setTimeout(() => {
-      setVisible((prev) => ({ ...prev, [`step0`]: false }));
-    }, 200);
-  };
-
-  innerRef.current = {
-    EndAnimation,
+  const CreateResume = async () => {
+    navigate("/mypage/createResume");
   };
 
   useEffect(() => {
-    StartAnimation();
+    resumeAPI
+      .getResume()
+      .then((res) => {
+        console.log(res.data.data);
+        setResumeData(res.data.data);
+      })
+      .catch((error) => {});
   }, []);
 
   return (
-    <Container $isVisible={visible.step0}>
-      <Title $isVisible={visible.step1}>이력서 관리</Title>
-      <Line
-        style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
-      />
-      <ResumeButton
-        onClick={() => setIsNewResume(true)}
-        $isVisible={visible.step2}
+    <Container>
+      <Title>이력서 관리</Title>
+
+      <div
+        style={{
+          marginTop: "10px",
+          marginLeft: "22px",
+
+          width: "853px",
+          display: "flex",
+          justifyContent: "flex-end",
+          padding: "15px 0px 15px 0px",
+          background: "#F9F9F9",
+        }}
       >
-        <Cross style={{ marginRight: "10px" }} />
-        이력서 생성
-      </ResumeButton>
-      <CardContainter>
-        {MyResumeTestData.map((item) => (
-          <MyResumeCard key={item.id} data={item} />
-        ))}
-      </CardContainter>
+        <CreateButton onClick={() => CreateResume()}>이력서 생성</CreateButton>
+      </div>
+
+      {resumeData.map((item, index) => (
+        <div
+          key={item.id}
+          style={{
+            marginLeft: "22px",
+            padding: "18px 0px 18px 0px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            border: "solid",
+            borderWidth: "2px 0px 0px 0px",
+            borderColor: "#EBEBEB",
+          }}
+        >
+          <div
+            style={{
+              width: "853px",
+              display: "flex",
+              justifyContent: "space-between",
+            }}
+          >
+            <ResumeTitle>{item.title}</ResumeTitle>
+            <div>
+              <Edit />
+              <Setting />
+            </div>
+          </div>
+          <ResumeDate>{item.timeStamp.updateAt.substr(0, 10)}</ResumeDate>
+        </div>
+      ))}
+
+      <ResumeTitle></ResumeTitle>
     </Container>
   );
 };
