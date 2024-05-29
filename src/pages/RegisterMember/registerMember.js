@@ -98,7 +98,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
     console.log(data);
 
     teamAPI
-      .postNewTeamAnnouncement(data, 1)
+      .postNewTeamAnnouncement(data, 2)
       .then((res) => {
         console.log(res);
         navigate("/team");

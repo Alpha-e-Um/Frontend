@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useDropzone } from "react-dropzone";
 import {
   Explanation,
   Profile,
@@ -10,7 +11,6 @@ import {
   Container,
 } from "./styled";
 import { teamAPI } from "../../../api/teamAPI";
-
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 
 const MyTeamPage = ({ setIsCreateTeam }) => {
@@ -20,11 +20,22 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [profileImage, setProfileImage] = useState(null);
   const [errors, setErrors] = useState({});
 
   const handleChange = (value, setter) => {
     setter(value);
   };
+
+  const onDrop = (acceptedFiles) => {
+    setProfileImage(acceptedFiles[0]);
+  };
+
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+    multiple: false,
+  });
 
   const registerTeam = async () => {
     if (
@@ -51,6 +62,7 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
         location: location,
         phoneNumber: phoneNumber,
         email: email,
+        profileImage: profileImage,
       };
 
       teamAPI
@@ -68,7 +80,6 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
   return (
     <Container>
       <Title>신규 팀 등록</Title>
-
       <Line
         style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
       />
@@ -84,7 +95,29 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
           }}
         >
           <Tag style={{ marginBottom: 30 }}>프로필 설정</Tag>
-          <Profile />
+          <div
+            {...getRootProps()}
+            style={{
+              border: "1px dashed gray",
+              padding: "20px",
+              cursor: "pointer",
+              width: "200px",
+              height: "200px",
+            }}
+          >
+            <input {...getInputProps()} />
+            {profileImage ? (
+              <img
+                src={URL.createObjectURL(profileImage)}
+                alt="Profile Preview"
+                style={{ width: "200px", height: "200px" }}
+              />
+            ) : (
+              <p style={{ textAlign: "center" }}>
+                사진을 여기에 드래그 하거나 클릭하여 업로드하세요 1:1 비율 권장
+              </p>
+            )}
+          </div>
         </div>
         <div
           style={{
@@ -172,7 +205,7 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
           >
             <option value="">선택</option>
             <option value="design">디자인</option>
-            <option value="design">개발</option>
+            <option value="development">개발</option>
           </Sel>
           {errors.domain && <div style={{ color: "red" }}>{errors.domain}</div>}
 
