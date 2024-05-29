@@ -1,3 +1,6 @@
+import React from "react";
+import { formatDistanceToNow, parseISO } from "date-fns";
+import { ko } from "date-fns/locale";
 import {
   Containter,
   ProejctName,
@@ -19,15 +22,36 @@ const MyTeamCard = ({ data }) => {
     navigate(`/mypage/team/${data.id}`);
   };
 
+  const formatFormationDate = (dateString) => {
+    const date = parseISO(dateString);
+    const distance = formatDistanceToNow(date, { addSuffix: true, locale: ko });
+
+    // Check if the distance contains specific keywords and return them
+    if (distance.includes("초")) {
+      return "방금 전";
+    } else if (distance.includes("분")) {
+      return distance.replace("약 ", "");
+    } else if (distance.includes("시간")) {
+      return distance.replace("약 ", "");
+    } else if (distance.includes("일")) {
+      return distance.replace("약 ", "");
+    }
+
+    // Return the date in 'yyyy-MM-dd' format if it's more than 7 days ago
+    return dateString.split("T")[0];
+  };
+
   return (
     <Containter>
-      <ProejctName>{data.projectName}</ProejctName>
-      <TeamName>[{data.teamName}]</TeamName>
+      <ProejctName>{data.name}</ProejctName>
+      <TeamName>[{data.name}]</TeamName>
       <Region>[{data.region}]</Region>
 
       <Recruitment style={{ color: data.recruitment ? "#3376F6" : "#ff3737" }}>
         {data.recruitment ? "모집중" : "모집완료"}
-        <RecruitmentTime>| {data.recruitmentTime}</RecruitmentTime>
+        <RecruitmentTime>
+          | {formatFormationDate(data.formationDate)}
+        </RecruitmentTime>
       </Recruitment>
 
       <Introduction>{data.introduction}</Introduction>

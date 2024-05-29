@@ -14,8 +14,10 @@ import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCir
 import { ReactComponent as Cross } from "../../../assets/myPage/Cross.svg";
 import MyTeamCard from "../../MyPageCard/MyTeamCard/myTeamCard";
 import MyTeamTestData from "../../../api/testDummyData/myTeamTestData";
+import { teamAPI } from "../../../api/teamAPI";
 
 const MyTeam = ({ setIsCreateTeam, innerRef }) => {
+  const [myTeams, setMyTeams] = useState([]);
   const [isMyTeam, setIsMyTeam] = useState(false);
 
   const [visible, setVisible] = useState({
@@ -62,8 +64,21 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
     EndAnimation,
   };
 
+  const getMyTeams = async () => {
+    try {
+      const response = await teamAPI.getMyTeams();
+      console.log(response.data.data);
+      setMyTeams(response.data.data);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      // setLoading(false);
+    }
+  };
+
   useEffect(() => {
     StartAnimation();
+    getMyTeams();
   }, []);
 
   return (
@@ -94,7 +109,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
         <Cross style={{ marginRight: "10px" }} />팀 생성
       </CreateTeamButton>
       <CardContainter>
-        {MyTeamTestData.map((item) => (
+        {myTeams.map((item) => (
           <MyTeamCard data={item} />
         ))}
       </CardContainter>
