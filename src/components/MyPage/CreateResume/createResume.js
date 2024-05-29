@@ -13,6 +13,9 @@ import {
   CannelButton,
   InformationContainter,
   MyInfo,
+  ImformationName,
+  ImformationPeriod,
+  ImformationDetail,
 } from "./styled";
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 import { resumeAPI } from "../../../api/resumeAPI";
@@ -78,6 +81,7 @@ const CreateResume = () => {
 
   //백엔드에 넘겨줄 데이터들
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [jobCategory, setJobCategory] = useState("");
   const [subJobCategory, setSubJobCategory] = useState("");
   const [subJobCategories, setSubJobCategories] = useState([]);
@@ -130,6 +134,7 @@ const CreateResume = () => {
       certificate_url: certificateUrl,
     });
     setCertificates(certificates);
+    console.log(certificates);
     CloseNewCertificate();
   };
   const CloseNewCertificate = () => {
@@ -167,8 +172,8 @@ const CreateResume = () => {
     projects.push({
       title: projectTitle,
       projectRole: projectRole,
-      startDate: projectRole,
-      endDate: projectStartDate,
+      startDate: projectStartDate,
+      endDate: "",
       projectUrl: projectUrl,
       introduction: projectIntroduction,
     });
@@ -221,12 +226,13 @@ const CreateResume = () => {
   const Save = async () => {
     const data = {
       title: title,
-      description: "test", //디자인 미구현
-      jobCategory: jobCategory,
-      jobSubcategory: subJobCategory,
-      gpa: gpa,
+      description: description,
+      jobCategory: jobCategory.value,
+      jobSubcategory: subJobCategory.value,
+      gpa: parseInt(gpa),
       totalScore: 0, // 디자인 미구현
       isPublic: true,
+      techStacks: [],
 
       certificates: certificates,
       careers: careers,
@@ -235,10 +241,13 @@ const CreateResume = () => {
       homepages: homepages,
     };
 
+    console.log(data);
     resumeAPI
       .postResume(data)
       .then((res) => {})
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
 
     navigate("/mypage/resume");
   };
@@ -405,6 +414,35 @@ const CreateResume = () => {
           </AddButton>
         </div>
 
+        {certificates.map((certificate, index) => (
+          <div
+            key={index}
+            style={{
+              margin: "10px 30px",
+              paddingTop: "18px",
+              borderTop: "3px solid #C9C9C9",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+              }}
+            >
+              <ImformationName>{certificate.title}</ImformationName>
+              <ImformationPeriod>{certificate.startDate}</ImformationPeriod>
+            </div>
+            <ImformationDetail>● {certificate.introduction}</ImformationDetail>
+            <ImformationDetail>
+              ● {certificate.certificate_url}
+            </ImformationDetail>
+          </div>
+        ))}
+
         {newCertificate ? (
           <div>
             <div
@@ -488,6 +526,32 @@ const CreateResume = () => {
           <AddButton onClick={() => setNewCareer(true)}>+ 정보 추가</AddButton>
         </div>
 
+        {careers.map((career, index) => (
+          <div
+            key={index}
+            style={{
+              margin: "10px 30px",
+              paddingTop: "18px",
+              borderTop: "3px solid #C9C9C9",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+              }}
+            >
+              <ImformationName>{career.companyName}</ImformationName>
+              <ImformationPeriod>{career.startDate}</ImformationPeriod>
+            </div>
+            <ImformationDetail>● {career.companyRole}</ImformationDetail>
+          </div>
+        ))}
+
         {/* 추가 */}
         {newCareer ? (
           <div>
@@ -557,8 +621,8 @@ const CreateResume = () => {
                 gap: "10px",
               }}
             >
-              <SaveButton onClick={SaveNewCareer()}>저장</SaveButton>
-              <CannelButton onClick={CloseNewCareer()}>취소</CannelButton>
+              <SaveButton onClick={() => SaveNewCareer()}>저장</SaveButton>
+              <CannelButton onClick={() => CloseNewCareer()}>취소</CannelButton>
             </div>
           </div>
         ) : (
@@ -579,6 +643,32 @@ const CreateResume = () => {
           <InformationTag>프로젝트</InformationTag>
           <AddButton onClick={() => setNewProject(true)}>+ 정보 추가</AddButton>
         </div>
+
+        {projects.map((project, index) => (
+          <div
+            key={index}
+            style={{
+              margin: "10px 30px",
+              paddingTop: "18px",
+              borderTop: "3px solid #C9C9C9",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+              }}
+            >
+              <ImformationName>{project.title}</ImformationName>
+              <ImformationPeriod>{project.startDate}</ImformationPeriod>
+            </div>
+            <ImformationDetail>● {project.projectRole}</ImformationDetail>
+          </div>
+        ))}
 
         {newProject ? (
           <div>
@@ -604,7 +694,7 @@ const CreateResume = () => {
                   value={projectTitle}
                   onChange={(e) => setProjectTitle(e.target.value)}
                 />
-                <InformationTag>맡은 역활</InformationTag>
+                <InformationTag>맡은 역할</InformationTag>
                 <Input
                   value={projectRole}
                   onChange={(e) => setProjectRole(e.target.value)}
@@ -636,7 +726,7 @@ const CreateResume = () => {
                 <InformationTag>프로젝트 설명</InformationTag>
                 <Input
                   value={projectIntroduction}
-                  onChange={(e) => projectIntroduction(e.target.value)}
+                  onChange={(e) => setProjectIntroduction(e.target.value)}
                 />
               </div>
             </div>
@@ -674,6 +764,32 @@ const CreateResume = () => {
             + 정보 추가
           </AddButton>
         </div>
+
+        {activities.map((activite, index) => (
+          <div
+            key={index}
+            style={{
+              margin: "10px 30px",
+              paddingTop: "18px",
+              borderTop: "3px solid #C9C9C9",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+              }}
+            >
+              <ImformationName>{activite.title}</ImformationName>
+              <ImformationPeriod>{activite.startDate}</ImformationPeriod>
+            </div>
+            <ImformationDetail>● {activite.introduction}</ImformationDetail>
+          </div>
+        ))}
 
         {newActivite ? (
           <div>
@@ -760,6 +876,31 @@ const CreateResume = () => {
           </AddButton>
         </div>
 
+        {homepages.map((homepage, index) => (
+          <div
+            key={index}
+            style={{
+              margin: "10px 30px",
+              paddingTop: "18px",
+              borderTop: "3px solid #C9C9C9",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+              gap: "10px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                gap: "20px",
+              }}
+            >
+              <ImformationName>홈페이지</ImformationName>
+            </div>
+            <ImformationDetail>{homepage.homepageUrl}</ImformationDetail>
+          </div>
+        ))}
+
         {newHomepage ? (
           <div>
             <div
@@ -835,6 +976,8 @@ const CreateResume = () => {
           자기소개서
         </InformationTag>
         <Input
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
           style={{
             marginLeft: "30px",
             width: "734px",

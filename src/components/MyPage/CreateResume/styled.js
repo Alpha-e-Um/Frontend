@@ -99,6 +99,23 @@ export const Selection = styled(Select).attrs({
   },
 })``;
 
+export const ImformationName = styled.label`
+  font-size: 22px;
+  font-weight: 600;
+`;
+
+export const ImformationPeriod = styled.label`
+  font-size: 20px;
+  font-weight: 400;
+  color: #c9c9c9;
+`;
+
+export const ImformationDetail = styled.label`
+  font-size: 20px;
+  font-weight: 300;
+  margin-left: 18px;
+`;
+
 export const AddButton = styled.button`
   width: 106px;
   height: 33px;

@@ -13,8 +13,8 @@ import MyTeamDetail from "../../components/MyPage/MyTeamDetail/myTeamDetail";
 
 import { Title } from "./styles";
 import WithdrawalModal from "../../components/WithdrawalModal/withdrawalModal";
-import MyNewResume from "../../components/MyPage/MyNewResume/myNewResume";
 import Footer from "../../components/Footer/footer";
+import CreateResume from "../../components/MyPage/CreateResume/createResume";
 
 const MyPage = (props) => {
   const [isCreateTeam, setIsCreateTeam] = useState(false);
@@ -97,7 +97,7 @@ const MyPage = (props) => {
             path="createResume"
             element={
               <div>
-                <MyNewResume />
+                <CreateResume />
               </div>
             }
           />
