@@ -87,9 +87,14 @@ const RegisterTeam = ({ setIsCreateTeam }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState({});
+  const [selectedResume, setSelectedResume] = useState(null);
 
   const handleChange = (value, setter) => {
     setter(value);
+  };
+
+  const handleResumeClick = (id) => {
+    setSelectedResume(id);
   };
 
   const registerTeam = async () => {

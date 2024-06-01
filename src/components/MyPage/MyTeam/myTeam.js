@@ -98,7 +98,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
       >
         <MyTeamButton onClick={MyTeamBtn} $isVisible={visible.step2}>
           {isMyTeam ? <CheckCircleOn /> : <CheckCircleOff />}
-          <MyTeamLabel>나의 팀만 보기</MyTeamLabel>
+          <MyTeamLabel>내가 팀장인 팀만 보기</MyTeamLabel>
         </MyTeamButton>
       </div>
 
