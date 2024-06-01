@@ -48,17 +48,37 @@ const occupationOptions = [
   { value: "translation_japanese", label: "일본어 번역" },
   { value: "translation_chinese", label: "중국어 번역" },
   { value: "translation_spanish", label: "스페인어 번역" },
-  { value: "translation_alabic", label: "아랍어 번역" },
+  { value: "translation_arabic", label: "아랍어 번역" },
   { value: "translation_hindi", label: "힌디어 번역" },
-  { value: "translation_franch", label: "프랑스어 번역" },
+  { value: "translation_french", label: "프랑스어 번역" },
   { value: "translation_etc", label: "기타 번역" },
   { value: "etc", label: "기타" },
+];
+
+const locationOptions = [
+  { value: "seoul", label: "서울" },
+  { value: "busan", label: "부산" },
+  { value: "incheon", label: "인천" },
+  { value: "daegu", label: "대구" },
+  { value: "gwangju", label: "광주" },
+  { value: "daejeon", label: "대전" },
+  { value: "ulsan", label: "울산" },
+  { value: "gyeonggi", label: "경기도" },
+  { value: "gangwon", label: "강원도" },
+  { value: "chungbuk", label: "충청북도" },
+  { value: "chungnam", label: "충청남도" },
+  { value: "jeonbuk", label: "전라북도" },
+  { value: "jeonnam", label: "전라남도" },
+  { value: "gyeongbuk", label: "경상북도" },
+  { value: "gyeongnam", label: "경상남도" },
+  { value: "jeju", label: "제주도" },
 ];
 
 const RegisterMember = ({ setIsCreateTeam }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [vacancies, setVacancies] = useState(0);
+  const [teamId, setTeamId] = useState(0);
   const [occupationClassifications, setOccupationClassifications] = useState(
     [],
   );
@@ -79,12 +99,14 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       !vacancies ||
       !occupationClassifications ||
       !publish ||
-      !expiredDate
+      !expiredDate ||
+      !location
     ) {
       alert("모든 항목을 채워주세요");
       return;
     }
     const data = {
+      teamId: teamId,
       title: title,
       description: description,
       vacancies: vacancies,
@@ -93,12 +115,13 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       ),
       publish: publish,
       expiredDate: expiredDate.toISOString(),
+      region: location.value,
     };
 
     console.log(data);
 
     teamAPI
-      .postNewTeamAnnouncement(data, 2)
+      .postNewTeamAnnouncement(data)
       .then((res) => {
         console.log(res);
         navigate("/team");
@@ -197,11 +220,21 @@ const RegisterMember = ({ setIsCreateTeam }) => {
                 onChange={(e) => handleChange(e.target.value, setVacancies)}
                 style={{ marginTop: "10px", width: "330px" }}
               />
-              <Tag style={{ marginTop: "45px" }}>활동지역</Tag>
+              <Tag>팀 ID</Tag>
               <Input
-                value={location}
-                onChange={(e) => handleChange(e.target.value, setLocation)}
+                value={teamId}
+                onChange={(e) => handleChange(e.target.value, setTeamId)}
                 style={{ marginTop: "10px", width: "330px" }}
+              />
+              <Tag style={{ marginTop: "45px" }}>활동 지역</Tag>
+              <Select
+                options={locationOptions}
+                value={location}
+                onChange={(selected) => setLocation(selected)}
+                styles={{
+                  marginTop: "10px",
+                  width: "330px",
+                }}
               />
             </div>
           </div>

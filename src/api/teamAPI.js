@@ -35,7 +35,7 @@ export const teamAPI = {
     return axiosWithAuth.get(`/team/${id}`);
   },
   postNewTeamAnnouncement(data, teamId) {
-    return axiosWithAuth.post(`/team/${teamId}/announcement`, data);
+    return axiosWithAuth.post("/team-announcement", data);
   },
   inviteTeamMember(data) {
     return axiosWithAuth.post("/team/invite", data);

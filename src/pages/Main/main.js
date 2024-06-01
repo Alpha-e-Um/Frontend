@@ -22,12 +22,12 @@ const Main = (props) => {
       >
         <Introduce />
         <SubNavigation />
-        <div style={{ marginTop: "80px" }}>
+        {/* <div style={{ marginTop: "80px" }}>
           <TeamCardGrid cardDatas={teamTestData} />
         </div>
         <div style={{ marginTop: "120px" }}>
           <MemberCardGrid cardDatas={memberTestData} />
-        </div>
+        </div> */}
         <div style={{ marginTop: "120px" }}>
           <ContestCardGrid cardDatas={contestTestData} />
         </div>
