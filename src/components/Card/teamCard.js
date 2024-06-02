@@ -54,12 +54,6 @@ const TeamCard = ({ data }) => {
   const navigate = useNavigate();
 
   const clickTeamCard = () => {
-    console.log(data);
-    console.log(data);
-    console.log(data);
-    console.log(data);
-    console.log(data);
-
     navigate(`${data.id}`);
   };
   return (

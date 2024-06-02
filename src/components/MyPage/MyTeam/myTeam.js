@@ -110,7 +110,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
       </CreateTeamButton>
       <CardContainter>
         {myTeams.map((item) => (
-          <MyTeamCard data={item} />
+          <MyTeamCard key={item.id} data={item} />
         ))}
       </CardContainter>
     </Container>
