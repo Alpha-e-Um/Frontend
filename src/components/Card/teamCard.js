@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   ButtonBox,
   Container,
@@ -50,8 +51,14 @@ const occupationOptions = {
 };
 
 const TeamCard = ({ data }) => {
+  const navigate = useNavigate();
+
+  const clickTeamCard = () => {
+    console.log(data.teamId);
+    navigate(`${data.teamId}`);
+  };
   return (
-    <Container>
+    <Container onClick={clickTeamCard}>
       <div
         style={{
           display: "flex",

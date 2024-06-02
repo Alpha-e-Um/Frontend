@@ -15,6 +15,7 @@ import ContestDetail from "./pages/ContestDetailPage/contestDetailPage";
 import TeamMemberRecruitmentNotice from "./components/TeamMemberRecruitmentNotice/teamMemberRecruitmentNotice";
 import RegisterMember from "./pages/RegisterMember/registerMember";
 import MyTeamDetail from "./components/MyPage/MyTeamDetail/myTeamDetail";
+import TeamDetail from "./pages/TeamDetail/teamDetail";
 
 const App = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/registerMember" element={<RegisterMember />} />
           <Route path="/contest" element={<Contest />} />
           <Route path="/contestDetail" element={<ContestDetail />} />
+          <Route path="/team/:id" element={<TeamDetail />} />
         </Routes>
       </BrowserRouter>
     </div>
