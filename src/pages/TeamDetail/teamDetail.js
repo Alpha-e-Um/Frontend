@@ -18,32 +18,45 @@ import {
   ParticipantInfo,
   ParticipantName,
   ParticipantDetails,
+  ModalOverlay,
+  Modal,
+  ModalContent,
+  ModalInput,
+  ModalButtonWrapper,
+  ConfirmButton,
+  CancelButton,
 } from "./styles";
+import { applicationAPI } from "../../api/applicationAPI";
 
 const TeamDetail = () => {
   const location = useLocation();
+  const [announcementInfo, setAnnouncementInfo] = useState({});
   const [teamInfo, setTeamInfo] = useState({});
   const [participants, setParticipants] = useState([]);
+  const [teamAnnouncementId, setTeamAnnouncementId] = useState();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [applyCount, setApplyCount] = useState(1);
 
   useEffect(() => {
     const url = location.pathname;
     const result = url.split("/");
-    const teamId = result[result.length - 1];
-    console.log(teamId);
+    const teamAnnouncementId = result[result.length - 1];
+    setTeamAnnouncementId(teamAnnouncementId);
+    console.log(teamAnnouncementId);
 
     teamAPI
-      .getTeamById(teamId)
+      .getTeamAnnouncementById(teamAnnouncementId)
       .then((res) => {
         console.log(res);
         console.log(res.data.data);
-        setTeamInfo(res.data.data);
+        setAnnouncementInfo(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
 
     teamAPI
-      .getTeamParticipantsByTeamId(teamId)
+      .getTeamParticipantsByTeamId(teamAnnouncementId)
       .then((res) => {
         console.log(res.data.data);
         setParticipants(res.data.data);
@@ -53,8 +66,40 @@ const TeamDetail = () => {
       });
   }, [location]);
 
+  useEffect(() => {
+    teamAPI
+      .getTeamById(announcementInfo.teamId)
+      .then((res) => {
+        console.log(res);
+        console.log("team ind");
+        console.log(res.data.data);
+        setTeamInfo(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [announcementInfo]);
+
   const handleApply = () => {
-    alert("지원하기 버튼을 눌렀습니다!");
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmApply = () => {
+    applicationAPI
+      .applyTeamAnnouncement(teamAnnouncementId, applyCount)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsModalOpen(false);
+      });
+  };
+
+  const handleCancelApply = () => {
+    setIsModalOpen(false);
   };
 
   return (
@@ -63,21 +108,23 @@ const TeamDetail = () => {
       <Container>
         <ContentWrapper>
           <TeamInfoWrapper>
-            <Logo src={teamInfo.logo} alt={`${teamInfo.name} 로고`} />
+            <Logo src={teamInfo.logo} alt={`${announcementInfo.name} 로고`} />
             <Info>
-              <InfoItem>팀명: </InfoItem>
+              <InfoItem>프로젝트명: </InfoItem>
               <InfoItem>연락처: </InfoItem>
               <InfoItem>이메일: </InfoItem>
               <InfoItem>생성일: </InfoItem>
+              <InfoItem>지역: </InfoItem>
             </Info>
             <Info>
-              <InfoItem>{teamInfo.name}</InfoItem>
+              <InfoItem>{announcementInfo.title}</InfoItem>
               <InfoItem>{teamInfo.phoneNumber}</InfoItem>
               <InfoItem>{teamInfo.email}</InfoItem>
-              <InfoItem>{teamInfo.formationDate}</InfoItem>
+              <InfoItem>{announcementInfo.createDate}</InfoItem>
+              <InfoItem>{announcementInfo.region}</InfoItem>
             </Info>
           </TeamInfoWrapper>
-          <Introduction>{teamInfo.introduction}</Introduction>
+          <Introduction>{announcementInfo.description}</Introduction>
           <div
             style={{ display: "flex", justifyContent: "end", width: "100%" }}
           >
@@ -100,6 +147,24 @@ const TeamDetail = () => {
         </ParticipantsWrapper>
       </Container>
       <Footer />
+      {isModalOpen && (
+        <ModalOverlay>
+          <Modal>
+            <ModalContent>
+              <h2>팀 지원에 필요한 당신의 이력서 번호를 입력하세요</h2>
+              <ModalInput
+                type="number"
+                value={applyCount}
+                onChange={(e) => setApplyCount(Number(e.target.value))}
+              />
+              <ModalButtonWrapper>
+                <ConfirmButton onClick={handleConfirmApply}>확인</ConfirmButton>
+                <CancelButton onClick={handleCancelApply}>취소</CancelButton>
+              </ModalButtonWrapper>
+            </ModalContent>
+          </Modal>
+        </ModalOverlay>
+      )}
     </div>
   );
 };

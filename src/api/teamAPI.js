@@ -76,4 +76,7 @@ export const teamAPI = {
   getTeamParticipantsByTeamId(id) {
     return axiosWithAuth.get(`/team/${id}/participant`);
   },
+  getTeamAnnouncementById(id) {
+    return axiosWithAuth.get(`/team-announcement/${id}`);
+  },
 };

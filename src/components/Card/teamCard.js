@@ -55,7 +55,9 @@ const TeamCard = ({ data }) => {
 
   const clickTeamCard = () => {
     console.log(data.teamId);
-    navigate(`${data.teamId}`);
+    console.log(data.teamId);
+    console.log(data.id);
+    navigate(`${data.id}`);
   };
   return (
     <Container onClick={clickTeamCard}>
