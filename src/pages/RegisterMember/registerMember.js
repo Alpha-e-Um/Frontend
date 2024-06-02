@@ -115,7 +115,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       ),
       publish: publish,
       expiredDate: expiredDate.toISOString(),
-      region: location.value,
+      region: location.label,
     };
 
     console.log(data);

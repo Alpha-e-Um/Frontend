@@ -42,6 +42,15 @@ const TeamDetail = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    teamAPI
+      .getTeamParticipantsByTeamId(teamId)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, [location]);
 
   const handleApply = () => {

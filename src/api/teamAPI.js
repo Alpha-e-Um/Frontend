@@ -12,7 +12,7 @@ export const teamAPI = {
             name: data.name,
             introduction: data.introduction,
             domain: data.domain,
-            location: data.location,
+            region: data.location,
             phoneNumber: data.phoneNumber,
             email: data.email,
           }),
@@ -72,5 +72,8 @@ export const teamAPI = {
         return qs.stringify(params, { arrayFormat: "repeat" });
       },
     });
+  },
+  getTeamParticipantsByTeamId(id) {
+    return axiosWithAuth.get(`/team/${id}/participant`);
   },
 };
