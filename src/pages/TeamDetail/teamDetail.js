@@ -37,7 +37,6 @@ const TeamDetail = () => {
         console.log(res);
         console.log(res.data.data);
         setTeamInfo(res.data.data);
-        setParticipants(res.data.data.participants || []);
       })
       .catch((err) => {
         console.log(err);
@@ -46,7 +45,8 @@ const TeamDetail = () => {
     teamAPI
       .getTeamParticipantsByTeamId(teamId)
       .then((res) => {
-        console.log(res);
+        console.log(res.data.data);
+        setParticipants(res.data.data);
       })
       .catch((err) => {
         console.log(err);
@@ -89,12 +89,11 @@ const TeamDetail = () => {
           {participants.map((participant, index) => (
             <ParticipantCard key={index}>
               <ParticipantImage
-                src={participant.image}
-                alt={participant.name}
+                src={participant.avatar}
+                alt={participant.name.first}
               />
               <ParticipantInfo>
-                <ParticipantName>{participant.name}</ParticipantName>
-                <ParticipantDetails>{participant.details}</ParticipantDetails>
+                <ParticipantName>{participant.name.first}</ParticipantName>
               </ParticipantInfo>
             </ParticipantCard>
           ))}
