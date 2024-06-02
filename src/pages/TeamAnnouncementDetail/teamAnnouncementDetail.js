@@ -28,7 +28,7 @@ import {
 } from "./styles";
 import { applicationAPI } from "../../api/applicationAPI";
 
-const TeamDetail = () => {
+const TeamAnnouncementDetail = () => {
   const location = useLocation();
   const [announcementInfo, setAnnouncementInfo] = useState({});
   const [teamInfo, setTeamInfo] = useState({});
@@ -169,4 +169,4 @@ const TeamDetail = () => {
   );
 };
 
-export default TeamDetail;
+export default TeamAnnouncementDetail;

@@ -15,7 +15,8 @@ import ContestDetail from "./pages/ContestDetailPage/contestDetailPage";
 import TeamMemberRecruitmentNotice from "./components/TeamMemberRecruitmentNotice/teamMemberRecruitmentNotice";
 import RegisterMember from "./pages/RegisterMember/registerMember";
 import MyTeamDetail from "./components/MyPage/MyTeamDetail/myTeamDetail";
-import TeamDetail from "./pages/TeamDetail/teamDetail";
+import TeamDetail from "./pages/TeamAnnouncementDetail/teamAnnouncementDetail";
+import TeamAnnouncementDetail from "./pages/TeamAnnouncementDetail/teamAnnouncementDetail";
 
 const App = () => {
   const [userInfo, setUserInfo] = useRecoilState(userInfoState);
@@ -52,14 +53,17 @@ const App = () => {
           <Route path="/" element={<Main />} />
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/mypage/team/:id" element={<MyTeamDetail />} />
-          <Route path="/team" element={<TeamSearch />} />
+          <Route path="/teamannouncement" element={<TeamSearch />} />
           <Route path="/member" element={<MemberSearch />} />
           <Route path="/login/*" element={<Login />} />
           <Route path="/registerTeam" element={<RegisterTeam />} />
           <Route path="/registerMember" element={<RegisterMember />} />
           <Route path="/contest" element={<Contest />} />
           <Route path="/contestDetail" element={<ContestDetail />} />
-          <Route path="/team/:id" element={<TeamDetail />} />
+          <Route
+            path="/teamannouncement/:id"
+            element={<TeamAnnouncementDetail />}
+          />
         </Routes>
       </BrowserRouter>
     </div>

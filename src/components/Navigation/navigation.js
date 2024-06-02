@@ -44,7 +44,7 @@ const Navigation = (props) => {
           <MenuBox>
             <MenuItem
               onClick={() => {
-                navigate("/team");
+                navigate("/teamannouncement");
               }}
             >
               팀구하기
