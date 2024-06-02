@@ -44,7 +44,6 @@ export const teamAPI = {
     return axiosWithAuth.get("/user/me/teams");
   },
   getTeamAnnouncements(filter) {
-    // occupationClassifications가 비어 있는지 확인
     const { occupationClassifications, ...rest } = filter;
     const params = {
       ...rest,
@@ -53,6 +52,21 @@ export const teamAPI = {
     };
 
     return axiosWithAuth.get("/team-announcement", {
+      params,
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: "repeat" });
+      },
+    });
+  },
+  getResumeAnnouncements(filter) {
+    const { occupationClassifications, ...rest } = filter;
+    const params = {
+      ...rest,
+      occupationClassifications:
+        occupationClassifications.length > 0 ? occupationClassifications : "",
+    };
+
+    return axiosWithAuth.get("/resume-announcement", {
       params,
       paramsSerializer: (params) => {
         return qs.stringify(params, { arrayFormat: "repeat" });
