@@ -252,8 +252,8 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             </Tag>
             <Input
               style={{ width: 162, marginRight: 20 }}
-              value={region}
-              onChange={(e) => handleChange(e.target.value, setRegion)}
+              value={school}
+              onChange={(e) => handleChange(e.target.value, setSchool)}
               $isVisible={visible.step6}
             />
 
@@ -266,8 +266,8 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             </Tag>
             <Input
               style={{ width: 162 }}
-              value={school}
-              onChange={(e) => handleChange(e.target.value, setSchool)}
+              value={region}
+              onChange={(e) => handleChange(e.target.value, setRegion)}
               $isVisible={visible.step7}
             />
           </div>
@@ -355,7 +355,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
           justifyContent: "flex-end",
         }}
       >
-        <BlueButton onClick={() => SaveUserData()} isVisible={visible.step11}>
+        <BlueButton onClick={() => SaveUserData()} $isVisible={visible.step11}>
           저장
         </BlueButton>
         <CannelButton $isVisible={visible.step11}>취소</CannelButton>
