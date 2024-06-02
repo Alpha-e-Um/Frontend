@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -86,6 +86,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
   const [expiredDate, setExpiredDate] = useState(new Date());
   const [location, setLocation] = useState("");
   const [errors, setErrors] = useState({});
+  const [teamList, setTeamList] = useState([]);
   const navigate = useNavigate();
 
   const handleChange = (value, setter) => {
@@ -100,13 +101,14 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       !occupationClassifications ||
       !publish ||
       !expiredDate ||
-      !location
+      !location ||
+      !teamId
     ) {
       alert("모든 항목을 채워주세요");
       return;
     }
     const data = {
-      teamId: teamId,
+      teamId: teamId.value,
       title: title,
       description: description,
       vacancies: vacancies,
@@ -131,25 +133,28 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       });
   };
 
+  useEffect(() => {
+    teamAPI
+      .getMyTeams()
+      .then((res) => {
+        const teamList = res.data.data.filter((team) => team.isOwner);
+        setTeamList(
+          teamList.map((team) => ({ value: team.id, label: team.name })),
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   return (
     <div>
       <Navigation />
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginRight: "850px",
-        }}
-      >
-        <Title>팀 모집 공고</Title>
-      </div>
-      <div
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
         <Container>
-          <Title style={{ marginLeft: 35, marginTop: 35 }}>
-            팀원 모집 공고
-          </Title>
+          <Title>팀원 모집 공고</Title>
           <Line
             style={{
               marginTop: "22px",
@@ -158,36 +163,29 @@ const RegisterMember = ({ setIsCreateTeam }) => {
             }}
           />
 
-          <Tag style={{ marginLeft: 60, marginTop: 20 }}>공고 제목</Tag>
+          <Tag style={{ marginTop: 20 }}>공고 제목</Tag>
           <Input
             style={{
-              width: 790,
-              marginLeft: 60,
+              width: "100%",
               marginRight: "auto",
-              marginTop: 20,
+              marginTop: "14px",
             }}
             value={title}
             onChange={(e) => handleChange(e.target.value, setTitle)}
           />
-          <div style={{ marginLeft: 60, marginTop: 20 }}>
-            <Tag>프로필 설정</Tag>
-            <Tag style={{ marginLeft: 190 }}>팀 상세 소개</Tag>
-          </div>
-          <div style={{ marginLeft: 60, marginTop: 20, display: "flex" }}>
-            <Profile />
-            <Introduce
-              value={description}
-              onChange={(e) => handleChange(e.target.value, setDescription)}
-            />
-          </div>
-
-          <div style={{ marginLeft: 65, marginTop: 35, display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              marginTop: "40px",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
             <div
               style={{
-                width: 400,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                alignItems: "start",
               }}
             >
               <Tag>모집 분야</Tag>
@@ -198,35 +196,36 @@ const RegisterMember = ({ setIsCreateTeam }) => {
                 onChange={(selected) => setOccupationClassifications(selected)}
                 styles={{ marginTop: "10px", width: "330px" }}
               />
-              <Tag style={{ marginTop: "45px" }}>모집 마감일</Tag>
-              <DatePicker
-                selected={expiredDate}
-                onChange={(date) => setExpiredDate(date)}
-                dateFormat="yyyy-MM-dd"
-                style={{ marginTop: "10px", width: "330px" }}
-              />
             </div>
             <div
               style={{
-                width: 400,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                alignItems: "start",
               }}
             >
-              <Tag>모집 인원</Tag>
-              <Input
-                value={vacancies}
-                onChange={(e) => handleChange(e.target.value, setVacancies)}
-                style={{ marginTop: "10px", width: "330px" }}
-              />
-              <Tag>팀 ID</Tag>
-              <Input
+              <Tag>팀 선택</Tag>
+              <Select
+                options={teamList}
                 value={teamId}
-                onChange={(e) => handleChange(e.target.value, setTeamId)}
-                style={{ marginTop: "10px", width: "330px" }}
+                onChange={(selected) => {
+                  setTeamId(selected);
+                }}
+                styles={{
+                  marginTop: "10px",
+                  width: "330px",
+                }}
               />
-              <Tag style={{ marginTop: "45px" }}>활동 지역</Tag>
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+              }}
+            >
+              <Tag>활동 지역</Tag>
               <Select
                 options={locationOptions}
                 value={location}
@@ -237,11 +236,53 @@ const RegisterMember = ({ setIsCreateTeam }) => {
                 }}
               />
             </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+              }}
+            >
+              <Tag>모집 마감일</Tag>
+              <DatePicker
+                style={{ marginTop: "10px", width: "330px", height: "38px" }}
+                selected={expiredDate}
+                onChange={(date) => setExpiredDate(date)}
+                dateFormat="yyyy-MM-dd"
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+              }}
+            >
+              <Tag>모집 인원</Tag>
+              <Input
+                value={vacancies}
+                onChange={(e) => handleChange(e.target.value, setVacancies)}
+              />
+            </div>
+          </div>
+          <div style={{ marginTop: 20 }}>
+            <Tag>팀 상세 소개</Tag>
+          </div>
+          <div style={{ marginTop: 20, display: "flex", width: "100%" }}>
+            <Introduce
+              value={description}
+              onChange={(e) => handleChange(e.target.value, setDescription)}
+            />
           </div>
 
-          <RegistrationButton onClick={registerTeamAnnouncement}>
-            등록하기
-          </RegistrationButton>
+          <div
+            style={{ display: "flex", width: "100%", justifyContent: "end" }}
+          >
+            <RegistrationButton onClick={registerTeamAnnouncement}>
+              등록하기
+            </RegistrationButton>
+          </div>
         </Container>
       </div>
       <Footer />
