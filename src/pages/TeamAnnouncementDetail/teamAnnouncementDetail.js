@@ -25,23 +25,30 @@ import {
   ModalButtonWrapper,
   ConfirmButton,
   CancelButton,
+  ResumeList,
+  ResumeItem,
+  ResumeItemDetail,
+  ResumeItemDetailSmall,
 } from "./styles";
 import { applicationAPI } from "../../api/applicationAPI";
+import { resumeAPI } from "../../api/resumeAPI";
 
 const TeamAnnouncementDetail = () => {
   const location = useLocation();
   const [announcementInfo, setAnnouncementInfo] = useState({});
   const [teamInfo, setTeamInfo] = useState({});
   const [participants, setParticipants] = useState([]);
+  const [resumes, setResumes] = useState([]);
   const [teamAnnouncementId, setTeamAnnouncementId] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [applyCount, setApplyCount] = useState(1);
+  const [selectedResumeId, setSelectedResumeId] = useState();
 
   useEffect(() => {
     const url = location.pathname;
     const result = url.split("/");
     const teamAnnouncementId = result[result.length - 1];
     setTeamAnnouncementId(teamAnnouncementId);
+    console.log("qwe");
     console.log(teamAnnouncementId);
 
     teamAPI
@@ -54,39 +61,50 @@ const TeamAnnouncementDetail = () => {
       .catch((err) => {
         console.log(err);
       });
-
-    teamAPI
-      .getTeamParticipantsByTeamId(teamAnnouncementId)
-      .then((res) => {
-        console.log(res.data.data);
-        setParticipants(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }, [location]);
 
   useEffect(() => {
-    teamAPI
-      .getTeamById(announcementInfo.teamId)
-      .then((res) => {
-        console.log(res);
-        console.log("team ind");
-        console.log(res.data.data);
-        setTeamInfo(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (announcementInfo.teamId) {
+      teamAPI
+        .getTeamById(announcementInfo.teamId)
+        .then((res) => {
+          console.log(res);
+          console.log("team ind");
+          console.log(res.data.data);
+          setTeamInfo(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      teamAPI
+        .getTeamParticipantsByTeamId(announcementInfo.teamId)
+        .then((res) => {
+          console.log(res.data.data);
+          setParticipants(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [announcementInfo]);
 
   const handleApply = () => {
     setIsModalOpen(true);
+    resumeAPI
+      .getResume()
+      .then((res) => {
+        console.log(res.data.data);
+        setResumes(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   const handleConfirmApply = () => {
     applicationAPI
-      .applyTeamAnnouncement(teamAnnouncementId, applyCount)
+      .applyTeamAnnouncement(teamAnnouncementId, selectedResumeId)
       .then((res) => {
         console.log(res);
       })
@@ -96,10 +114,27 @@ const TeamAnnouncementDetail = () => {
       .finally(() => {
         setIsModalOpen(false);
       });
+    setSelectedResumeId();
   };
 
   const handleCancelApply = () => {
     setIsModalOpen(false);
+    setSelectedResumeId();
+  };
+
+  const handleResumeSelect = (resumeId) => {
+    setSelectedResumeId(resumeId);
+  };
+
+  const formatDate = (dateString) => {
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Date(dateString).toLocaleString(undefined, options);
   };
 
   return (
@@ -151,12 +186,21 @@ const TeamAnnouncementDetail = () => {
         <ModalOverlay>
           <Modal>
             <ModalContent>
-              <h2>팀 지원에 필요한 당신의 이력서 번호를 입력하세요</h2>
-              <ModalInput
-                type="number"
-                value={applyCount}
-                onChange={(e) => setApplyCount(Number(e.target.value))}
-              />
+              <h2>제출할 이력서를 아래에서 선택하세요.</h2>
+              <ResumeList>
+                {resumes.map((resume, index) => (
+                  <ResumeItem
+                    key={index}
+                    onClick={() => handleResumeSelect(resume.id)}
+                    $isSelected={resume.id === selectedResumeId}
+                  >
+                    <ResumeItemDetail>{resume.title}</ResumeItemDetail>
+                    <ResumeItemDetailSmall>
+                      {formatDate(resume.timeStamp.updateAt)} 에 수정됨
+                    </ResumeItemDetailSmall>
+                  </ResumeItem>
+                ))}
+              </ResumeList>
               <ModalButtonWrapper>
                 <ConfirmButton onClick={handleConfirmApply}>확인</ConfirmButton>
                 <CancelButton onClick={handleCancelApply}>취소</CancelButton>

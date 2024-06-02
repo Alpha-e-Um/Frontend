@@ -54,9 +54,12 @@ const TeamCard = ({ data }) => {
   const navigate = useNavigate();
 
   const clickTeamCard = () => {
-    console.log(data.teamId);
-    console.log(data.teamId);
-    console.log(data.id);
+    console.log(data);
+    console.log(data);
+    console.log(data);
+    console.log(data);
+    console.log(data);
+
     navigate(`${data.id}`);
   };
   return (
@@ -66,7 +69,7 @@ const TeamCard = ({ data }) => {
           display: "flex",
         }}
       >
-        <LogoImg src="https://beginmate-s3.s3.ap-northeast-2.amazonaws.com/prod/upload/team/profileImg_1710714654421_%EC%A0%9C%EB%AA%A9%20%EC%97%86%EC%9D%8C-1.png" />
+        <LogoImg src={data.teamLogo} />
         <div
           style={{
             display: "flex",
