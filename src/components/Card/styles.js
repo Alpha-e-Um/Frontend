@@ -4,6 +4,7 @@ export const Container = styled.div`
   padding: 28px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   border-radius: 24px;
   border: 1px solid #c9c9c9;
   background-color: #ffffff;

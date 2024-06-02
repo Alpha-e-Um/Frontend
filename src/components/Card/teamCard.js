@@ -58,54 +58,64 @@ const TeamCard = ({ data }) => {
   };
   return (
     <Container onClick={clickTeamCard}>
-      <div
-        style={{
-          display: "flex",
-        }}
-      >
-        <LogoImg src={data.teamLogo} />
+      <div>
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            alignItems: "start",
-            marginLeft: "24px",
-            justifyContent: "space-between",
           }}
         >
-          <Title>{data.title}</Title>
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div>
-              {data.recruitmentStatus ? (
-                <StateLabel>모집 중</StateLabel>
-              ) : (
-                <StateLabel>모집 마감</StateLabel>
-              )}
-              <TimeLabel>1시간 전</TimeLabel>
-            </div>
-            <div
-              style={{ display: "flex", marginTop: "8px", marginBottom: "4px" }}
-            >
-              <TeamNameLabel>QWER{data.teamId}</TeamNameLabel>
-              <LocationLabel>{data.region}</LocationLabel>
+          <LogoImg src={data.teamLogo} />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "start",
+              marginLeft: "24px",
+              justifyContent: "space-between",
+            }}
+          >
+            <Title>{data.title}</Title>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+              <div>
+                {data.recruitmentStatus ? (
+                  <StateLabel>모집 중</StateLabel>
+                ) : (
+                  <StateLabel>모집 마감</StateLabel>
+                )}
+                <TimeLabel>1시간 전</TimeLabel>
+              </div>
+              <div
+                style={{
+                  display: "flex",
+                  marginTop: "8px",
+                  marginBottom: "4px",
+                }}
+              >
+                <TeamNameLabel>QWER{data.teamId}</TeamNameLabel>
+                <LocationLabel>{data.region}</LocationLabel>
+              </div>
             </div>
           </div>
         </div>
+        <div style={{ textAlign: "left", marginTop: "30px" }}>
+          <Description>{data.description}</Description>
+        </div>
+        <div />
       </div>
-      <div style={{ textAlign: "left", marginTop: "30px" }}>
-        <Description>{data.description}</Description>
+      <div>
+        <InteractBox>
+          <ButtonBox>
+            {data.occupationClassifications.map((item, index) => {
+              return (
+                <StyledButton key={index}>
+                  {occupationOptions[item]}
+                </StyledButton>
+              );
+            })}
+          </ButtonBox>
+          <LikeButton src="/icons/heart.svg" width={30} />
+        </InteractBox>
       </div>
-      <div />
-      <InteractBox>
-        <ButtonBox>
-          {data.occupationClassifications.map((item, index) => {
-            return (
-              <StyledButton key={index}>{occupationOptions[item]}</StyledButton>
-            );
-          })}
-        </ButtonBox>
-        <LikeButton src="/icons/heart.svg" width={30} />
-      </InteractBox>
     </Container>
   );
 };
