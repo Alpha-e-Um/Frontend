@@ -78,6 +78,7 @@ export const ApplyButton = styled.button`
 export const ParticipantsWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: start;
   width: 100%;
   border: 2px solid #ddd;
   border-radius: 10px;
@@ -88,9 +89,9 @@ export const ParticipantsWrapper = styled.div`
 
 export const ParticipantCard = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #ddd;
 
   &:last-child {
     border-bottom: none;
@@ -98,11 +99,11 @@ export const ParticipantCard = styled.div`
 `;
 
 export const ParticipantImage = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin-right: 10px;
+  cursor: pointer;
 `;
 
 export const ParticipantInfo = styled.div`
@@ -111,8 +112,10 @@ export const ParticipantInfo = styled.div`
 `;
 
 export const ParticipantName = styled.div`
-  font-size: 16px;
+  margin-top: 14px;
+  font-size: 18px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const ParticipantDetails = styled.div`

@@ -167,18 +167,22 @@ const TeamAnnouncementDetail = () => {
           </div>
         </ContentWrapper>
         <ParticipantsWrapper>
-          <h2>소속 팀원 정보</h2>
-          {participants.map((participant, index) => (
-            <ParticipantCard key={index}>
-              <ParticipantImage
-                src={participant.avatar}
-                alt={participant.name.first}
-              />
-              <ParticipantInfo>
-                <ParticipantName>{participant.name.first}</ParticipantName>
-              </ParticipantInfo>
-            </ParticipantCard>
-          ))}
+          <div>
+            <h2>소속 팀원 정보</h2>
+          </div>
+          <div style={{ display: "flex" }}>
+            {participants.map((participant, index) => (
+              <ParticipantCard key={index}>
+                <ParticipantImage
+                  src={participant.avatar}
+                  alt={participant.userId}
+                />
+                <ParticipantInfo>
+                  <ParticipantName>{participant.name.fullName}</ParticipantName>
+                </ParticipantInfo>
+              </ParticipantCard>
+            ))}
+          </div>
         </ParticipantsWrapper>
       </Container>
       <Footer />
