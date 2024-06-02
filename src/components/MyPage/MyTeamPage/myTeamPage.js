@@ -85,9 +85,7 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
   return (
     <Container>
       <Title>신규 팀 등록</Title>
-      <Line
-        style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
-      />
+      <Line style={{ margin: "20px 0px" }} />
       <div
         style={{
           display: "flex",
@@ -122,9 +120,18 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
                 style={{ width: "200px", height: "200px" }}
               />
             ) : (
-              <p style={{ textAlign: "center" }}>
-                사진을 여기에 드래그 하거나 클릭하여 업로드하세요 1:1 비율 권장
-              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <p style={{ textAlign: "center", fontSize: "20px" }}>
+                  팀 로고 등록
+                </p>
+              </div>
             )}
           </div>
         </div>
@@ -240,10 +247,12 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
+          width: "100%",
         }}
       >
         <Tag style={{ marginBottom: 15 }}>한줄 소개</Tag>
         <Explanation
+          style={{ height: "34px" }}
           value={teamIntroduction}
           onChange={(e) => handleChange(e.target.value, setTeamIntroduction)}
         />
@@ -255,21 +264,22 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "flex-start",
+          width: "100%",
         }}
       >
         <Tag style={{ marginBottom: 15 }}>상세 소개</Tag>
         <Explanation
+          style={{ height: "300px" }}
           value={teamContent}
           onChange={(e) => handleChange(e.target.value, setTeamContent)}
         />
       </div>
 
-      <SaveButton
-        style={{ marginTop: 30, marginLeft: 700, marginBottom: 100 }}
-        onClick={registerTeam}
-      >
-        등록하기
-      </SaveButton>
+      <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
+        <SaveButton style={{ marginTop: 30 }} onClick={registerTeam}>
+          등록하기
+        </SaveButton>
+      </div>
     </Container>
   );
 };

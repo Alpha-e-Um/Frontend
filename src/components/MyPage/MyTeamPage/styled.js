@@ -52,7 +52,6 @@ export const Sel = styled.select`
 
 export const Explanation = styled.textarea`
   width: 100%;
-  height: 229px;
   border: 1.9px solid;
   border-radius: 6px;
   border-color: #c9c9c9;
