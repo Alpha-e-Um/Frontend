@@ -92,9 +92,9 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
         style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: "space-between",
           width: "100%",
           height: "100%",
+          justifyContent: "space-between",
         }}
       >
         <div
@@ -130,7 +130,12 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
         </div>
 
         <div
-          style={{ display: "flex", flexDirection: "column", height: "100%" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            height: "100%",
+            justifyContent: "space-between",
+          }}
         >
           <div
             style={{
@@ -138,7 +143,7 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
               flexDirection: "row",
               justifyContent: "space-between",
               width: "100%",
-              height: "100%",
+              height: "242px",
             }}
           >
             <div
@@ -146,7 +151,7 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                height: "100%",
+                alignItems: "start",
               }}
             >
               <Tag>팀명</Tag>

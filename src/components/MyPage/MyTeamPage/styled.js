@@ -33,7 +33,8 @@ export const Tag = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 332px;
+  margin-left: 50px;
+  width: 300px;
   height: 36px;
   border: 1.9px solid;
   border-radius: 6px;
@@ -41,7 +42,8 @@ export const Input = styled.input`
 `;
 
 export const Sel = styled.select`
-  width: 332px;
+  margin-left: 50px;
+  width: 300px;
   height: 36px;
   border: 1.9px solid;
   border-radius: 6px;
@@ -49,7 +51,7 @@ export const Sel = styled.select`
 `;
 
 export const Explanation = styled.textarea`
-  width: 750px;
+  width: 100%;
   height: 229px;
   border: 1.9px solid;
   border-radius: 6px;
