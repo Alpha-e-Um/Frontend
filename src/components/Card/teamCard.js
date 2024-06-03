@@ -98,7 +98,7 @@ const TeamCard = ({ data }) => {
           </div>
         </div>
         <div style={{ textAlign: "left", marginTop: "30px" }}>
-          <Description>{data.description}</Description>
+          <Description>{data.summary}</Description>
         </div>
         <div />
       </div>

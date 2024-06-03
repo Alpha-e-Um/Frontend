@@ -48,14 +48,10 @@ const TeamAnnouncementDetail = () => {
     const result = url.split("/");
     const teamAnnouncementId = result[result.length - 1];
     setTeamAnnouncementId(teamAnnouncementId);
-    console.log("qwe");
-    console.log(teamAnnouncementId);
 
     teamAPI
       .getTeamAnnouncementById(teamAnnouncementId)
       .then((res) => {
-        console.log(res);
-        console.log(res.data.data);
         setAnnouncementInfo(res.data.data);
       })
       .catch((err) => {
@@ -68,9 +64,6 @@ const TeamAnnouncementDetail = () => {
       teamAPI
         .getTeamById(announcementInfo.teamId)
         .then((res) => {
-          console.log(res);
-          console.log("team ind");
-          console.log(res.data.data);
           setTeamInfo(res.data.data);
         })
         .catch((err) => {
@@ -80,7 +73,6 @@ const TeamAnnouncementDetail = () => {
       teamAPI
         .getTeamParticipantsByTeamId(announcementInfo.teamId)
         .then((res) => {
-          console.log(res.data.data);
           setParticipants(res.data.data);
         })
         .catch((err) => {
@@ -94,7 +86,6 @@ const TeamAnnouncementDetail = () => {
     resumeAPI
       .getResume()
       .then((res) => {
-        console.log(res.data.data);
         setResumes(res.data.data);
       })
       .catch((err) => {
@@ -159,7 +150,9 @@ const TeamAnnouncementDetail = () => {
               <InfoItem>{announcementInfo.region}</InfoItem>
             </Info>
           </TeamInfoWrapper>
-          <Introduction>{announcementInfo.description}</Introduction>
+          <Introduction
+            dangerouslySetInnerHTML={{ __html: announcementInfo.description }}
+          />
           <div
             style={{ display: "flex", justifyContent: "end", width: "100%" }}
           >

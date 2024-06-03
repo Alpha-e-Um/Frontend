@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "react-quill/dist/quill.snow.css"; // react-quill의 스타일
+import ReactQuill from "react-quill"; // react-quill 임포트
 import {
   Explanation,
   Profile,
@@ -10,7 +12,6 @@ import {
   Tag,
   Title,
   Container,
-  Introduce,
   RegistrationButton,
 } from "./styles";
 import Navigation from "../../components/Navigation/navigation";
@@ -76,6 +77,7 @@ const locationOptions = [
 
 const RegisterMember = ({ setIsCreateTeam }) => {
   const [title, setTitle] = useState("");
+  const [summary, setSummary] = useState("");
   const [description, setDescription] = useState("");
   const [vacancies, setVacancies] = useState(0);
   const [teamId, setTeamId] = useState(0);
@@ -102,7 +104,8 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       !publish ||
       !expiredDate ||
       !location ||
-      !teamId
+      !teamId ||
+      !summary
     ) {
       alert("모든 항목을 채워주세요");
       return;
@@ -118,6 +121,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       publish: publish,
       expiredDate: expiredDate.toISOString(),
       region: location.label,
+      summary: summary,
     };
 
     console.log(data);
@@ -126,7 +130,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       .postNewTeamAnnouncement(data)
       .then((res) => {
         console.log(res);
-        navigate("/team");
+        navigate("/teamannouncement");
       })
       .catch((err) => {
         console.log(err);
@@ -147,6 +151,10 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       });
   }, []);
 
+  useEffect(() => {
+    console.log(description);
+  }, [description]);
+
   return (
     <div>
       <Navigation />
@@ -162,14 +170,9 @@ const RegisterMember = ({ setIsCreateTeam }) => {
               marginRight: "auto",
             }}
           />
-
           <Tag style={{ marginTop: 20 }}>공고 제목</Tag>
           <Input
-            style={{
-              width: "100%",
-              marginRight: "auto",
-              marginTop: "14px",
-            }}
+            style={{ width: "100%", marginRight: "auto", marginTop: "14px" }}
             value={title}
             onChange={(e) => handleChange(e.target.value, setTitle)}
           />
@@ -211,10 +214,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
                 onChange={(selected) => {
                   setTeamId(selected);
                 }}
-                styles={{
-                  marginTop: "10px",
-                  width: "330px",
-                }}
+                styles={{ marginTop: "10px", width: "330px" }}
               />
             </div>
 
@@ -230,10 +230,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
                 options={locationOptions}
                 value={location}
                 onChange={(selected) => setLocation(selected)}
-                styles={{
-                  marginTop: "10px",
-                  width: "330px",
-                }}
+                styles={{ marginTop: "10px", width: "330px" }}
               />
             </div>
             <div
@@ -266,13 +263,20 @@ const RegisterMember = ({ setIsCreateTeam }) => {
               />
             </div>
           </div>
+          <Tag style={{ marginTop: 20 }}>한줄 요약</Tag>
+          <Input
+            style={{ width: "100%", marginRight: "auto", marginTop: "14px" }}
+            value={summary}
+            onChange={(e) => handleChange(e.target.value, setSummary)}
+          />
           <div style={{ marginTop: 20 }}>
             <Tag>팀 상세 소개</Tag>
           </div>
           <div style={{ marginTop: 20, display: "flex", width: "100%" }}>
-            <Introduce
+            <ReactQuill
               value={description}
-              onChange={(e) => handleChange(e.target.value, setDescription)}
+              onChange={setDescription}
+              style={{ height: "240px", width: "100%" }}
             />
           </div>
 

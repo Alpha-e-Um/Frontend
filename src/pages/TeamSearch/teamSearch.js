@@ -26,6 +26,8 @@ const TeamSearch = () => {
       const filter = {
         page: page - 1, // 서버에서 페이지 번호가 0부터 시작하기 때문에
         size: 10,
+        expired: true,
+        option: "latest", // views, popular,favorites
         occupationClassifications:
           occupationClassifications.length > 0 ? occupationClassifications : "", // 빈 배열일 경우 빈 문자열로 설정
       };
