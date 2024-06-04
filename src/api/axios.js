@@ -28,7 +28,8 @@ axiosWithAuth.interceptors.response.use(
         const { accessToken } = reIssueResponse.data.data;
         localStorage.setItem("access_token", accessToken);
         axiosWithAuth.defaults.headers.Authorization = `Bearer ${accessToken}`;
-        await axios(originRequest).then((res) => {});
+        originRequest.headers.Authorization = `Bearer ${accessToken}`;
+        return axiosWithAuth(originRequest);
         // window.location.replace("/");
       } else {
         // window.location.replace("/sign-in");
