@@ -11,6 +11,7 @@ const teamTestData = [
     category1: "웹 개발",
     category2: "인공지능",
     like: false,
+    occupationClassifications: [],
   },
   {
     id: 2,
@@ -24,6 +25,7 @@ const teamTestData = [
     category1: "앱 개발",
     category2: "데이터 분석",
     like: true,
+    occupationClassifications: [],
   },
   {
     id: 3,
@@ -36,6 +38,7 @@ const teamTestData = [
     category1: "게임 개발",
     category2: "블록체인",
     like: true,
+    occupationClassifications: [],
   },
   {
     id: 4,
@@ -49,6 +52,7 @@ const teamTestData = [
     category1: "데이터 사이언스",
     category2: "클라우드 컴퓨팅",
     like: true,
+    occupationClassifications: [],
   },
   {
     id: 5,
@@ -61,6 +65,7 @@ const teamTestData = [
     category1: "로봇공학",
     category2: "인터넷 of Things (IoT)",
     like: false,
+    occupationClassifications: [],
   },
   {
     id: 6,
@@ -74,6 +79,7 @@ const teamTestData = [
     category1: "소프트웨어 개발",
     category2: "머신 러닝",
     like: false,
+    occupationClassifications: [],
   },
 ];
 
