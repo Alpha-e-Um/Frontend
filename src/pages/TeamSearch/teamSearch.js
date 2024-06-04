@@ -11,12 +11,20 @@ import Footer from "../../components/Footer/footer";
 import { teamAPI } from "../../api/teamAPI";
 import { useRecoilValue } from "recoil";
 import { occupationClassificationsState } from "../../states/occupationState";
+import {
+  Title,
+  FilterButton,
+  FilterContainer,
+  CheckboxContainer,
+} from "./styles";
 
 const TeamSearch = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(1);
   const [announcements, setAnnouncements] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
+  const [filterOption, setFilterOption] = useState("latest");
+  const [expired, setExpired] = useState(false);
   const occupationClassifications = useRecoilValue(
     occupationClassificationsState,
   );
@@ -26,8 +34,8 @@ const TeamSearch = () => {
       const filter = {
         page: page - 1, // 서버에서 페이지 번호가 0부터 시작하기 때문에
         size: 10,
-        expired: true,
-        option: "latest", // views, popular,favorites
+        expired: expired,
+        option: filterOption, // views, popular, favorites
         occupationClassifications:
           occupationClassifications.length > 0 ? occupationClassifications : "", // 빈 배열일 경우 빈 문자열로 설정
       };
@@ -43,7 +51,7 @@ const TeamSearch = () => {
 
   useEffect(() => {
     fetchTeamAnnouncements(currentPage);
-  }, [currentPage, occupationClassifications]); // occupationClassifications 상태가 변경될 때마다 호출
+  }, [currentPage, occupationClassifications, filterOption, expired]); // filterOption과 expired 상태가 변경될 때마다 호출
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -72,7 +80,52 @@ const TeamSearch = () => {
             <SideNavigation categoryObject={jobCategories} />
           </div>
           <div>
-            <div style={{ marginLeft: "120px" }}>
+            <div style={{ marginLeft: "120px", minWidth: "1100px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  width: "100%",
+                  justifyContent: "start",
+                }}
+              >
+                <Title>팀 구하기</Title>
+              </div>
+              <CheckboxContainer>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={expired}
+                    onChange={() => setExpired(!expired)}
+                  />
+                  지난 공고 보기
+                </label>
+              </CheckboxContainer>
+              <FilterContainer>
+                <FilterButton
+                  onClick={() => setFilterOption("latest")}
+                  $active={filterOption === "latest"}
+                >
+                  최신순
+                </FilterButton>
+                <FilterButton
+                  onClick={() => setFilterOption("views")}
+                  $active={filterOption === "views"}
+                >
+                  조회순
+                </FilterButton>
+                <FilterButton
+                  onClick={() => setFilterOption("popular")}
+                  $active={filterOption === "popular"}
+                >
+                  인기순
+                </FilterButton>
+                <FilterButton
+                  onClick={() => setFilterOption("favorites")}
+                  $active={filterOption === "favorites"}
+                >
+                  찜순
+                </FilterButton>
+              </FilterContainer>
               <TeamCardGrid cardDatas={announcements} />
             </div>
             <div

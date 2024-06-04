@@ -11,6 +11,7 @@ import Footer from "../../components/Footer/footer";
 import { teamAPI } from "../../api/teamAPI";
 import { useRecoilValue } from "recoil";
 import { occupationClassificationsState } from "../../states/occupationState";
+import { Title } from "../RegisterMember/styles";
 
 const MemberSearch = () => {
   const navigate = useNavigate();
@@ -70,7 +71,8 @@ const MemberSearch = () => {
             <SideNavigation categoryObject={jobCategories} />
           </div>
           <div>
-            <div style={{ marginLeft: "120px" }}>
+            <div style={{ marginLeft: "120px", minWidth: "1100px" }}>
+              <Title>팀원 추천</Title>
               <MemberCardGrid cardDatas={announcements} />
             </div>
             <div
