@@ -18,8 +18,8 @@ const MySupportCard = ({ data }) => {
           <TeamAndRegion>
             {data.teamName} / {data.region}
           </TeamAndRegion>
-          <DateLabel>{data.date}</DateLabel>
-          <TimeLabel>| {data.time}</TimeLabel>
+          <DateLabel>{data.state}</DateLabel>
+          <TimeLabel>| {data.createDate}</TimeLabel>
         </div>
       </div>
 

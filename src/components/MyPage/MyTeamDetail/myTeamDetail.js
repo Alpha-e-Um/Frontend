@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { teamAPI } from "../../../api/teamAPI";
-import Select from "react-select";
 import {
   Container,
   Title,
   Details,
+  DetailsWrapper,
   InviteContainer,
   InviteInput,
   InviteButton,
   SelectedEmail,
   SelectedEmailList,
   CloseButton,
+  LogoImage,
+  DetailsTitle,
+  DetailsContent,
 } from "./styles";
 import Navigation from "../../Navigation/navigation";
 
@@ -85,15 +88,22 @@ const MyTeamDetail = () => {
     <div>
       <Navigation />
       <Container>
+        <LogoImage src={teamDetails.logo} alt="Team Logo" />
         <Title>{teamDetails.name}</Title>
-        <Details>
-          <p>Email: {teamDetails.email}</p>
-          <p>FormationDate: {teamDetails.formationDate}</p>
-          <p>id: {teamDetails.id}</p>
-          <p>Introduction: {teamDetails.introduction}</p>
-          <p>phoneNumber: {teamDetails.phoneNumber}</p>
-          <p>logo: {teamDetails.logo}</p>
-        </Details>
+        <DetailsWrapper>
+          <Details>
+            <DetailsTitle>Email</DetailsTitle>
+            <DetailsContent>{teamDetails.email}</DetailsContent>
+            <DetailsTitle>Formation Date</DetailsTitle>
+            <DetailsContent>{teamDetails.formationDate}</DetailsContent>
+            <DetailsTitle>ID</DetailsTitle>
+            <DetailsContent>{teamDetails.id}</DetailsContent>
+            <DetailsTitle>Introduction</DetailsTitle>
+            <DetailsContent>{teamDetails.introduction}</DetailsContent>
+            <DetailsTitle>Phone Number</DetailsTitle>
+            <DetailsContent>{teamDetails.phoneNumber}</DetailsContent>
+          </Details>
+        </DetailsWrapper>
         <InviteContainer>
           <InviteInput
             type="text"

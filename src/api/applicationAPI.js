@@ -9,4 +9,7 @@ export const applicationAPI = {
   postNewTeamAnnouncement(data, teamId) {
     return axiosWithAuth.post("/team-announcement", data);
   },
+  getMyApplications(page, state) {
+    return axiosWithAuth.get(`/application?page=${page}&state=${state}`);
+  },
 };

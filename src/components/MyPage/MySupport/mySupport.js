@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Container,
   Title,
@@ -9,11 +9,15 @@ import {
 import { ReactComponent as CheckCircleOff } from "../../../assets/myPage/CheckCircleOff.svg";
 import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCircleOn.svg";
 import MySupportCard from "../../MyPageCard/MySupportCard/mySupportCard";
-import supportTestData from "../../../api/testDummyData/supportTestData";
+import { applicationAPI } from "../../../api/applicationAPI";
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 
 const MySupport = ({ innerRef }) => {
+  const [applications, setApplications] = useState([]);
+  const [filteredApplications, setFilteredApplications] = useState([]);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [page, setPage] = useState(1);
+
   const [visible, setVisible] = useState({
     step0: false,
     step1: false,
@@ -58,9 +62,29 @@ const MySupport = ({ innerRef }) => {
     EndAnimation,
   };
 
+  const fetchApplications = async (page, state) => {
+    try {
+      const response = await applicationAPI.getMyApplications(page, state);
+      console.log(response.data.data);
+      setApplications(response.data.data.content);
+      setFilteredApplications(response.data.data.content);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     StartAnimation();
-  }, []);
+    fetchApplications(0, "all");
+  }, [page]);
+
+  useEffect(() => {
+    if (isCompleted) {
+      setFilteredApplications(applications.filter((app) => !app.isCompleted));
+    } else {
+      setFilteredApplications(applications);
+    }
+  }, [isCompleted, applications]);
 
   return (
     <Container $isVisible={visible.step0}>
@@ -84,7 +108,7 @@ const MySupport = ({ innerRef }) => {
       </div>
 
       <CardContainter>
-        {supportTestData.map((item) => (
+        {filteredApplications.map((item) => (
           <MySupportCard key={item.id} data={item} />
         ))}
       </CardContainter>
