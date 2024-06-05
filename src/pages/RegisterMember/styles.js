@@ -52,3 +52,13 @@ export const RegistrationButton = styled.button`
   color: #ffffff;
   background: #377bff;
 `;
+
+export const QuillWrapper = styled.div`
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  .ql-toolbar {
+    display: flex;
+    justify-content: flex-start;
+  }
+`;

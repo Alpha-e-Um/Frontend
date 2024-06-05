@@ -13,6 +13,7 @@ import {
   Title,
   Container,
   RegistrationButton,
+  QuillWrapper,
 } from "./styles";
 import Navigation from "../../components/Navigation/navigation";
 import { ReactComponent as Line } from "../../assets/Line.svg";
@@ -272,13 +273,13 @@ const RegisterMember = ({ setIsCreateTeam }) => {
           <div style={{ marginTop: 20 }}>
             <Tag>팀 상세 소개</Tag>
           </div>
-          <div style={{ marginTop: 20, display: "flex", width: "100%" }}>
+          <QuillWrapper>
             <ReactQuill
               value={description}
               onChange={setDescription}
               style={{ height: "240px", width: "100%" }}
             />
-          </div>
+          </QuillWrapper>
 
           <div
             style={{ display: "flex", width: "100%", justifyContent: "end" }}
