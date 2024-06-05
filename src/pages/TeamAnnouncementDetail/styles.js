@@ -116,6 +116,10 @@ export const ParticipantName = styled.div`
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+  max-width: 6ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 `;
 
 export const ParticipantDetails = styled.div`
