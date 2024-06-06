@@ -12,7 +12,7 @@ export const teamAPI = {
             name: data.name,
             introduction: data.introduction,
             domain: data.domain,
-            location: data.location,
+            region: data.location,
             phoneNumber: data.phoneNumber,
             email: data.email,
           }),
@@ -35,16 +35,15 @@ export const teamAPI = {
     return axiosWithAuth.get(`/team/${id}`);
   },
   postNewTeamAnnouncement(data, teamId) {
-    return axiosWithAuth.post(`/team/${teamId}/announcement`, data);
+    return axiosWithAuth.post("/team-announcement", data);
   },
   inviteTeamMember(data) {
     return axiosWithAuth.post("/team/invite", data);
   },
   getMyTeams() {
-    return axiosWithAuth.get("/user/me/teams");
+    return axiosWithAuth.get("/user/me/team");
   },
   getTeamAnnouncements(filter) {
-    // occupationClassifications가 비어 있는지 확인
     const { occupationClassifications, ...rest } = filter;
     const params = {
       ...rest,
@@ -58,5 +57,26 @@ export const teamAPI = {
         return qs.stringify(params, { arrayFormat: "repeat" });
       },
     });
+  },
+  getResumeAnnouncements(filter) {
+    const { occupationClassifications, ...rest } = filter;
+    const params = {
+      ...rest,
+      occupationClassifications:
+        occupationClassifications.length > 0 ? occupationClassifications : "",
+    };
+
+    return axiosWithAuth.get("/resume-announcement", {
+      params,
+      paramsSerializer: (params) => {
+        return qs.stringify(params, { arrayFormat: "repeat" });
+      },
+    });
+  },
+  getTeamParticipantsByTeamId(id) {
+    return axiosWithAuth.get(`/team/${id}/participant`);
+  },
+  getTeamAnnouncementById(id) {
+    return axiosWithAuth.get(`/team-announcement/${id}`);
   },
 };

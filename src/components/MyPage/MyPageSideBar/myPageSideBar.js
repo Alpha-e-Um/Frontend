@@ -49,9 +49,6 @@ const MyPageSideBar = ({
 
         return (
           <ItemComponent key={index} onClick={() => sideButtonClick(index)}>
-            {curPage === index && (
-              <CheckCircle style={{ marginRight: "20px" }} />
-            )}
             {item}
           </ItemComponent>
         );

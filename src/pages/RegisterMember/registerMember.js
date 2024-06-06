@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "react-quill/dist/quill.snow.css"; // react-quill의 스타일
+import ReactQuill from "react-quill"; // react-quill 임포트
 import {
   Explanation,
   Profile,
@@ -10,8 +12,8 @@ import {
   Tag,
   Title,
   Container,
-  Introduce,
   RegistrationButton,
+  QuillWrapper,
 } from "./styles";
 import Navigation from "../../components/Navigation/navigation";
 import { ReactComponent as Line } from "../../assets/Line.svg";
@@ -48,17 +50,38 @@ const occupationOptions = [
   { value: "translation_japanese", label: "일본어 번역" },
   { value: "translation_chinese", label: "중국어 번역" },
   { value: "translation_spanish", label: "스페인어 번역" },
-  { value: "translation_alabic", label: "아랍어 번역" },
+  { value: "translation_arabic", label: "아랍어 번역" },
   { value: "translation_hindi", label: "힌디어 번역" },
-  { value: "translation_franch", label: "프랑스어 번역" },
+  { value: "translation_french", label: "프랑스어 번역" },
   { value: "translation_etc", label: "기타 번역" },
   { value: "etc", label: "기타" },
 ];
 
+const locationOptions = [
+  { value: "seoul", label: "서울" },
+  { value: "busan", label: "부산" },
+  { value: "incheon", label: "인천" },
+  { value: "daegu", label: "대구" },
+  { value: "gwangju", label: "광주" },
+  { value: "daejeon", label: "대전" },
+  { value: "ulsan", label: "울산" },
+  { value: "gyeonggi", label: "경기도" },
+  { value: "gangwon", label: "강원도" },
+  { value: "chungbuk", label: "충청북도" },
+  { value: "chungnam", label: "충청남도" },
+  { value: "jeonbuk", label: "전라북도" },
+  { value: "jeonnam", label: "전라남도" },
+  { value: "gyeongbuk", label: "경상북도" },
+  { value: "gyeongnam", label: "경상남도" },
+  { value: "jeju", label: "제주도" },
+];
+
 const RegisterMember = ({ setIsCreateTeam }) => {
   const [title, setTitle] = useState("");
+  const [summary, setSummary] = useState("");
   const [description, setDescription] = useState("");
   const [vacancies, setVacancies] = useState(0);
+  const [teamId, setTeamId] = useState(0);
   const [occupationClassifications, setOccupationClassifications] = useState(
     [],
   );
@@ -66,6 +89,7 @@ const RegisterMember = ({ setIsCreateTeam }) => {
   const [expiredDate, setExpiredDate] = useState(new Date());
   const [location, setLocation] = useState("");
   const [errors, setErrors] = useState({});
+  const [teamList, setTeamList] = useState([]);
   const navigate = useNavigate();
 
   const handleChange = (value, setter) => {
@@ -79,12 +103,16 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       !vacancies ||
       !occupationClassifications ||
       !publish ||
-      !expiredDate
+      !expiredDate ||
+      !location ||
+      !teamId ||
+      !summary
     ) {
       alert("모든 항목을 채워주세요");
       return;
     }
     const data = {
+      teamId: teamId.value,
       title: title,
       description: description,
       vacancies: vacancies,
@@ -93,40 +121,49 @@ const RegisterMember = ({ setIsCreateTeam }) => {
       ),
       publish: publish,
       expiredDate: expiredDate.toISOString(),
+      region: location.label,
+      summary: summary,
     };
 
     console.log(data);
 
     teamAPI
-      .postNewTeamAnnouncement(data, 2)
+      .postNewTeamAnnouncement(data)
       .then((res) => {
         console.log(res);
-        navigate("/team");
+        navigate("/teamannouncement");
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  useEffect(() => {
+    teamAPI
+      .getMyTeams()
+      .then((res) => {
+        const teamList = res.data.data.filter((team) => team.isOwner);
+        setTeamList(
+          teamList.map((team) => ({ value: team.id, label: team.name })),
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(description);
+  }, [description]);
+
   return (
     <div>
       <Navigation />
       <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginRight: "850px",
-        }}
-      >
-        <Title>팀 모집 공고</Title>
-      </div>
-      <div
         style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
       >
         <Container>
-          <Title style={{ marginLeft: 35, marginTop: 35 }}>
-            팀원 모집 공고
-          </Title>
+          <Title>팀원 모집 공고</Title>
           <Line
             style={{
               marginTop: "22px",
@@ -134,37 +171,25 @@ const RegisterMember = ({ setIsCreateTeam }) => {
               marginRight: "auto",
             }}
           />
-
-          <Tag style={{ marginLeft: 60, marginTop: 20 }}>공고 제목</Tag>
+          <Tag style={{ marginTop: 20 }}>공고 제목</Tag>
           <Input
-            style={{
-              width: 790,
-              marginLeft: 60,
-              marginRight: "auto",
-              marginTop: 20,
-            }}
+            style={{ width: "100%", marginRight: "auto", marginTop: "14px" }}
             value={title}
             onChange={(e) => handleChange(e.target.value, setTitle)}
           />
-          <div style={{ marginLeft: 60, marginTop: 20 }}>
-            <Tag>프로필 설정</Tag>
-            <Tag style={{ marginLeft: 190 }}>팀 상세 소개</Tag>
-          </div>
-          <div style={{ marginLeft: 60, marginTop: 20, display: "flex" }}>
-            <Profile />
-            <Introduce
-              value={description}
-              onChange={(e) => handleChange(e.target.value, setDescription)}
-            />
-          </div>
-
-          <div style={{ marginLeft: 65, marginTop: 35, display: "flex" }}>
+          <div
+            style={{
+              display: "flex",
+              marginTop: "40px",
+              justifyContent: "space-between",
+              width: "100%",
+            }}
+          >
             <div
               style={{
-                width: 400,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                alignItems: "start",
               }}
             >
               <Tag>모집 분야</Tag>
@@ -175,40 +200,94 @@ const RegisterMember = ({ setIsCreateTeam }) => {
                 onChange={(selected) => setOccupationClassifications(selected)}
                 styles={{ marginTop: "10px", width: "330px" }}
               />
-              <Tag style={{ marginTop: "45px" }}>모집 마감일</Tag>
-              <DatePicker
-                selected={expiredDate}
-                onChange={(date) => setExpiredDate(date)}
-                dateFormat="yyyy-MM-dd"
-                style={{ marginTop: "10px", width: "330px" }}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+              }}
+            >
+              <Tag>팀 선택</Tag>
+              <Select
+                options={teamList}
+                value={teamId}
+                onChange={(selected) => {
+                  setTeamId(selected);
+                }}
+                styles={{ marginTop: "10px", width: "330px" }}
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
+              }}
+            >
+              <Tag>활동 지역</Tag>
+              <Select
+                options={locationOptions}
+                value={location}
+                onChange={(selected) => setLocation(selected)}
+                styles={{ marginTop: "10px", width: "330px" }}
               />
             </div>
             <div
               style={{
-                width: 400,
                 display: "flex",
                 flexDirection: "column",
-                alignItems: "flex-start",
+                alignItems: "start",
+              }}
+            >
+              <Tag>모집 마감일</Tag>
+              <DatePicker
+                style={{ marginTop: "10px", width: "330px", height: "38px" }}
+                selected={expiredDate}
+                onChange={(date) => setExpiredDate(date)}
+                dateFormat="yyyy-MM-dd"
+              />
+            </div>
+
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "start",
               }}
             >
               <Tag>모집 인원</Tag>
               <Input
                 value={vacancies}
                 onChange={(e) => handleChange(e.target.value, setVacancies)}
-                style={{ marginTop: "10px", width: "330px" }}
-              />
-              <Tag style={{ marginTop: "45px" }}>활동지역</Tag>
-              <Input
-                value={location}
-                onChange={(e) => handleChange(e.target.value, setLocation)}
-                style={{ marginTop: "10px", width: "330px" }}
               />
             </div>
           </div>
+          <Tag style={{ marginTop: 20 }}>한줄 요약</Tag>
+          <Input
+            style={{ width: "100%", marginRight: "auto", marginTop: "14px" }}
+            value={summary}
+            onChange={(e) => handleChange(e.target.value, setSummary)}
+          />
+          <div style={{ marginTop: 20 }}>
+            <Tag>팀 상세 소개</Tag>
+          </div>
+          <QuillWrapper>
+            <ReactQuill
+              value={description}
+              onChange={setDescription}
+              style={{ height: "240px", width: "100%" }}
+            />
+          </QuillWrapper>
 
-          <RegistrationButton onClick={registerTeamAnnouncement}>
-            등록하기
-          </RegistrationButton>
+          <div
+            style={{ display: "flex", width: "100%", justifyContent: "end" }}
+          >
+            <RegistrationButton onClick={registerTeamAnnouncement}>
+              등록하기
+            </RegistrationButton>
+          </div>
         </Container>
       </div>
       <Footer />

@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 1000px;
   border: 2px solid;
   border-radius: 9px;
   border-color: #c9c9c9;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 60px;
 `;
 
 export const Title = styled.label`
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
 `;
 
@@ -21,22 +21,14 @@ export const Tag = styled.label`
 `;
 
 export const Input = styled.input`
-  height: 36px;
+  height: 38px;
   border: 2px solid;
   border-radius: 9px;
   border-color: #c9c9c9;
 `;
 
-export const Profile = styled.button`
-  width: 250px;
-  height: 250px;
-  border: none;
-  border-radius: 8px;
-`;
-
 export const Introduce = styled.textarea`
-  margin-left: 20px;
-  width: 500px;
+  width: 100%;
   height: 240px;
   border: 2px solid;
   border-radius: 9px;
@@ -50,8 +42,6 @@ export const Introduce = styled.textarea`
 
 export const RegistrationButton = styled.button`
   margin-top: 60px;
-  margin-left: 750px;
-  margin-bottom: 108px;
   height: 35px;
   border: none;
   border-radius: 8px;
@@ -61,4 +51,14 @@ export const RegistrationButton = styled.button`
   font-weight: 500;
   color: #ffffff;
   background: #377bff;
+`;
+
+export const QuillWrapper = styled.div`
+  margin-top: 20px;
+  display: flex;
+  width: 100%;
+  .ql-toolbar {
+    display: flex;
+    justify-content: flex-start;
+  }
 `;

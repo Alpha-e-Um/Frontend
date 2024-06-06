@@ -17,7 +17,7 @@ const ContestDetailPage = () => {
         }}
       >
         <ContestDetail data={competitionData} />
-        <ContestTeamGrid />
+        {/* <ContestTeamGrid /> */}
       </div>
     </div>
   );

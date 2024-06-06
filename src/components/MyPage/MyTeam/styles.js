@@ -78,14 +78,14 @@ export const CreateTeamButton = styled.button`
 `;
 
 export const CardContainter = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
   margin-bottom: 50px;
   width: 767px;
   height: 600px;
-  display: flex;
-  flex-wrap: wrap;
   gap: 20px;
   overflow-y: auto;
 `;

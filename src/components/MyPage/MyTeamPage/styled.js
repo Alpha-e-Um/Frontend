@@ -9,11 +9,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding: 40px;
 `;
 
 export const Title = styled.label`
-  margin-left: 36px;
-  margin-top: 30px;
   font-size: 24px;
   font-weight: 700;
 `;
@@ -34,7 +33,8 @@ export const Tag = styled.label`
 `;
 
 export const Input = styled.input`
-  width: 332px;
+  margin-left: 50px;
+  width: 300px;
   height: 36px;
   border: 1.9px solid;
   border-radius: 6px;
@@ -42,7 +42,8 @@ export const Input = styled.input`
 `;
 
 export const Sel = styled.select`
-  width: 332px;
+  margin-left: 50px;
+  width: 300px;
   height: 36px;
   border: 1.9px solid;
   border-radius: 6px;
@@ -50,14 +51,10 @@ export const Sel = styled.select`
 `;
 
 export const Explanation = styled.textarea`
-  width: 350px;
-  height: 229px;
+  width: 100%;
   border: 1.9px solid;
   border-radius: 6px;
   border-color: #c9c9c9;
-  padding-top: 15px;
-  padding-left: 18px;
-  padding-right: 10px;
   resize: none;
 `;
 

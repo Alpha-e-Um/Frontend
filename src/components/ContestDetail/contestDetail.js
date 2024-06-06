@@ -1,5 +1,5 @@
 // CompetitionDetail.js
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   Header,
@@ -12,9 +12,18 @@ import {
   Tag,
   Divider,
   FooterNote,
+  DescriptionWrapper,
+  MoreButton,
+  MoreButtonText,
 } from "./styles";
 
 const ContestDetail = ({ data }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleDescription = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   return (
     <Container>
       <Header>{data.title}</Header>
@@ -57,7 +66,12 @@ const ContestDetail = ({ data }) => {
       </ContentWrapper>
       <Divider />
       <Header>상세 내용</Header>
-      <div>{data.description}</div>
+      <DescriptionWrapper isExpanded={isExpanded}>
+        {data.description}
+      </DescriptionWrapper>
+      <MoreButton onClick={toggleDescription} isExpanded={isExpanded}>
+        <MoreButtonText>{isExpanded ? "접기" : "더보기"}</MoreButtonText>
+      </MoreButton>
       <Divider />
       <FooterNote>
         ※ 주최사 홈페이지의 공모요강을 확인하시기 바랍니다.

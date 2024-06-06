@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Container,
   Title,
@@ -13,11 +13,11 @@ import { ReactComponent as CheckCircleOff } from "../../../assets/myPage/CheckCi
 import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCircleOn.svg";
 import { ReactComponent as Cross } from "../../../assets/myPage/Cross.svg";
 import MyTeamCard from "../../MyPageCard/MyTeamCard/myTeamCard";
-import MyTeamTestData from "../../../api/testDummyData/myTeamTestData";
 import { teamAPI } from "../../../api/teamAPI";
 
 const MyTeam = ({ setIsCreateTeam, innerRef }) => {
   const [myTeams, setMyTeams] = useState([]);
+  const [filteredTeams, setFilteredTeams] = useState([]);
   const [isMyTeam, setIsMyTeam] = useState(false);
 
   const [visible, setVisible] = useState({
@@ -28,6 +28,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
 
   const MyTeamBtn = () => {
     setIsMyTeam(!isMyTeam);
+    console.log(filteredTeams);
   };
 
   const StartAnimation = () => {
@@ -69,6 +70,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
       const response = await teamAPI.getMyTeams();
       console.log(response.data.data);
       setMyTeams(response.data.data);
+      setFilteredTeams(response.data.data);
     } catch (err) {
       console.log(err);
     } finally {
@@ -80,6 +82,14 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
     StartAnimation();
     getMyTeams();
   }, []);
+
+  useEffect(() => {
+    if (isMyTeam) {
+      setFilteredTeams(myTeams.filter((team) => team.isOwner));
+    } else {
+      setFilteredTeams(myTeams);
+    }
+  }, [isMyTeam, myTeams]);
 
   return (
     <Container $isVisible={visible.step0}>
@@ -98,7 +108,7 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
       >
         <MyTeamButton onClick={MyTeamBtn} $isVisible={visible.step2}>
           {isMyTeam ? <CheckCircleOn /> : <CheckCircleOff />}
-          <MyTeamLabel>나의 팀만 보기</MyTeamLabel>
+          <MyTeamLabel>내가 팀장인 팀만 보기</MyTeamLabel>
         </MyTeamButton>
       </div>
 
@@ -109,8 +119,8 @@ const MyTeam = ({ setIsCreateTeam, innerRef }) => {
         <Cross style={{ marginRight: "10px" }} />팀 생성
       </CreateTeamButton>
       <CardContainter>
-        {myTeams.map((item) => (
-          <MyTeamCard data={item} />
+        {filteredTeams.map((item) => (
+          <MyTeamCard key={item.id} data={item} />
         ))}
       </CardContainter>
     </Container>

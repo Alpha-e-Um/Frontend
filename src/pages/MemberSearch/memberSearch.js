@@ -1,24 +1,53 @@
-import { useState } from "react";
-import TeamCardGrid from "../../components/CardGrid/teamCardGrid";
+import React, { useState, useEffect } from "react";
+import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
 import Introduce from "../../components/Introduce/introduce";
 import Navigation from "../../components/Navigation/navigation";
 import PaginationComponent from "../../components/PagenationComponent/pagenationComponent";
 import SideNavigation from "../../components/SideNavigation/sideNavigation";
-import memberTestData2 from "../../api/testDummyData/memberTestDats2";
-import memberTestData3 from "../../api/testDummyData/memberTestData3";
-import MemberCardGrid from "../../components/CardGrid/memberCardGrid";
+import { jobCategories } from "../../api/testDummyData/jobPosition";
 import { WriteButton } from "../../components/SideNavigation/styles";
 import { useNavigate } from "react-router-dom";
-import { jobCategories } from "../../api/testDummyData/jobPosition";
 import Footer from "../../components/Footer/footer";
+import { teamAPI } from "../../api/teamAPI";
+import { useRecoilValue } from "recoil";
+import { occupationClassificationsState } from "../../states/occupationState";
+import { Title } from "../RegisterMember/styles";
+
 const MemberSearch = () => {
-  const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [announcements, setAnnouncements] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const occupationClassifications = useRecoilValue(
+    occupationClassificationsState,
+  );
+
+  const fetchResumeAnnouncements = async (page) => {
+    try {
+      const filter = {
+        page: page - 1,
+        size: 10,
+        occupationClassifications:
+          occupationClassifications.length > 0 ? occupationClassifications : "",
+      };
+
+      const response = await teamAPI.getResumeAnnouncements(filter);
+      setAnnouncements(response.data.data.content);
+      setTotalPages(response.data.data.totalPages);
+      console.log(response.data.data.content);
+    } catch (error) {
+      console.error("Error fetching resume announcements:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchResumeAnnouncements(currentPage);
+  }, [currentPage, occupationClassifications]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    // 추가적인 페이지 변경 처리 로직
   };
+
   return (
     <div>
       <Navigation />
@@ -42,11 +71,9 @@ const MemberSearch = () => {
             <SideNavigation categoryObject={jobCategories} />
           </div>
           <div>
-            <div style={{ marginLeft: "120px" }}>
-              <MemberCardGrid cardDatas={memberTestData2} />
-            </div>
-            <div style={{ marginLeft: "120px", marginTop: "100px" }}>
-              <MemberCardGrid cardDatas={memberTestData3} />
+            <div style={{ marginLeft: "120px", minWidth: "1100px" }}>
+              <Title>팀원 추천</Title>
+              <MemberCardGrid cardDatas={announcements} />
             </div>
             <div
               style={{
@@ -57,7 +84,7 @@ const MemberSearch = () => {
               }}
             >
               <PaginationComponent
-                pages={10}
+                pages={totalPages}
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
               />

@@ -29,10 +29,8 @@ const MyPage = (props) => {
   return (
     <div>
       <Navigation />
-
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <div>
-          <Title>마이페이지</Title>
+        <div style={{ marginTop: "90px" }}>
           <MyPageSideBar
             setIsCreateTeam={setIsCreateTeam}
             setIsNewResume={setIsNewResume}

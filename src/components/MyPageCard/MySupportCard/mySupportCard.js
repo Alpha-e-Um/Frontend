@@ -9,29 +9,38 @@ import {
   Fail,
 } from "./styles";
 
-import { ReactComponent as CenterLine } from "../../../assets/myPage/SupportCenterLine.svg";
-
 const MySupportCard = ({ data }) => {
   return (
     <Containter>
-      <ProjectName>{data.projectName}</ProjectName>
-      <TeamAndRegion>
-        {data.teamName} / {data.region}
-      </TeamAndRegion>
-      <DateLabel>{data.date}</DateLabel>
-      <TimeLabel>| {data.time}</TimeLabel>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <ProjectName>{data.projectName}</ProjectName>
+        <div>
+          <TeamAndRegion>
+            {data.teamName} / {data.region}
+          </TeamAndRegion>
+          <DateLabel>{data.state}</DateLabel>
+          <TimeLabel>| {data.createDate}</TimeLabel>
+        </div>
+      </div>
 
-      <CenterLine
+      <div
         style={{
-          position: "absolute",
-          top: "41px",
-          left: "50%",
-          transform: "translateX(-50%)",
+          display: "flex",
+          justifyContent: "space-between",
+          marginTop: "20px",
         }}
-      />
-
-      <Introduction>{data.introduction}</Introduction>
-      {data.pass ? <Pass>합격</Pass> : <Fail>불합격</Fail>}
+      >
+        <Introduction>{data.introduction}</Introduction>
+        <div style={{ display: "flex" }}>
+          <img
+            alt="qwe"
+            src="/icons/file-text.svg"
+            width={30}
+            style={{ marginRight: "10px", cursor: "pointer" }}
+          />
+          {data.pass ? <Pass>합격</Pass> : <Fail>불합격</Fail>}
+        </div>
+      </div>
     </Containter>
   );
 };

@@ -15,7 +15,8 @@ import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg
 
 const MyTeamPage = ({ setIsCreateTeam }) => {
   const [teamName, setTeamName] = useState("");
-  const [teamDescription, setTeamDescription] = useState("");
+  const [teamIntroduction, setTeamIntroduction] = useState("");
+  const [teamContent, setTeamContent] = useState("");
   const [domain, setDomain] = useState("");
   const [location, setLocation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -40,7 +41,8 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
   const registerTeam = async () => {
     if (
       !teamName ||
-      !teamDescription ||
+      !teamIntroduction ||
+      !teamContent ||
       !domain ||
       !location ||
       !phoneNumber ||
@@ -48,7 +50,9 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
     ) {
       setErrors({
         teamName: teamName ? "" : "팀명을 입력해 주세요",
-        teamDescription: teamDescription ? "" : "팀 상세 소개를 입력해 주세요",
+        teamIntroduction: teamIntroduction
+          ? ""
+          : "팀 상세 소개를 입력해 주세요",
         domain: domain ? "" : "분야를 선택해 주세요",
         location: location ? "" : "활동 지역을 선택해 주세요",
         phoneNumber: phoneNumber ? "" : "연락처를 입력해 주세요",
@@ -57,7 +61,8 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
     } else {
       const data = {
         name: teamName,
-        introduction: teamDescription,
+        introduction: teamIntroduction,
+        content: teamContent,
         domain: domain,
         location: location,
         phoneNumber: phoneNumber,
@@ -80,21 +85,23 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
   return (
     <Container>
       <Title>신규 팀 등록</Title>
-      <Line
-        style={{ marginTop: "22px", marginLeft: "auto", marginRight: "auto" }}
-      />
-
-      <div style={{ display: "flex" }}>
+      <Line style={{ margin: "20px 0px" }} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100%",
+          height: "100%",
+          justifyContent: "space-between",
+        }}
+      >
         <div
           style={{
-            marginLeft: 52,
-            marginTop: 20,
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
           }}
         >
-          <Tag style={{ marginBottom: 30 }}>프로필 설정</Tag>
           <div
             {...getRootProps()}
             style={{
@@ -113,127 +120,166 @@ const MyTeamPage = ({ setIsCreateTeam }) => {
                 style={{ width: "200px", height: "200px" }}
               />
             ) : (
-              <p style={{ textAlign: "center" }}>
-                사진을 여기에 드래그 하거나 클릭하여 업로드하세요 1:1 비율 권장
-              </p>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}
+              >
+                <p style={{ textAlign: "center", fontSize: "20px" }}>
+                  팀 로고 등록
+                </p>
+              </div>
             )}
           </div>
         </div>
+
         <div
           style={{
-            marginLeft: 22,
-            marginTop: 20,
             display: "flex",
             flexDirection: "column",
-            alignItems: "flex-start",
+            height: "100%",
+            justifyContent: "space-between",
           }}
         >
-          <Tag style={{ marginBottom: 30 }}>팀 상세 소개</Tag>
-          <Explanation
-            value={teamDescription}
-            onChange={(e) => handleChange(e.target.value, setTeamDescription)}
-          />
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              width: "100%",
+              height: "242px",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                alignItems: "start",
+              }}
+            >
+              <Tag>팀명</Tag>
+              <Tag>분야</Tag>
+              <Tag>활동 지역</Tag>
+              <Tag>연락처</Tag>
+              <Tag>이메일</Tag>
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "100%",
+              }}
+            >
+              <Input
+                value={teamName}
+                onChange={(e) => handleChange(e.target.value, setTeamName)}
+              />
+              {errors.teamName && (
+                <div style={{ color: "red" }}>{errors.teamName}</div>
+              )}
+
+              <Sel
+                value={domain}
+                onChange={(e) => handleChange(e.target.value, setDomain)}
+              >
+                <option value="">선택</option>
+                <option value="design">디자인</option>
+                <option value="development">개발</option>
+              </Sel>
+              {errors.domain && (
+                <div style={{ color: "red" }}>{errors.domain}</div>
+              )}
+
+              <Sel
+                value={location}
+                onChange={(e) => handleChange(e.target.value, setLocation)}
+              >
+                <option value="">선택</option>
+                <option value="seoul">서울</option>
+                <option value="busan">부산</option>
+                <option value="incheon">인천</option>
+                <option value="daegu">대구</option>
+                <option value="gwangju">광주</option>
+                <option value="daejeon">대전</option>
+                <option value="ulsan">울산</option>
+                <option value="gyeonggi">경기도</option>
+                <option value="gangwon">강원도</option>
+                <option value="chungbuk">충청북도</option>
+                <option value="chungnam">충청남도</option>
+                <option value="jeonbuk">전라북도</option>
+                <option value="jeonnam">전라남도</option>
+                <option value="gyeongbuk">경상북도</option>
+                <option value="gyeongnam">경상남도</option>
+                <option value="jeju">제주도</option>
+              </Sel>
+              {errors.location && (
+                <div style={{ color: "red" }}>{errors.location}</div>
+              )}
+
+              <Input
+                value={phoneNumber}
+                onChange={(e) => handleChange(e.target.value, setPhoneNumber)}
+              />
+              {errors.phoneNumber && (
+                <div style={{ color: "red" }}>{errors.phoneNumber}</div>
+              )}
+
+              <Input
+                value={email}
+                onChange={(e) => handleChange(e.target.value, setEmail)}
+              />
+              {errors.email && (
+                <div style={{ color: "red" }}>{errors.email}</div>
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
-      {errors.teamDescription && (
-        <div style={{ color: "red" }}>{errors.teamDescription}</div>
-      )}
-
-      <div style={{ display: "flex" }}>
-        <div
-          style={{
-            marginLeft: 68,
-            marginTop: 35,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-          }}
-        >
-          <Tag>팀명</Tag>
-          <Input
-            style={{ marginTop: 15 }}
-            value={teamName}
-            onChange={(e) => handleChange(e.target.value, setTeamName)}
-          />
-          {errors.teamName && (
-            <div style={{ color: "red" }}>{errors.teamName}</div>
-          )}
-          <Tag style={{ marginTop: 45 }}>활동 지역</Tag>
-          <Sel
-            style={{ marginTop: 15 }}
-            value={location}
-            onChange={(e) => handleChange(e.target.value, setLocation)}
-          >
-            <option value="">선택</option>
-            <option value="seoul">서울</option>
-            <option value="busan">부산</option>
-            <option value="incheon">인천</option>
-            <option value="daegu">대구</option>
-            <option value="gwangju">광주</option>
-            <option value="daejeon">대전</option>
-            <option value="ulsan">울산</option>
-            <option value="gyeonggi">경기도</option>
-            <option value="gangwon">강원도</option>
-            <option value="chungbuk">충청북도</option>
-            <option value="chungnam">충청남도</option>
-            <option value="jeonbuk">전라북도</option>
-            <option value="jeonnam">전라남도</option>
-            <option value="gyeongbuk">경상북도</option>
-            <option value="gyeongnam">경상남도</option>
-            <option value="jeju">제주도</option>
-          </Sel>
-          {errors.location && (
-            <div style={{ color: "red" }}>{errors.location}</div>
-          )}
-        </div>
-
-        <div
-          style={{
-            marginLeft: 68,
-            marginTop: 35,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "flex-start",
-          }}
-        >
-          <Tag>분야</Tag>
-          <Sel
-            style={{ marginTop: 15 }}
-            value={domain}
-            onChange={(e) => handleChange(e.target.value, setDomain)}
-          >
-            <option value="">선택</option>
-            <option value="design">디자인</option>
-            <option value="development">개발</option>
-          </Sel>
-          {errors.domain && <div style={{ color: "red" }}>{errors.domain}</div>}
-
-          <Tag style={{ marginTop: 47 }}>연락처</Tag>
-          <Input
-            style={{ marginTop: 15 }}
-            value={phoneNumber}
-            onChange={(e) => handleChange(e.target.value, setPhoneNumber)}
-          />
-          {errors.phoneNumber && (
-            <div style={{ color: "red" }}>{errors.phoneNumber}</div>
-          )}
-
-          <Tag style={{ marginTop: 50 }}>이메일</Tag>
-          <Input
-            style={{ marginTop: 15 }}
-            value={email}
-            onChange={(e) => handleChange(e.target.value, setEmail)}
-          />
-          {errors.email && <div style={{ color: "red" }}>{errors.email}</div>}
-        </div>
-      </div>
-      <SaveButton
-        style={{ marginTop: 30, marginLeft: 700, marginBottom: 100 }}
-        onClick={registerTeam}
+      <div
+        style={{
+          marginTop: 20,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          width: "100%",
+        }}
       >
-        등록하기
-      </SaveButton>
+        <Tag style={{ marginBottom: 15 }}>한줄 소개</Tag>
+        <Explanation
+          style={{ height: "34px" }}
+          value={teamIntroduction}
+          onChange={(e) => handleChange(e.target.value, setTeamIntroduction)}
+        />
+      </div>
+
+      <div
+        style={{
+          marginTop: 20,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-start",
+          width: "100%",
+        }}
+      >
+        <Tag style={{ marginBottom: 15 }}>상세 소개</Tag>
+        <Explanation
+          style={{ height: "300px" }}
+          value={teamContent}
+          onChange={(e) => handleChange(e.target.value, setTeamContent)}
+        />
+      </div>
+
+      <div style={{ display: "flex", justifyContent: "end", width: "100%" }}>
+        <SaveButton style={{ marginTop: 30 }} onClick={registerTeam}>
+          등록하기
+        </SaveButton>
+      </div>
     </Container>
   );
 };

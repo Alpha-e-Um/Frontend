@@ -11,6 +11,7 @@ import {
   Introduction,
   TeamMemberButtton,
   EditButton,
+  Button,
 } from "./styles";
 import { ReactComponent as MemberCenterLine } from "../../../assets/myPage/MemberCenterLine.svg";
 import { useNavigate } from "react-router-dom";
@@ -43,28 +44,27 @@ const MyTeamCard = ({ data }) => {
 
   return (
     <Containter>
-      <ProejctName>{data.name}</ProejctName>
-      <TeamName>[{data.name}]</TeamName>
-      <Region>[{data.region}]</Region>
-
-      <Recruitment style={{ color: data.recruitment ? "#3376F6" : "#ff3737" }}>
-        {data.recruitment ? "모집중" : "모집완료"}
-        <RecruitmentTime>
-          | {formatFormationDate(data.formationDate)}
-        </RecruitmentTime>
-      </Recruitment>
-
-      <Introduction>{data.introduction}</Introduction>
-      <MemberCenterLine
+      <div
         style={{
-          position: "absolute",
-          left: "50%",
-          top: "189px",
-          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "start",
         }}
-      />
-      <TeamMemberButtton onClick={goToTeamDetail}>팀원 관리</TeamMemberButtton>
-      <EditButton>소개 페이지 수정</EditButton>
+      >
+        <TeamName>{data.name}</TeamName>
+        <Introduction>{data.introduction}</Introduction>
+      </div>
+      <div
+        style={{
+          width: "100%",
+          display: "flex",
+          gap: "10px",
+          marginTop: "20px",
+        }}
+      >
+        <Button onClick={goToTeamDetail}>팀원 관리</Button>
+        <Button>소개 페이지 수정</Button>
+      </div>
     </Containter>
   );
 };
