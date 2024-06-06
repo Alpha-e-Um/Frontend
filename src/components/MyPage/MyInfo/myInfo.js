@@ -274,9 +274,9 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
         </div>
       </div>
 
-      <LineAnimation $isVisible={visible.step8} />
+      {/* <LineAnimation $isVisible={visible.step8} /> */}
 
-      <div
+      {/* <div
         style={{
           marginLeft: 300,
           marginTop: 30,
@@ -342,7 +342,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             )}
           </AlarmButton>
         </div>
-      </div>
+      </div> */}
 
       <LineAnimation $isVisible={visible.step10} />
 
