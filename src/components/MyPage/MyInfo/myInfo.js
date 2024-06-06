@@ -2,19 +2,17 @@ import {
   Container,
   Title,
   LineAnimation,
-  AnimatedProfile,
+  ProfileImage,
   ProfileChangeButton,
   Tag,
   Input,
-  AlarmSettingButton,
-  AlarmButton,
   BlueButton,
   CannelButton,
+  HiddenFileInput,
+  ProfileImageContainer,
 } from "./styles";
 
-import { ReactComponent as CheckCircleOff } from "../../../assets/myPage/CheckCircleOff.svg";
-import { ReactComponent as CheckCircleOn } from "../../../assets/myPage/CheckCircleOn.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { userAPI } from "../../../api/userAPI";
 
 const MyInfo = ({ IsWithdrawal, innerRef }) => {
@@ -26,6 +24,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
   const [birthday, setBirthDay] = useState("");
   const [school, setSchool] = useState("");
   const [region, setRegion] = useState("");
+  const [profileImage, setProfileImage] = useState("");
 
   const [isAlarm, setIsAlarm] = useState(false);
   const [isMail, setIsMail] = useState(false);
@@ -47,24 +46,27 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
     step11: false,
   });
 
+  const hiddenFileInput = useRef(null);
+
   const handleChange = (value, setter) => {
     setter(value);
   };
 
-  const profileChange = () => {};
-
-  const AlarmSetting = () => {
-    setIsAlarm(!isAlarm);
+  const profileChange = () => {
+    hiddenFileInput.current.click();
   };
 
-  const AlarmMail = () => {
-    setIsMail(!isMail);
-  };
-  const AlarmMessage = () => {
-    setIsMessage(!isMessage);
-  };
-  const AlarmApplication = () => {
-    setIsApplication(!isApplication);
+  const handleFileChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setProfileImage(reader.result);
+    };
+
+    if (fileUploaded) {
+      reader.readAsDataURL(fileUploaded);
+    }
   };
 
   const StartAnimation = () => {
@@ -111,13 +113,14 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
         setBirthDay(data.birthday ?? "");
         setSchool(data.school ?? "");
         setRegion(data.region ?? "");
+        setProfileImage(data.avatar ?? "");
       })
       .catch((error) => {});
   };
 
   const SaveUserData = async () => {
     const data = {
-      avatar: "asdf",
+      avatar: profileImage,
       firstName: firstName,
       lastName: lastName,
       nickname: nickname,
@@ -130,7 +133,9 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
     console.log(data);
     userAPI
       .putUser(data)
-      .then((res) => {})
+      .then((res) => {
+        console.log(res);
+      })
       .catch((error) => {
         console.log(error);
       });
@@ -148,21 +153,24 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
       <LineAnimation style={{ top: 16 }} $isVisible={visible.step2} />
 
       <div style={{ display: "flex", marginLeft: "83px", marginTop: "57px" }}>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <AnimatedProfile $isVisible={visible.step2} />
+        <ProfileImageContainer>
+          <ProfileImage
+            src={profileImage}
+            alt="Profile"
+            $isVisible={visible.step2}
+          />
           <ProfileChangeButton
             onClick={profileChange}
             $isVisible={visible.step4}
           >
             사진 변경
           </ProfileChangeButton>
-        </div>
+          <HiddenFileInput
+            type="file"
+            ref={hiddenFileInput}
+            onChange={handleFileChange}
+          />
+        </ProfileImageContainer>
 
         <div
           style={{
@@ -235,7 +243,6 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
 
           <div style={{ display: "flex", justifyContent: "flex-start" }}>
             <Tag style={{ paddingRight: 40 }} $isVisible={visible.step5}>
-              {" "}
               생년월일
             </Tag>
             <Input
@@ -252,8 +259,8 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             </Tag>
             <Input
               style={{ width: 162, marginRight: 20 }}
-              value={region}
-              onChange={(e) => handleChange(e.target.value, setRegion)}
+              value={school}
+              onChange={(e) => handleChange(e.target.value, setSchool)}
               $isVisible={visible.step6}
             />
 
@@ -266,83 +273,13 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
             </Tag>
             <Input
               style={{ width: 162 }}
-              value={school}
-              onChange={(e) => handleChange(e.target.value, setSchool)}
+              value={region}
+              onChange={(e) => handleChange(e.target.value, setRegion)}
               $isVisible={visible.step7}
             />
           </div>
         </div>
       </div>
-
-      {/* <LineAnimation $isVisible={visible.step8} /> */}
-
-      {/* <div
-        style={{
-          marginLeft: 300,
-          marginTop: 30,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-        }}
-      >
-        <AlarmSettingButton
-          onClick={() => AlarmSetting()}
-          style={{
-            display: "flex",
-            alignItems: "center",
-            border: "none",
-            backgroundColor: "#ffffff",
-          }}
-          $isVisible={visible.step9}
-        >
-          {isAlarm ? (
-            <CheckCircleOn style={{ marginRight: 10 }} />
-          ) : (
-            <CheckCircleOff style={{ marginRight: 10 }} />
-          )}
-          알림 설정
-        </AlarmSettingButton>
-
-        <Tag
-          style={{ marginTop: 30, marginBottom: 22 }}
-          $isVisible={visible.step9}
-        >
-          합격/불합격 연락 받을 수단
-        </Tag>
-
-        <div style={{ display: "flex" }}>
-          <AlarmButton
-            onClick={() => AlarmApplication()}
-            $isVisible={visible.step10}
-          >
-            APPLICATION
-            {isApplication ? (
-              <CheckCircleOn style={{ marginLeft: 10 }} />
-            ) : (
-              <CheckCircleOff style={{ marginLeft: 10 }} />
-            )}
-          </AlarmButton>
-          <AlarmButton onClick={() => AlarmMail()} $isVisible={visible.step10}>
-            E-MAIL
-            {isMail ? (
-              <CheckCircleOn style={{ marginLeft: 10 }} />
-            ) : (
-              <CheckCircleOff style={{ marginLeft: 10 }} />
-            )}
-          </AlarmButton>
-          <AlarmButton
-            onClick={() => AlarmMessage()}
-            $isVisible={visible.step10}
-          >
-            SMS
-            {isMessage ? (
-              <CheckCircleOn style={{ marginLeft: 10 }} />
-            ) : (
-              <CheckCircleOff style={{ marginLeft: 10 }} />
-            )}
-          </AlarmButton>
-        </div>
-      </div> */}
 
       <LineAnimation $isVisible={visible.step10} />
 

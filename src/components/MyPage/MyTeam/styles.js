@@ -55,7 +55,7 @@ export const CreateTeamButton = styled.button`
   margin-right: auto;
   margin-top: 30px;
   width: 85%;
-  height: 39px;
+  height: 40px;
   border: none;
   border-radius: 8px;
   background-color: #376fff;

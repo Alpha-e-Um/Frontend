@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { ReactComponent as Profile } from "../../../assets/myPage/profile.svg";
 import { ReactComponent as Line } from "../../../assets/myPage/myInfoVector1.svg";
 
 const fadeIn = css`
@@ -35,11 +34,26 @@ export const Title = styled.label`
   ${({ $isVisible }) => $isVisible && fadeIn}
 `;
 
-export const AnimatedProfile = styled(Profile)`
+export const ProfileImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const ProfileImage = styled.img`
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+
   opacity: 0;
   transform: translateY(-20px);
   transition: opacity 0.5s ease-out, transform 0.5s ease-out;
   ${({ $isVisible }) => $isVisible && fadeIn}
+`;
+
+export const HiddenFileInput = styled.input`
+  display: none;
 `;
 
 export const ProfileChangeButton = styled.button`
@@ -87,33 +101,6 @@ export const Input = styled.input`
   font-weight: 400;
   text-align: center;
   cursor: pointer;
-
-  opacity: 0;
-  transform: translateY(-10px);
-  ${({ $isVisible }) => $isVisible && fadeIn}
-`;
-
-export const AlarmSettingButton = styled.button`
-  opacity: 0;
-  transform: translateY(-10px);
-  ${({ $isVisible }) => $isVisible && fadeIn}
-`;
-
-export const AlarmButton = styled.button`
-  height: 34px;
-  margin-left: 15px;
-  margin-bottom: 50px;
-  border: 1px solid;
-  border-radius: 8px;
-  border-color: #c9c9c9;
-  font-size: 16px;
-  font-weight: 400;
-  padding-left: 15px;
-  padding-right: 15px;
-  background-color: #ffffff;
-
-  display: flex;
-  align-items: center;
 
   opacity: 0;
   transform: translateY(-10px);
