@@ -6,6 +6,7 @@ const fadeIn = css`
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 `;
 export const Container = styled.div`
+  padding: 20px;
   margin-top: 90px;
   width: 898px;
   border: 2px solid;
@@ -54,7 +55,7 @@ export const CreateTeamButton = styled.button`
   margin-left: auto;
   margin-right: auto;
   margin-top: 30px;
-  width: 749px;
+  width: 85%;
   height: 39px;
   border: none;
   border-radius: 8px;

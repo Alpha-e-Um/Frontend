@@ -49,6 +49,7 @@ const MyTeamCard = ({ data }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
+          gap: "8px",
         }}
       >
         <TeamName>{data.name}</TeamName>
@@ -59,11 +60,11 @@ const MyTeamCard = ({ data }) => {
           width: "100%",
           display: "flex",
           gap: "10px",
-          marginTop: "20px",
+          marginTop: "16px",
         }}
       >
         <Button onClick={goToTeamDetail}>팀원 관리</Button>
-        <Button>소개 페이지 수정</Button>
+        <Button>팀소개 수정</Button>
       </div>
     </Containter>
   );
