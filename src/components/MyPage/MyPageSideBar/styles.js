@@ -21,7 +21,7 @@ export const Container = styled.div`
   padding: 30px 20px 30px 20px;
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 20px;
   user-select: none;
 `;
 
