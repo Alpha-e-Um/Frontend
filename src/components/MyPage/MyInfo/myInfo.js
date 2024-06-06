@@ -355,7 +355,7 @@ const MyInfo = ({ IsWithdrawal, innerRef }) => {
           justifyContent: "flex-end",
         }}
       >
-        <BlueButton onClick={() => SaveUserData()} isVisible={visible.step11}>
+        <BlueButton onClick={() => SaveUserData()} $isVisible={visible.step11}>
           저장
         </BlueButton>
         <CannelButton $isVisible={visible.step11}>취소</CannelButton>
