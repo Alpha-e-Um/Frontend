@@ -13,10 +13,11 @@ const MyPageSideBar = ({
   const [curPage, setCurPage] = useState(0);
 
   const pageTitles = ["내정보", "지원현황", "팀관리", "이력서"];
+  // const pageTitles = ["내정보", "즐겨찾기", "지원현황", "팀관리", "이력서"];
   const pagePaths = useMemo(
     () => [
       "/mypage",
-      "/mypage/favorites",
+      // "/mypage/favorites",
       "/mypage/support",
       "/mypage/team",
       "/mypage/resume",
