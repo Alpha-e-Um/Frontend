@@ -15,6 +15,7 @@ import ContestDetail from "./pages/ContestDetailPage/contestDetailPage";
 import TeamMemberRecruitmentNotice from "./components/TeamMemberRecruitmentNotice/teamMemberRecruitmentNotice";
 import RegisterMember from "./pages/RegisterMember/registerMember";
 import MyTeamDetail from "./components/MyPage/MyTeamDetail/myTeamDetail";
+import ResumeDetail from "./pages/ResumeDetail/resumeDetail";
 import TeamDetail from "./pages/TeamAnnouncementDetail/teamAnnouncementDetail";
 import TeamAnnouncementDetail from "./pages/TeamAnnouncementDetail/teamAnnouncementDetail";
 
@@ -51,6 +52,7 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/resumeDetail" element={<ResumeDetail />} />
           <Route path="/mypage/*" element={<MyPage />} />
           <Route path="/mypage/team/:id" element={<MyTeamDetail />} />
           <Route path="/teamannouncement" element={<TeamSearch />} />

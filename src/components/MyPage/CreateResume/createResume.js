@@ -129,7 +129,7 @@ const CreateResume = () => {
     certificates.push({
       title: certificateName,
       startDate: certificateStartDate,
-      endDate: "", //날짜 입력란이 한개만 있음
+      endDate: "2000-01-01", //날짜 입력란이 한개만 있음
       introduction: certificateIntroduction,
       certificate_url: certificateUrl,
     });
@@ -241,6 +241,7 @@ const CreateResume = () => {
       homepages: homepages,
     };
 
+    console.log(careers);
     console.log(data);
     resumeAPI
       .postResume(data)
