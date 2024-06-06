@@ -1,8 +1,46 @@
+import { useEffect, useState } from "react";
+import { resumeAPI } from "../../api/resumeAPI";
 import { Explain } from "../../pages/ResumeDetail/styles";
 import { ColumnList, Gray } from "./styles";
 import { Container, Title, Tag, Data } from "./styles";
+import { userAPI } from "../../api/userAPI";
 
-const Resume = () => {
+const Resume = ({ resumeId }) => {
+  const [name, setNickName] = useState("");
+  const [recruitment, setRecruitment] = useState("");
+  const [category, setCategory] = useState("");
+  const [introduce, setIntroduce] = useState("");
+
+  const [jobCategory, setJobCategory] = useState("");
+  const [subJobCategory, setSubJobCategory] = useState("");
+  const [gpa, setGpa] = useState("");
+  const [techStacks, setTechStacks] = useState([]);
+
+  const [certificates, setCertificates] = useState([]);
+  const [careers, setCareers] = useState([]);
+  const [activities, setActivities] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [homepages, setHomepages] = useState([]);
+
+  useEffect((res) => {
+    resumeAPI
+      .getResumeId(14)
+      .then((res) => {
+        console.log(res.data.data);
+
+        setJobCategory(res.data.data.jobCategory);
+        setSubJobCategory(res.data.data.jobSubcategory);
+        setGpa(res.data.data.gpa);
+
+        setCertificates(res.data.data.certificates);
+        setCareers(res.data.data.careers);
+        setActivities(res.data.data.activities);
+        setProjects(res.data.data.projects);
+        setHomepages(res.data.data.homepages);
+      })
+      .catch((error) => {});
+  }, []);
+
   return (
     <Container style={{ width: "1000px" }}>
       <Title>이력서 정보</Title>
@@ -21,51 +59,24 @@ const Resume = () => {
           borderColor: "#C9C9C9",
         }}
       >
-        <Title>기본 정보</Title>
-        <Container style={{ width: "825px", alignItems: "center" }}>
-          <div style={{ display: "flex", gap: "28px" }}>
-            <ColumnList style={{ marginTop: "10px", gap: "42px" }}>
-              <Tag>이름</Tag>
-              <Tag>전화번호</Tag>
-              <Tag>생년월일</Tag>
-              <Tag>소속/학교</Tag>
-              <Tag>거주 지역</Tag>
-            </ColumnList>
-            <ColumnList style={{ marginRight: "100px", gap: "25px" }}>
-              <Data>이름</Data>
-              <Data style={{ width: "162px" }}>010-1234-1234</Data>
-              <Data style={{ width: "162px" }}>2000.01.01</Data>
-              <Data style={{ width: "162px" }}>국민대학교</Data>
-              <Data style={{ width: "162px" }}>거주지역</Data>
-            </ColumnList>
-            <ColumnList style={{ marginTop: "10px", gap: "42px" }}>
-              <Tag>성</Tag>
-              <Tag>MBTI</Tag>
-            </ColumnList>
-            <ColumnList style={{ gap: "25px" }}>
-              <Data>성</Data>
-              <Data>ENFT</Data>
-            </ColumnList>
-          </div>
-        </Container>
         <Title>이력서 정보</Title>
         <Container style={{ width: "825px" }}>
           <div style={{ marginTop: "30px", display: "flex", gap: "40px" }}>
             <ColumnList style={{ gap: "10px" }}>
               <Tag>직군</Tag>
               <Data style={{ width: "332px", marginBottom: "30px" }}>
-                대분류
+                {jobCategory}
               </Data>
               <Tag>학점</Tag>
               <Data style={{ width: "332px", marginBottom: "30px" }}>
-                학점 추가
+                {gpa}
               </Data>
             </ColumnList>
 
             <ColumnList style={{ gap: "10px" }}>
               <Tag>소분류</Tag>
               <Data style={{ width: "332px", marginBottom: "30px" }}>
-                소분류
+                {subJobCategory}
               </Data>
               <Tag>스킬</Tag>
               <Data style={{ width: "332px", marginBottom: "30px" }}>
@@ -92,6 +103,81 @@ const Resume = () => {
             <Gray>2000.01.01 - 2000.01.01</Gray>
           </div>
           <Explain>수상 자격증 내용 </Explain>
+        </Container>
+
+        <Container style={{ width: "825px", gap: "20px" }}>
+          <Tag>프로젝트</Tag>
+          <div
+            style={{
+              width: "100%",
+              paddingTop: "20px",
+              border: "solid",
+              borderWidth: "2px 0 0 0",
+              borderColor: "#C9C9C9",
+              display: "flex",
+              gap: "20px",
+            }}
+          >
+            <Tag>프로젝트명</Tag>
+            <Gray>2000.01.01 - 2000.01.01</Gray>
+          </div>
+          <Explain>맡은 역활</Explain>
+        </Container>
+
+        <Container style={{ width: "825px", gap: "20px" }}>
+          <Tag>외부활동</Tag>
+          <div
+            style={{
+              width: "100%",
+              paddingTop: "20px",
+              border: "solid",
+              borderWidth: "2px 0 0 0",
+              borderColor: "#C9C9C9",
+              display: "flex",
+              gap: "20px",
+            }}
+          >
+            <Tag>활동이름</Tag>
+            <Gray>2000.01.01 - 2000.01.01</Gray>
+          </div>
+          <Explain>활동 설명</Explain>
+        </Container>
+
+        <Container style={{ width: "825px", gap: "20px" }}>
+          <Tag>홈페이지</Tag>
+          <div
+            style={{
+              width: "100%",
+              paddingTop: "20px",
+              border: "solid",
+              borderWidth: "2px 0 0 0",
+              borderColor: "#C9C9C9",
+              display: "flex",
+              gap: "20px",
+            }}
+          >
+            <Tag>홈페이지</Tag>
+          </div>
+          <Explain>URL</Explain>
+        </Container>
+
+        <Container style={{ width: "825px", gap: "20px" }}>
+          <Tag>경력</Tag>
+          <div
+            style={{
+              width: "100%",
+              paddingTop: "20px",
+              border: "solid",
+              borderWidth: "2px 0 0 0",
+              borderColor: "#C9C9C9",
+              display: "flex",
+              gap: "20px",
+            }}
+          >
+            <Tag>업무 이름</Tag>
+            <Gray>2000.01.01 - 2000.01.01</Gray>
+          </div>
+          <Explain>직무</Explain>
         </Container>
 
         <Container style={{ width: "825px", gap: "20px" }}>
