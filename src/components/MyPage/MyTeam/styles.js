@@ -6,7 +6,6 @@ const fadeIn = css`
   transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 `;
 export const Container = styled.div`
-  padding: 20px;
   margin-top: 90px;
   width: 898px;
   border: 2px solid;
