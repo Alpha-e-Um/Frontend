@@ -22,7 +22,7 @@ export const Title = styled.label`
 
 export const MenuBox = styled.div`
   display: flex;
-  gap: 120px;
+  gap: 150px;
 `;
 
 export const MenuItem = styled.label`

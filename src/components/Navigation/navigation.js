@@ -70,14 +70,6 @@ const Navigation = (props) => {
             >
               마이페이지
             </MenuItem>
-            <MenuItem
-              style={{
-                color: "#000000",
-                fontWeight: "900",
-              }}
-            >
-              앱 다운로드
-            </MenuItem>
           </MenuBox>
           <div
             style={{
