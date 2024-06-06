@@ -1,4 +1,17 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const sharedStyles = css`
+  width: 200px;
+  height: 60px;
+  border: none;
+  border-radius: 12px;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+`;
 
 export const Container = styled.div`
   margin-right: 60px;
@@ -13,40 +26,21 @@ export const Container = styled.div`
 `;
 
 export const SelectPage = styled.button`
-  width: 200px;
-  height: 60px;
-  border: none;
-  border-radius: 12px;
-  font-size: 20px;
+  ${sharedStyles}
+  color: #0f0f0f;
   font-weight: 600;
-  background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  transition: background-color 0.3s ease;
+  background-color: #f2f2f2;
   &:hover {
-    background-color: #e6e6e6;
+    background-color: #f2f2f2;
   }
 `;
 
 export const NotSelectPage = styled.button`
-  width: 200px;
-  height: 60px;
-  border: none;
-  border-radius: 12px;
-  font-size: 20px;
+  ${sharedStyles}
   font-weight: 400;
   color: #c9c9c9;
   background-color: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-
-  transition: background-color 0.3s ease;
   &:hover {
-    background-color: #e6e6e6;
+    background-color: #f2f2f2;
   }
 `;
