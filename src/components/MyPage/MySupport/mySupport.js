@@ -108,8 +108,8 @@ const MySupport = ({ innerRef }) => {
       </div>
 
       <CardContainter>
-        {filteredApplications.map((item) => (
-          <MySupportCard key={item.id} data={item} />
+        {filteredApplications.map((item, index) => (
+          <MySupportCard key={index} data={item} />
         ))}
       </CardContainter>
     </Container>
